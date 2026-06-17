@@ -1,7 +1,7 @@
 ---
 title: Remote Attestation with Multiple Verifiers
 abbrev: RATS Many-Verifiers
-docname: draft-deshpande-rats-multi-verifier-latest
+docname: draft-ietf-rats-multi-verifier-latest
 category: info
 ipr: trust200902
 area: Security

@@ -5,15 +5,15 @@
 RATS                                                        Y. Deshpande
 Internet-Draft                                                   Arm Ltd
 Intended status: Informational                                  J. Zhang
-Expires: 11 August 2026                                        H. Labiod
+Expires: 20 December 2026                                      H. Labiod
                                      Huawei Technologies France S.A.S.U.
                                                             H. Birkholtz
                                                           Fraunhofer SIT
-                                                         7 February 2026
+                                                            18 June 2026
 
 
                Remote Attestation with Multiple Verifiers
-               draft-deshpande-rats-multi-verifier-latest
+                 draft-ietf-rats-multi-verifier-latest
 
 Abstract
 
@@ -30,8 +30,12 @@ Discussion Venues
 
    This note is to be removed before publishing as an RFC.
 
+   Discussion of this document takes place on the Remote ATtestation
+   ProcedureS Working Group mailing list (rats@ietf.org), which is
+   archived at https://mailarchive.ietf.org/arch/browse/rats/.
+
    Source for this draft and an issue tracker can be found at
-   https://github.com/ietf-rats/draft-deshpande-multi-verifier.
+   https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier.
 
 Status of This Memo
 
@@ -48,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 August 2026.
+   This Internet-Draft will expire on 20 December 2026.
 
 Copyright Notice
 
@@ -725,9 +729,9 @@ Informative References
    [I-D.draft-ietf-rats-corim]
               Birkholz, H., Fossati, T., Deshpande, Y., Smith, N., and
               W. Pan, "Concise Reference Integrity Manifest", Work in
-              Progress, Internet-Draft, draft-ietf-rats-corim-09, 20
-              October 2025, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-rats-corim-09>.
+              Progress, Internet-Draft, draft-ietf-rats-corim-10, 2
+              March 2026, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-rats-corim-10>.
 
    [RFC6024]  Reddy, R. and C. Wallace, "Trust Anchor Management
               Requirements", RFC 6024, DOI 10.17487/RFC6024, October

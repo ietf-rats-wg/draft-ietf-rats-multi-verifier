@@ -5,11 +5,11 @@
 RATS                                                        Y. Deshpande
 Internet-Draft                                                   Arm Ltd
 Intended status: Informational                                  J. Zhang
-Expires: 20 December 2026                                      H. Labiod
+Expires: 8 February 2027                                       H. Labiod
                                      Huawei Technologies France S.A.S.U.
                                                             H. Birkholtz
                                                           Fraunhofer SIT
-                                                            18 June 2026
+                                                           7 August 2026
 
 
                Remote Attestation with Multiple Verifiers
@@ -18,7 +18,7 @@ Expires: 20 December 2026                                      H. Labiod
 Abstract
 
    IETF RATS Architecture, defines the key role of a Verifier.  In a
-   complex system, this role needs to be performed by multiple Verfiers
+   complex system, this role needs to be performed by multiple Verifiers
    coordinating together to assess the full trustworthiness of an
    Attester.  This document focuses on various topological patterns for
    a multiple Verifier system.  It only covers the architectural aspects
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 December 2026.
+   This Internet-Draft will expire on 8 February 2027.
 
 Copyright Notice
 
@@ -729,9 +729,9 @@ Informative References
    [I-D.draft-ietf-rats-corim]
               Birkholz, H., Fossati, T., Deshpande, Y., Smith, N., and
               W. Pan, "Concise Reference Integrity Manifest", Work in
-              Progress, Internet-Draft, draft-ietf-rats-corim-10, 2
-              March 2026, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-rats-corim-10>.
+              Progress, Internet-Draft, draft-ietf-rats-corim-11, 6 July
+              2026, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              rats-corim-11>.
 
    [RFC6024]  Reddy, R. and C. Wallace, "Trust Anchor Management
               Requirements", RFC 6024, DOI 10.17487/RFC6024, October

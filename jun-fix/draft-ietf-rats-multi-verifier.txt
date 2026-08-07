@@ -5,20 +5,20 @@
 RATS                                                        Y. Deshpande
 Internet-Draft                                                   Arm Ltd
 Intended status: Informational                                  J. Zhang
-Expires: 10 August 2026                                        H. Labiod
+Expires: 8 February 2027                                       H. Labiod
                                      Huawei Technologies France S.A.S.U.
                                                             H. Birkholtz
                                                           Fraunhofer SIT
-                                                         6 February 2026
+                                                           7 August 2026
 
 
                Remote Attestation with Multiple Verifiers
-               draft-deshpande-rats-multi-verifier-latest
+                 draft-ietf-rats-multi-verifier-latest
 
 Abstract
 
    IETF RATS Architecture, defines the key role of a Verifier.  In a
-   complex system, this role needs to be performed by multiple Verfiers
+   complex system, this role needs to be performed by multiple Verifiers
    coordinating together to assess the full trustworthiness of an
    Attester.  This document focuses on various topological patterns for
    a multiple Verifier system.  It only covers the architectural aspects
@@ -30,8 +30,12 @@ Discussion Venues
 
    This note is to be removed before publishing as an RFC.
 
+   Discussion of this document takes place on the Remote ATtestation
+   ProcedureS Working Group mailing list (rats@ietf.org), which is
+   archived at https://mailarchive.ietf.org/arch/browse/rats/.
+
    Source for this draft and an issue tracker can be found at
-   https://github.com/ietf-rats/draft-deshpande-multi-verifier.
+   https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier.
 
 Status of This Memo
 
@@ -48,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 August 2026.
+   This Internet-Draft will expire on 8 February 2027.
 
 Copyright Notice
 
@@ -495,19 +499,24 @@ Legend:
 
 7.  Security Considerations
 
-   The Verifier is effectively part of the Attesters' and Relying
-   Parties' trusted computing base (TCB).  When multiple Verifiers
-   coordinate to conduct appraisal, it leads to larger TCB and hence
-   more attack surface.  Any mistake in the appraisal procedure
-   conducted by one or more Verifiers could lead to severe security
-   implications, such as incorrect Attestation Result of a component or
-   a composition to the Relying party.  This section details the
-   security threats and mitigation strategies specific to the multi-
-   verifier topologies described in this document.  In addition to the
-   considerations herein, Verifiers MUST follow the guidance detailed in
-   the Security and Privacy considerations of a RATS Verifier as
-   detailed in Section 11 of [I-D.draft-ietf-rats-corim] and the RATS
-   Architecture Section 11 and Section 12 of [RFC9334].
+   The Verifier is not part of the Attester’s Trusted Computing Base
+   (TCB), but acts as a critical component in the Relying Party’s trust
+   decision chain.  Therefore, its security directly affects the
+   reliability of the entire remote attestation process.  When multiple
+   Verifiers coordinate to conduct an appraisal, this may increase the
+   attack surface, depending on the system architecture and trust
+   assumptions.
+
+   Any mistake in the appraisal procedure conducted by one or more
+   Verifiers could lead to severe security implications, such as
+   incorrect Attestation Result of a component or a composition to the
+   Relying party.  This section details the security threats and
+   mitigation strategies specific to the multi-verifier topologies
+   described in this document.  In addition to the considerations
+   herein, Verifiers MUST follow the guidance detailed in the Security
+   and Privacy considerations of a RATS Verifier as detailed in
+   Section 11 of [I-D.draft-ietf-rats-corim] and the RATS Architecture
+   Section 11 and Section 12 of [RFC9334].
 
 7.1.  Adversarial Model
 
@@ -666,19 +675,28 @@ Legend:
 8.  Privacy Considerations
 
    The appraisal of a Composite Attester requires exchange of
-   attestation related messages, for example, partial Evidence and
-   partial Attestation Results, among multiple Verifiers.  This can
+   attestation related messages, for example, Partial Evidence and
+   Partial Attestation Results, among multiple Verifiers.  This can
    potentially leak sensitive information about the Attester's
-   configuration , identities and the nature of composition.
+   configuration, identities and the nature of composition.
+
+   However, when carefully designed, a multi-verifier architecture can
+   actually mitigate these privacy concerns.  By distributing appraisal
+   responsibilities and ensuring that no single Verifier has access to
+   the full set of Evidence, the risk of comprehensive device profiling
+   or tracking is reduced.
+
+   Nonetheless, such benefits depend on strong implementation practices.
 
    *  Minimization: Attesters should only generate Evidence that is
       strictly necessary for the appraisal policy.  Verifiers should
       only request necessary claims.
 
-   *  Confidentiality: Encryption should be used to prevent unauthorized
-      parties (including other Verifiers in the hierarchy or cascade)
-      from accessing sensitive Evidence.  This is crucial in multi-
-      tenant environments.
+   *  Confidentiality: Evidence containing sensitive information should
+      be encrypted so that it can only be accessed by the intended
+      Verifier and not by any unauthorised parties (including other
+      Verifiers in the hierarchy, cascade or hybrid pattern).  This is
+      crucial in multi-tenant environments.
 
    *  Policy Handling: Verifiers should be careful not to leak their
       internal appraisal policies (e.g., through error messages or
@@ -711,9 +729,9 @@ Informative References
    [I-D.draft-ietf-rats-corim]
               Birkholz, H., Fossati, T., Deshpande, Y., Smith, N., and
               W. Pan, "Concise Reference Integrity Manifest", Work in
-              Progress, Internet-Draft, draft-ietf-rats-corim-09, 20
-              October 2025, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-rats-corim-09>.
+              Progress, Internet-Draft, draft-ietf-rats-corim-11, 6 July
+              2026, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              rats-corim-11>.
 
    [RFC6024]  Reddy, R. and C. Wallace, "Trust Anchor Management
               Requirements", RFC 6024, DOI 10.17487/RFC6024, October

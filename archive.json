@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-06-28T04:41:10.702741+00:00",
+  "timestamp": "2026-08-09T02:18:16.277040+00:00",
   "repo": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
   "labels": [
     {
@@ -2824,21 +2824,21 @@
       "id": "PR_kwDON24c9s6rQ_kD",
       "title": "Update draft-deshpande-rats-multi-verifier.md",
       "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/34",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "GhadaArf",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "minor change to test the tool",
       "createdAt": "2025-09-30T08:07:20Z",
-      "updatedAt": "2025-09-30T09:00:00Z",
+      "updatedAt": "2026-08-07T09:12:11Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "test",
       "baseRefOid": "576278727c18dd5175ea6fef478ad1f865cf10f7",
       "headRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "headRefName": "test-1",
       "headRefOid": "fb021a6f4100c1e279e9228e8fe8d186aacfc6e5",
-      "closedAt": null,
+      "closedAt": "2026-08-07T09:12:10Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -2849,6 +2849,13 @@
           "body": "Welcome @GhadaArf to the Editors panel!",
           "createdAt": "2025-09-30T09:00:00Z",
           "updatedAt": "2025-09-30T09:00:00Z"
+        },
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing this PR as the section is already polished...",
+          "createdAt": "2026-08-07T09:12:10Z",
+          "updatedAt": "2026-08-07T09:12:10Z"
         }
       ],
       "reviews": [
@@ -4397,7 +4404,7 @@
       "labels": [],
       "body": "Added examples for Verifier 1 and Verifier 2 in the context of CPU and acceleration component verification.\r\n\r\nAdded examples for Verifier 1 and Verifier 2 in the context of workload and CC environment verification.",
       "createdAt": "2025-10-17T18:46:28Z",
-      "updatedAt": "2025-10-20T13:26:16Z",
+      "updatedAt": "2026-08-07T09:14:29Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
       "baseRefOid": "bb0cb038023866c9d75b53ef64f3bcf66feffae4",
@@ -4452,25 +4459,33 @@
       "id": "PR_kwDON24c9s615Jxl",
       "title": "Revise Verifier roles and security considerations",
       "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/50",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "junzhanghw",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Clarified the role of Verifiers in multi-verifier systems and their impact on security and privacy. Added considerations for single vs. multi-verifier designs and their implications for trust and operational complexity.",
       "createdAt": "2025-11-27T15:44:05Z",
-      "updatedAt": "2025-12-12T13:19:45Z",
+      "updatedAt": "2026-08-07T09:10:12Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
       "baseRefOid": "bb0cb038023866c9d75b53ef64f3bcf66feffae4",
       "headRepository": "junzhanghw/draft-deshpande-multi-verifier",
       "headRefName": "security-update-11272025",
-      "headRefOid": "aed61ca3a834f5964257a91a0394cbdc13cbb7df",
-      "closedAt": null,
+      "headRefOid": "03a63c8b21e55d4399fae7ac514ab612f6b0649d",
+      "closedAt": "2026-08-07T09:10:11Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing this PR as the accepted changes are already merged, ",
+          "createdAt": "2026-08-07T09:10:11Z",
+          "updatedAt": "2026-08-07T09:10:11Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDON24c9s7RlL1-",
@@ -4541,7 +4556,7 @@
               "originalPosition": 21,
               "body": "I would avoid the last sentence : regarding the choice aspect, as it gives people like *U* to rat hole that this is a deployment choice hence avoiding the need for standardisation!\r\n\r\nI am comfortable to state that, \r\nMulti-Verifier designs are intended for scenarios requiring distributed appraisal requirements originating from heteregenous environments etc etc...",
               "createdAt": "2025-11-27T16:13:39Z",
-              "updatedAt": "2025-11-27T16:13:39Z"
+              "updatedAt": "2026-08-07T08:48:26Z"
             }
           ]
         },
@@ -4702,6 +4717,52 @@
           "body": "[C1] I propose to delete this sentence: \u201cThe Verifier is not part of the Attester\u2019s Trusted Computing Base (TCB)\u201d. \r\n\r\nThe definition of TCB is \u201c the set of all hardware, firmware, and/or software components that are critical to its security, in the sense that bugs or vulnerabilities occurring inside the TCB might jeopardize the security properties of the entire system.\u201d (cf. Wikipedia)\r\n\r\nSo, TCB is usually implementation dependent. We can start directly \u201cThe Verifier is a critical\u2026.\u201d\r\n\r\n\r\n[C2] \u201cWhen multiple Verifiers coordinate to conduct an appraisal, this can increase the attack surface, depending on the system architecture and trust assumptions.\u201d\r\n\r\nwhy?  This sentence left me hanging! The increase of the attack surface comes from the fact that the decision is distributed among all the verifiers. I don\u2019t see the link with the trust assumptions and architecture!\r\n\r\n\r\n[C3] \u201cWhile this document specifies multi-verifier topologies, single-verifier remote attestation remains suitable for many use cases and is not inherently insecure. The main limitation of a single Verifier is that it represents a single point of trust; its compromise or misconfiguration can lead to incorrect attestation outcomes. However, in trusted environments with proper key management and secure channels, a single Verifier can provide adequate security with reduced operational complexity.\u201d\r\n\r\nMay be I am missing some context of the origin of / reason to have the following text. I don\u2019t understand if the point is to show the limitation of a single verifier option or something else. Because all the mentioned things are also true for the multi-verifier option.   \r\n\r\n\r\n[C4] \"Multi-verifier design are intended for \u2026.. enhanced resilience against Verifier compromise\u201d -> I don\u2019t see how it can help? \r\n\r\nI propose to have a more concise / compact text, something like: \r\n\r\nWhile this document specifies multi-verifier topologies, single-verifier remote attestation remains suitable for many use cases.  However, multi-verifier designs are specifically intended for scenarios requiring distributed appraisal, such as heterogeneous environments or component-specific verification. The choice between single- and multi-verifier architectures SHOULD be based on the specific security and operational requirements of the deployment.\r\n\r\n\r\n",
           "createdAt": "2025-12-12T13:19:45Z",
           "updatedAt": "2025-12-12T13:19:45Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABIvNe2w",
+          "commit": {
+            "abbreviatedOid": "aed61ca"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-08-07T08:48:54Z",
+          "updatedAt": "2026-08-07T08:48:54Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "```suggestion\n\n```",
+              "createdAt": "2026-08-07T08:48:54Z",
+              "updatedAt": "2026-08-07T08:48:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABIvNzxQ",
+          "commit": {
+            "abbreviatedOid": "03a63c8"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "see changes",
+          "createdAt": "2026-08-07T08:49:46Z",
+          "updatedAt": "2026-08-07T08:49:46Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABIvPC1w",
+          "commit": {
+            "abbreviatedOid": "03a63c8"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2026-08-07T08:52:24Z",
+          "updatedAt": "2026-08-07T08:52:24Z",
           "comments": []
         }
       ]
@@ -5112,6 +5173,55 @@
           "createdAt": "2026-02-07T10:21:35Z",
           "updatedAt": "2026-02-07T10:21:35Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "id": "PR_kwDON24c9s779GKz",
+      "title": "Fix typo",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/59",
+      "state": "MERGED",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-08-07T09:04:57Z",
+      "updatedAt": "2026-08-07T09:08:15Z",
+      "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "baseRefName": "main",
+      "baseRefOid": "a2620f2690d65bc0b361f2350d9d8270033619db",
+      "headRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "headRefName": "jun-fix",
+      "headRefOid": "20046dd1c7dd109cc9937a2d870cf7391f3a260f",
+      "closedAt": "2026-08-07T09:08:13Z",
+      "mergedAt": "2026-08-07T09:08:12Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "9404280edcd6008357de17de7d2eff6bad96257f"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDON24c9s8AAAABIvVRXQ",
+          "commit": {
+            "abbreviatedOid": "20046dd"
+          },
+          "author": "junzhanghw",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-08-07T09:07:15Z",
+          "updatedAt": "2026-08-07T09:08:05Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "look good",
+              "createdAt": "2026-08-07T09:07:16Z",
+              "updatedAt": "2026-08-07T09:08:05Z"
+            }
+          ]
         }
       ]
     }

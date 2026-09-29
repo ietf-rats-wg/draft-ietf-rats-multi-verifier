@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-20T04:39:03.401955+00:00",
+  "timestamp": "2026-09-29T05:28:24.103168+00:00",
   "repo": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
   "labels": [
     {
@@ -5296,6 +5296,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 63,
+      "id": "PR_kwDON24c9s8AAAABFmF16w",
+      "title": "Proofreading pass -- no substantive changes, grammar/nits only",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/63",
+      "state": "OPEN",
+      "author": "TheBankster",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Refine language and correct grammatical issues in the introduction and various sections to enhance clarity and consistency. Update terminology for better understanding of the multi-verifier system and its components.",
+      "createdAt": "2026-09-28T23:20:56Z",
+      "updatedAt": "2026-09-28T23:20:57Z",
+      "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "baseRefName": "main",
+      "baseRefOid": "9404280edcd6008357de17de7d2eff6bad96257f",
+      "headRepository": "TheBankster/draft-ietf-rats-multi-verifier",
+      "headRefName": "patch-1",
+      "headRefOid": "6e6b85f228f9573d847b2f3aeb861aecbd3a02b6",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }

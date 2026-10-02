@@ -12,22 +12,22 @@
 <meta content="
        IETF RATS Architecture, defines the key role of a Verifier.  In a complex system, this role needs to be performed by multiple Verifiers coordinating together to assess the full trustworthiness of an Attester. This document focuses on various topological patterns for a multiple Verifier system. It only covers the architectural aspects introduced by the Multi Verifier concept, which is neutral with regard to specific wire formats, encoding, transport mechanisms, or processing details. 
     " name="description">
-<meta content="xml2rfc 3.34.0" name="generator">
+<meta content="xml2rfc 3.34.1" name="generator">
 <meta content="draft-ietf-rats-multi-verifier-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.34.0
-    Python 3.14.5
-    ConfigArgParse 1.7.5
+  xml2rfc 3.34.1
+    Python 3.14.7
+    ConfigArgParse 1.7.7
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.11.0
+    platformdirs 4.11.10
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
-    wcwidth 0.8.2
+    wcwidth 0.8.4
 -->
 <link href="draft-ietf-rats-multi-verifier.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1043,11 +1043,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">RATS Many-Verifiers</td>
-<td class="right">August 2026</td>
+<td class="right">October 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Deshpande, et al.</td>
-<td class="center">Expires 8 February 2027</td>
+<td class="center">Expires 5 April 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1060,12 +1060,12 @@ svg {
 <dd class="internet-draft">draft-ietf-rats-multi-verifier-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-08-07" class="published">7 August 2026</time>
+<time datetime="2026-10-02" class="published">2 October 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-02-08">8 February 2027</time></dd>
+<dd class="expires"><time datetime="2027-04-05">5 April 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1122,7 +1122,7 @@ svg {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 5 April 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1164,7 +1164,7 @@ svg {
                 <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-verification-of-devices-con" class="internal xref">Verification of Devices containing heterogenous components</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-verification-of-workloads-o" class="internal xref">Verification of Workloads operating in Confidential Computing environment</a></p>
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-verification-of-workloads-o" class="internal xref">Verification of Workloads operating in Confidential Computing environments</a></p>
 </li>
             </ul>
 </li>
@@ -1276,9 +1276,9 @@ svg {
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1">A Verifier plays a central role in any Remote Attestation System. A Verifier appraises the Attester and produces Attestation Results, which are essentially a verdict of attestation. The results are consumed by the Relying Party to conclude the trustworthiness of the Attester, before making any critical decisions about the Attester, such as admitting it to the network or releasing confidential resources to it.
-Attesters can come in wide varieties of shape and form. For example Attesters can be endpoints (edge or IoT devices) or complex machines in the cloud. Composite Attester <a href="#sec-glossary" class="auto internal xref">Section 4.1</a>, generate Evidence that consists of multiple parts. For example, in data center servers, it is not uncommon for separate attesting environments (AE) to serve a subsection of the entire machine. One AE might measure and attest to what was booted on the main CPU, while another AE might measure and attest to what was booted machine's GPU. Throughout this document we use the term Component Attester <a href="#sec-glossary" class="auto internal xref">Section 4.1</a> to address the sub-entity or an individual layer which produces its own Evidence in a Composite Attester system.<a href="#section-1-1" class="pilcrow">¶</a></p>
+Attesters can come in wide varieties of shapes and forms. For example, Attesters can be endpoints (edge or IoT devices) or complex machines in the cloud. Composite Attester <a href="#sec-glossary" class="auto internal xref">Section 4.1</a> generates Evidence that consists of multiple parts. For example, in data center servers, it is not uncommon for separate attesting environments (AE) to serve a subsection of the entire machine. One AE might measure and attest to what was booted on the main CPU, while another AE might measure and attest to what was booted on the machine's GPU. Throughout this document we use the term Component Attester <a href="#sec-glossary" class="auto internal xref">Section 4.1</a> to address the sub-entity or an individual layer which produces its own Evidence in a Composite Attester system.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">In a Composite Attester system, it may not be possible for a single Verifier to possess all the capabilities or information required to conduct a complete appraisal of the Attester. Please refer to <a href="#sec-need-multiverifier" class="auto internal xref">Section 2</a> for motivation of this document. Multiple Verifiers need to collaborate to reach a conclusion on the appraisal and produce the Attestation Results.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">This document describes various topological patterns of multiple Verifiers that work in a coordinated manner to conduct appraisal of a Composite Attester to produce an Attestation Results.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-3">This document describes various topological patterns of multiple Verifiers that work in a coordinated manner to conduct appraisal of a Composite Attester to produce Attestation Results.<a href="#section-1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-need-multiverifier">
@@ -1299,11 +1299,11 @@ Attesters can come in wide varieties of shape and form. For example Attesters ca
 </li>
       </ol>
 <p id="section-2-3">The Verifier inputs listed above are linked to the shape of the Attesters.
-Typically, Composite Attesters come with a varying degree of heterogeneity of Evidence formats, depending on the type of Attesting Environments that come with each Component Attester, for example, CPU variants or GPU/FPGA variants. When conducting Evidence appraisal for a Composite Attester, the following challenges remain:<a href="#section-2-3" class="pilcrow">¶</a></p>
+Typically, Composite Attesters come with a varying degree of heterogeneity of Evidence formats, depending on the types of Attesting Environments that come with each Component Attester, for example, CPU variants or GPU/FPGA variants. When conducting Evidence appraisal for a Composite Attester, the following challenges remain:<a href="#section-2-3" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-2-4">
 <li id="section-2-4.1">
           <p id="section-2-4.1.1">An Attester's composition can change over time based on market requirements and availability (e.g., a set of racks in a data center gets thousands of new FPGAs).
-It is highly unlikely that there is always one appropriate Verifier that satisfies all the requirements that a complex and changing Composite Attesters imposes.
+It is highly unlikely that there is always one appropriate Verifier that satisfies all the requirements that a complex and changing Composite Attesters impose.
 It may not be economically viable to build and maintain such a degree of complexity in a single Verifier.<a href="#section-2-4.1.1" class="pilcrow">¶</a></p>
 </li>
         <li id="section-2-4.2">
@@ -1344,13 +1344,13 @@ For instance, they may need to exchange partial Evidence relating to the relevan
 <p id="section-3.1-5">Relying Party: An entity which is making trust decisions for such an Attester<a href="#section-3.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="verification-of-workloads-operating-in-confidential-computing-environment">
+<div id="verification-of-workloads-operating-in-confidential-computing-environments">
 <section id="section-3.2">
         <h3 id="name-verification-of-workloads-o">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-verification-of-workloads-o" class="section-name selfRef">Verification of Workloads operating in Confidential Computing environment</a>
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-verification-of-workloads-o" class="section-name selfRef">Verification of Workloads operating in Confidential Computing environments</a>
         </h3>
 <p id="section-3.2-1">As organisations move more workloads into untrusted or shared environments, Confidential Computing is becoming increasingly important.
-In such a system, an application or workload (which could be an AI model, database process or financial service, for example) is executed inside a TEE-protected virtual machine (VM).
+In such a system, an application or workload (which could be an AI model, database process or financial service, for example) is executed inside a Trusted Execution Environment, such as a confidential virtual machine (CVM).
 When the workload starts, the TEE can generate a cryptographic attestation report providing:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-3.2-2">
 <li id="section-3.2-2.1">
@@ -1424,12 +1424,12 @@ Also referred to as CV in the document.<a href="#section-4.1-2.12.1" class="pilc
           <dd class="break"></dd>
 <dt id="section-4.1-2.13">Partial Attestation Results:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.14">
-            <p id="section-4.1-2.14.1">Attestation Results produced by a Component Verifier, which contains partial results from atleast one or more Component Attesters.<a href="#section-4.1-2.14.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.14.1">Partial Attestation Results (PAR) are produced by a Component Verifier, and contain partial results from at least one or more Component Attesters.<a href="#section-4.1-2.14.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.15">Aggregated Attestation Results:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.16">
-            <p id="section-4.1-2.16.1">An Aggregated Attestation Results (AAR) refers to a collection of Attestation Results produced upon completion of appraisal of a Composite Attester.<a href="#section-4.1-2.16.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.16.1">Aggregated Attestation Results (AAR) refer to a collection of Attestation Results produced upon completion of appraisal of a Composite Attester.<a href="#section-4.1-2.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1535,10 +1535,14 @@ Also referred to as CV in the document.<a href="#section-4.1-2.12.1" class="pilc
                   <text x="304" y="356">Component</text>
                   <text x="380" y="356">Attester</text>
                   <text x="8" y="372">-</text>
-                  <text x="36" y="372">PAR:</text>
-                  <text x="88" y="372">Partial</text>
-                  <text x="168" y="372">Attestation</text>
-                  <text x="248" y="372">Results</text>
+                  <text x="44" y="372">PAR_i:</text>
+                  <text x="104" y="372">Partial</text>
+                  <text x="184" y="372">Attestation</text>
+                  <text x="264" y="372">Results</text>
+                  <text x="308" y="372">of</text>
+                  <text x="340" y="372">i-th</text>
+                  <text x="400" y="372">Component</text>
+                  <text x="476" y="372">Attester</text>
                 </g>
               </svg><a href="#section-5.1-2.1.1" class="pilcrow">¶</a>
 </div>
@@ -1566,10 +1570,10 @@ Otherwise it performs the following steps.<a href="#section-5.1.1-2" class="pilc
             <li class="normal" id="section-5.1.1-3.2">
               <p id="section-5.1.1-3.2.1">Lead Verifier delegates each Partial Evidence to its own Component Verifier (CV) and receives Component Attester Attestation Results also known as Partial Attestation Results after successful Appraisal of Evidence.
 There are many protocols to determine how a Lead Verifier can select the Component Verifiers.
-This document does not mandate any specific protocol for determining the Component Verifiers<a href="#section-5.1.1-3.2.1" class="pilcrow">¶</a></p>
+This document does not mandate any specific protocol for determining the Component Verifiers.<a href="#section-5.1.1-3.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-5.1.1-3.3">
-              <p id="section-5.1.1-3.3.1">Once the Lead Verifier receives Partial Attestation Results from all the Verifiers, it combines the results from each Verifier to construct an Aggregated Attestation Results (AAR). The Lead verifier may apply its own policies and also add extra claims as part of its appraisal.<a href="#section-5.1.1-3.3.1" class="pilcrow">¶</a></p>
+              <p id="section-5.1.1-3.3.1">Once the Lead Verifier receives Partial Attestation Results from all the Verifiers, it combines the results from each Verifier to construct Aggregated Attestation Results (AAR). The Lead verifier may apply its own policies and also add extra claims as part of its appraisal.<a href="#section-5.1.1-3.3.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-5.1.1-3.4">
               <p id="section-5.1.1-3.4.1">Lead Verifier conveys the AAR to the Attester (in Passport model) or to the Relying Party (in background check model).<a href="#section-5.1.1-3.4.1" class="pilcrow">¶</a></p>
@@ -1655,7 +1659,7 @@ Lead Verifier is provisioned with the Trust Anchors (see <span>[<a href="#RFC602
                   <text x="376" y="84">r</text>
                   <text x="424" y="84">CE,</text>
                   <text x="476" y="84">PAR_1..2</text>
-                  <text x="552" y="84">f</text>
+                  <text x="552" y="84">r</text>
                   <text x="224" y="100">i</text>
                   <text x="376" y="100">i</text>
                   <text x="464" y="100">...</text>
@@ -1707,12 +1711,12 @@ Lead Verifier is provisioned with the Trust Anchors (see <span>[<a href="#RFC602
 </div>
 <p id="section-5.2-3">In this topological pattern, the Attestation Verification happens in sequence. Verifiers are cascaded to perform the Attestation Appraisal.
 Each Verifier in the chain has the knowledge to derive or extract the Partial Evidence, which it can appraise, from the Composite Evidence.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
-<p id="section-5.2-4">Attester may send the Composite Evidence(CE) to any of the Verifier (directly in the passport model, or indirectly via the Relying Party in the background-check model). The Verifier which processes the Composite Evidence, Verifies the signature on the Evidence, if present. It extracts the
+<p id="section-5.2-4">Attester may send the Composite Evidence (CE) to any of the Verifiers (directly in the passport model, or indirectly via the Relying Party in the background-check model). The Verifier which processes the Composite Evidence, Verifies the signature on the Evidence, if present. It extracts the
 Partial Evidence from the Composite Evidence, performs Appraisal of the Component Attester whose Reference Values and Endorsements are in its database. Once the appraisal is complete, it forwards the Composite Evidence and Partial Attestation Results to the subsequent Verifier.<a href="#section-5.2-4" class="pilcrow">¶</a></p>
-<p id="section-5.2-5">The process is repeated, until the entire appraisal is complete. The last Verifier, i.e. Verifier-N, completes its Appraisal of the Partial Evidence, that it can appraise. It has now all the Partial Attestation Results and creates the Aggregated Attestation Results(AAR). It returns
+<p id="section-5.2-5">The process is repeated, until the entire appraisal is complete. The last Verifier, i.e. Verifier-N, completes its Appraisal of the Partial Evidence, that it can appraise. It has now all the Partial Attestation Results and creates the Aggregated Attestation Results (AAR). It returns
 the AAR to the N-1 Verifier (from where it received the Composite Evidence and Partial AR). The process is repeated, i.e. AAR is returned in the chain until the Verifier, which recieved the initial Composite Evidence is reached. At this point in time the Aggregated Attestation Results are signed and the AAR is sent to the Attester (in Passport Model) or Relying Party (in background check model).<a href="#section-5.2-5" class="pilcrow">¶</a></p>
-<p id="section-5.2-6">As shown in the picture, the Partial Attestation Results and Composite Evidence is transmitted to a chain of Verifier, till the Appraisal is complete.
-Upon completion, the last Verifier in the chain combines the incoming Partial Attestation Results, combines the results from it own Evidence Appraisal and passes the Aggregated Attestation Results to the Verifier from which it receives Composite Evidence.<a href="#section-5.2-6" class="pilcrow">¶</a></p>
+<p id="section-5.2-6">As shown in the picture, the Partial Attestation Results and Composite Evidence are transmitted to a chain of Verifiers, till the Appraisal is complete.
+Upon completion, the last Verifier in the chain combines the incoming Partial Attestation Results with the results from its own Evidence Appraisal, and passes the Aggregated Attestation Results to the Verifier from which it receives Composite Evidence.<a href="#section-5.2-6" class="pilcrow">¶</a></p>
 <p id="section-5.2-7">There are many protocols to determine how a Verifier can select the next Verifier to route the CE and PAR.
 This document does not mandate any specific protocol for determining the Verifiers in cascade.<a href="#section-5.2-7" class="pilcrow">¶</a></p>
 <div id="trust-relationships-1">
@@ -1765,8 +1769,8 @@ In the case of Hierarchical Pattern, the Verification of Freshness should be che
       <h2 id="name-security-considerations">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-7-1">The Verifier is not part of the Attester’s Trusted Computing Base (TCB), but acts as a critical component in the Relying Party’s trust decision chain. Therefore, its security directly affects the reliability of the entire remote attestation process.  When multiple Verifiers coordinate to conduct an appraisal, this may increase the attack surface, depending on the system architecture and trust assumptions.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">Any mistake in the appraisal procedure conducted by one or more Verifiers could lead to severe security implications, such as incorrect Attestation Result of a component or a composition to the Relying party. This section details the security threats and mitigation strategies specific to the multi-verifier topologies described in this document. In addition to the considerations herein, Verifiers MUST follow the guidance detailed in the Security and Privacy considerations of a RATS Verifier as detailed in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-rats-corim-11#section-11" class="relref">Section 11</a> of [<a href="#I-D.draft-ietf-rats-corim" class="cite xref">I-D.draft-ietf-rats-corim</a>]</span> and the RATS Architecture Section <a href="https://rfc-editor.org/rfc/rfc9334#section-11" class="relref">11</a> and Section <a href="https://rfc-editor.org/rfc/rfc9334#section-12" class="relref">12</a> of <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-1">The Verifier is not part of the Attester’s Trusted Computing Base (TCB), but acts as a critical component in the Relying Party’s trust decision chain. Therefore, its security directly affects the trustworthiness of the entire remote attestation process.  When multiple Verifiers coordinate to conduct an appraisal, this may increase the attack surface, depending on the system architecture and trust assumptions.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">Any mistake in the appraisal procedure conducted by one or more Verifiers could lead to severe security implications, such as incorrect Attestation Results of a component or a composition to the Relying party. This section details the security threats and mitigation strategies specific to the multi-verifier topologies described in this document. In addition to the considerations herein, Verifiers MUST follow the guidance detailed in the Security and Privacy considerations of a RATS Verifier as detailed in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-rats-corim-11#section-11" class="relref">Section 11</a> of [<a href="#I-D.draft-ietf-rats-corim" class="cite xref">I-D.draft-ietf-rats-corim</a>]</span> and the RATS Architecture Section <a href="https://rfc-editor.org/rfc/rfc9334#section-11" class="relref">11</a> and Section <a href="https://rfc-editor.org/rfc/rfc9334#section-12" class="relref">12</a> of <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>.<a href="#section-7-2" class="pilcrow">¶</a></p>
 <div id="adversarial-model">
 <section id="section-7.1">
         <h3 id="name-adversarial-model">
@@ -1796,7 +1800,7 @@ In the case of Hierarchical Pattern, the Verification of Freshness should be che
 <a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-general-considerations" class="section-name selfRef">General Considerations</a>
         </h3>
 <p id="section-7.2-1">All communications between entities (Attester-Verifier, Verifier-Verifier, Verifier-RP) MUST be secured using mutually authenticated, confidential, and integrity-protected channels (e.g., TLS).<a href="#section-7.2-1" class="pilcrow">¶</a></p>
-<p id="section-7.2-2">It is recommended that any two verifiers establishing a communication channel perform mutual attestation before exchanging  any attestation messages.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
+<p id="section-7.2-2">It is recommended that any two verifiers establishing a communication channel perform mutual attestation before exchanging any attestation messages.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-for-topological-patterns">
@@ -1820,7 +1824,7 @@ In the case of Hierarchical Pattern, the Verification of Freshness should be che
               <h6 id="name-lv-compromise">
 <a href="#section-7.3.1.1.1" class="section-number selfRef">7.3.1.1.1. </a><a href="#name-lv-compromise" class="section-name selfRef">LV Compromise</a>
               </h6>
-<p id="section-7.3.1.1.1-1"><strong>Threat:</strong> A compromised LV can orchestrate attacks, such as approving malicious attestations, wrongly aggregating attestation results or leaking sensitive evidence. This is a single point of failure from a trust perspective.<a href="#section-7.3.1.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-7.3.1.1.1-1"><strong>Threat:</strong> A compromised LV can orchestrate attacks, such as approving malicious attestations, wrongly aggregating attestation results or leaking sensitive evidence. This is a single point of failure from the trust perspective.<a href="#section-7.3.1.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-7.3.1.1.1-2"><strong>Mitigation:</strong> The LV MUST be hardened and operate and store its Keys in a secure environment. Its operation SHOULD be auditable.
 Component Verifiers should be made available suitable trust anchors so that they can establish required trust in the authority of the LV.<a href="#section-7.3.1.1.1-2" class="pilcrow">¶</a></p>
 </section>
@@ -1872,7 +1876,7 @@ The LV MUST validate the signature using the required trust anchor for the CV, b
           <h4 id="name-cascaded-pattern-3">
 <a href="#section-7.3.2" class="section-number selfRef">7.3.2. </a><a href="#name-cascaded-pattern-3" class="section-name selfRef">Cascaded Pattern</a>
           </h4>
-<p id="section-7.3.2-1">The cascaded pattern distributes trust but requires each Verifier in the chain to be trusted to correctly handle and forward  Attestation messages. The chain's security is only as strong as its weakest link.<a href="#section-7.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-7.3.2-1">The cascaded pattern distributes trust but requires each Verifier in the chain to be trusted to correctly handle and forward Attestation messages. The chain's security is only as strong as its weakest link.<a href="#section-7.3.2-1" class="pilcrow">¶</a></p>
 <div id="threats-and-mitigations-1">
 <section id="section-7.3.2.1">
             <h5 id="name-threats-and-mitigations-2">
@@ -1884,7 +1888,7 @@ The LV MUST validate the signature using the required trust anchor for the CV, b
 <a href="#section-7.3.2.1.1" class="section-number selfRef">7.3.2.1.1. </a><a href="#name-verifier-compromise" class="section-name selfRef">Verifier Compromise</a>
               </h6>
 <p id="section-7.3.2.1.1-1"><strong>Threat:</strong> Any compromised Verifier in the chain can block, delay, or manipulate the attestation process. It can inject false partial results, drop evidence, or leak sensitive information.<a href="#section-7.3.2.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-7.3.2.1.1-2"><strong>Mitigation:</strong> Relying Parties and Verifiers MUST be configured with strict trust policies defining the allowed paths and trusted Verifiers. Operations should be logged for auditability.<a href="#section-7.3.2.1.1-2" class="pilcrow">¶</a></p>
+<p id="section-7.3.2.1.1-2"><strong>Mitigation:</strong> Relying Parties and Verifiers MUST be configured with strict trust policies defining the allowed paths and trusted Verifiers. Operations SHOULD be logged for auditability.<a href="#section-7.3.2.1.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="communication-security">
@@ -1902,7 +1906,7 @@ The LV MUST validate the signature using the required trust anchor for the CV, b
 <a href="#section-7.3.2.1.3" class="section-number selfRef">7.3.2.1.3. </a><a href="#name-evidence-and-results-protec" class="section-name selfRef">Evidence and Results Protection</a>
               </h6>
 <p id="section-7.3.2.1.3-1"><strong>Threat:</strong> Lack of end-to-end security allows intermediate Verifiers to manipulate evidence or results that are not intended for them to appraise.<a href="#section-7.3.2.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-7.3.2.1.3-2"><strong>Mitigation:</strong> End-to-end integrity protection is RECOMMENDED. The Composite Evidence should be signed by the Attester. Partial and Aggregated Attestation Results SHOULD be signed by the Verifier that generated them. This allows subsequent Verifiers and the Relying Party to verify that results have not been tampered with by intermediate nodes.<a href="#section-7.3.2.1.3-2" class="pilcrow">¶</a></p>
+<p id="section-7.3.2.1.3-2"><strong>Mitigation:</strong> End-to-end integrity protection is RECOMMENDED. The Composite Evidence SHOULD be signed by the Attester. Partial and Aggregated Attestation Results SHOULD be signed by the Verifier that generated them. This allows subsequent Verifiers and the Relying Party to verify that results have not been tampered with by intermediate nodes.<a href="#section-7.3.2.1.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="replay-attacks-1">
@@ -1940,13 +1944,13 @@ The LV MUST validate the signature using the required trust anchor for the CV, b
 <p id="section-8-3">Nonetheless, such benefits depend on strong implementation practices.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-8-4.1">
-          <p id="section-8-4.1.1">Minimization: Attesters should only generate Evidence that is strictly necessary for the appraisal policy. Verifiers should only request necessary claims.<a href="#section-8-4.1.1" class="pilcrow">¶</a></p>
+          <p id="section-8-4.1.1">Minimization: Attesters SHOULD only generate Evidence that is strictly necessary for the appraisal policy. Verifiers SHOULD only request necessary claims.<a href="#section-8-4.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-8-4.2">
-          <p id="section-8-4.2.1">Confidentiality: Evidence containing sensitive information should be encrypted so that it can only be accessed by the intended Verifier and not by any unauthorised parties (including other Verifiers in the hierarchy, cascade or hybrid pattern). This is crucial in multi-tenant environments.<a href="#section-8-4.2.1" class="pilcrow">¶</a></p>
+          <p id="section-8-4.2.1">Confidentiality: Evidence containing sensitive information SHOULD be encrypted so that it can only be accessed by the intended Verifier and not by any unauthorised parties (including other Verifiers in the hierarchy, cascade or hybrid pattern). This is crucial in multi-tenant environments.<a href="#section-8-4.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-8-4.3">
-          <p id="section-8-4.3.1">Policy Handling: Verifiers should be careful not to leak their internal appraisal policies (e.g., through error messages or timing side channels) when communicating with other Verifiers or Attesters, as this information could be exploited by an attacker to manipulate appraisal.<a href="#section-8-4.3.1" class="pilcrow">¶</a></p>
+          <p id="section-8-4.3.1">Policy Handling: Verifiers SHOULD be careful not to leak their internal appraisal policies (e.g., through error messages or timing side channels) when communicating with other Verifiers or Attesters, as this information could be exploited by an attacker to manipulate appraisal.<a href="#section-8-4.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>

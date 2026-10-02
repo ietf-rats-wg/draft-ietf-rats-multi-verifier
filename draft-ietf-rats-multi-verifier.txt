@@ -5,11 +5,11 @@
 RATS                                                        Y. Deshpande
 Internet-Draft                                                   Arm Ltd
 Intended status: Informational                                  J. Zhang
-Expires: 8 February 2027                                       H. Labiod
+Expires: 5 April 2027                                          H. Labiod
                                      Huawei Technologies France S.A.S.U.
                                                             H. Birkholtz
                                                           Fraunhofer SIT
-                                                           7 August 2026
+                                                          2 October 2026
 
 
                Remote Attestation with Multiple Verifiers
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 February 2027.
+   This Internet-Draft will expire on 5 April 2027.
 
 Copyright Notice
 
@@ -75,7 +75,7 @@ Table of Contents
    3.  Reference Use Cases
      3.1.  Verification of Devices containing heterogenous components
      3.2.  Verification of Workloads operating in Confidential
-           Computing environment
+           Computing environments
    4.  Conventions and Definitions
      4.1.  Glossary
    5.  Multi Verifier topological patterns
@@ -113,17 +113,17 @@ Table of Contents
    consumed by the Relying Party to conclude the trustworthiness of the
    Attester, before making any critical decisions about the Attester,
    such as admitting it to the network or releasing confidential
-   resources to it.  Attesters can come in wide varieties of shape and
-   form.  For example Attesters can be endpoints (edge or IoT devices)
-   or complex machines in the cloud.  Composite Attester Section 4.1,
-   generate Evidence that consists of multiple parts.  For example, in
+   resources to it.  Attesters can come in wide varieties of shapes and
+   forms.  For example, Attesters can be endpoints (edge or IoT devices)
+   or complex machines in the cloud.  Composite Attester Section 4.1
+   generates Evidence that consists of multiple parts.  For example, in
    data center servers, it is not uncommon for separate attesting
    environments (AE) to serve a subsection of the entire machine.  One
    AE might measure and attest to what was booted on the main CPU, while
-   another AE might measure and attest to what was booted machine's GPU.
-   Throughout this document we use the term Component Attester
-   Section 4.1 to address the sub-entity or an individual layer which
-   produces its own Evidence in a Composite Attester system.
+   another AE might measure and attest to what was booted on the
+   machine's GPU.  Throughout this document we use the term Component
+   Attester Section 4.1 to address the sub-entity or an individual layer
+   which produces its own Evidence in a Composite Attester system.
 
    In a Composite Attester system, it may not be possible for a single
    Verifier to possess all the capabilities or information required to
@@ -134,7 +134,7 @@ Table of Contents
 
    This document describes various topological patterns of multiple
    Verifiers that work in a coordinated manner to conduct appraisal of a
-   Composite Attester to produce an Attestation Results.
+   Composite Attester to produce Attestation Results.
 
 2.  Need for Multiple Verifiers
 
@@ -152,7 +152,7 @@ Table of Contents
 
    The Verifier inputs listed above are linked to the shape of the
    Attesters.  Typically, Composite Attesters come with a varying degree
-   of heterogeneity of Evidence formats, depending on the type of
+   of heterogeneity of Evidence formats, depending on the types of
    Attesting Environments that come with each Component Attester, for
    example, CPU variants or GPU/FPGA variants.  When conducting Evidence
    appraisal for a Composite Attester, the following challenges remain:
@@ -162,7 +162,7 @@ Table of Contents
        center gets thousands of new FPGAs).  It is highly unlikely that
        there is always one appropriate Verifier that satisfies all the
        requirements that a complex and changing Composite Attesters
-       imposes.  It may not be economically viable to build and maintain
+       impose.  It may not be economically viable to build and maintain
        such a degree of complexity in a single Verifier.
 
    2.  A Verifier Owner may have an Appraisal Policy for Evidence of a
@@ -214,15 +214,15 @@ Table of Contents
    Attester
 
 3.2.  Verification of Workloads operating in Confidential Computing
-      environment
+      environments
 
    As organisations move more workloads into untrusted or shared
    environments, Confidential Computing is becoming increasingly
    important.  In such a system, an application or workload (which could
    be an AI model, database process or financial service, for example)
-   is executed inside a TEE-protected virtual machine (VM).  When the
-   workload starts, the TEE can generate a cryptographic attestation
-   report providing:
+   is executed inside a Trusted Execution Environment, such as a
+   confidential virtual machine (CVM).  When the workload starts, the
+   TEE can generate a cryptographic attestation report providing:
 
    1.  The workload is running on a platform with a known state.
 
@@ -286,12 +286,12 @@ Table of Contents
       Verification of one single component or a layer.  Also referred to
       as CV in the document.
 
-   Partial Attestation Results:  Attestation Results produced by a
-      Component Verifier, which contains partial results from atleast
-      one or more Component Attesters.
+   Partial Attestation Results:  Partial Attestation Results (PAR) are
+      produced by a Component Verifier, and contain partial results from
+      at least one or more Component Attesters.
 
-   Aggregated Attestation Results:  An Aggregated Attestation Results
-      (AAR) refers to a collection of Attestation Results produced upon
+   Aggregated Attestation Results:  Aggregated Attestation Results (AAR)
+      refer to a collection of Attestation Results produced upon
       completion of appraisal of a Composite Attester.
 
 5.  Multi Verifier topological patterns
@@ -325,7 +325,7 @@ Table of Contents
    - CE: Composite Evidence
    - AAR: Aggregated Attestation Results
    - PE_i: Partial Evidence of i-th Component Attester
-   - PAR: Partial Attestation Results
+   - PAR_i: Partial Attestation Results of i-th Component Attester
 
                        Figure 1: Hierarchical Pattern
 
@@ -357,13 +357,13 @@ Table of Contents
       Appraisal of Evidence.  There are many protocols to determine how
       a Lead Verifier can select the Component Verifiers.  This document
       does not mandate any specific protocol for determining the
-      Component Verifiers
+      Component Verifiers.
 
    *  Once the Lead Verifier receives Partial Attestation Results from
       all the Verifiers, it combines the results from each Verifier to
-      construct an Aggregated Attestation Results (AAR).  The Lead
-      verifier may apply its own policies and also add extra claims as
-      part of its appraisal.
+      construct Aggregated Attestation Results (AAR).  The Lead verifier
+      may apply its own policies and also add extra claims as part of
+      its appraisal.
 
    *  Lead Verifier conveys the AAR to the Attester (in Passport model)
       or to the Relying Party (in background check model).
@@ -402,7 +402,7 @@ Table of Contents
                         .-----.            .-----.               .-----.
                         |  V  |            |  V  |               |  V  |
                         |  e  |            |  e  |               |  e  |
-.---------------. CE    |  r  | CE, PAR_1  |  r  | CE, PAR_1..2  |  f  |
+.---------------. CE    |  r  | CE, PAR_1  |  r  | CE, PAR_1..2  |  r  |
 |               +------>|  i  +----------->|  i  +----- ... ---->|  i  |
 | Attester / RP |       |  f  |            |  f  |               |  f  |
 |               |<------+  i  |<-----------+  i  |<---- ... -----+  i  |
@@ -425,7 +425,7 @@ Legend:
    extract the Partial Evidence, which it can appraise, from the
    Composite Evidence.
 
-   Attester may send the Composite Evidence(CE) to any of the Verifier
+   Attester may send the Composite Evidence (CE) to any of the Verifiers
    (directly in the passport model, or indirectly via the Relying Party
    in the background-check model).  The Verifier which processes the
    Composite Evidence, Verifies the signature on the Evidence, if
@@ -438,8 +438,8 @@ Legend:
    The process is repeated, until the entire appraisal is complete.  The
    last Verifier, i.e. Verifier-N, completes its Appraisal of the
    Partial Evidence, that it can appraise.  It has now all the Partial
-   Attestation Results and creates the Aggregated Attestation
-   Results(AAR).  It returns the AAR to the N-1 Verifier (from where it
+   Attestation Results and creates the Aggregated Attestation Results
+   (AAR).  It returns the AAR to the N-1 Verifier (from where it
    received the Composite Evidence and Partial AR).  The process is
    repeated, i.e. AAR is returned in the chain until the Verifier, which
    recieved the initial Composite Evidence is reached.  At this point in
@@ -448,10 +448,10 @@ Legend:
    background check model).
 
    As shown in the picture, the Partial Attestation Results and
-   Composite Evidence is transmitted to a chain of Verifier, till the
+   Composite Evidence are transmitted to a chain of Verifiers, till the
    Appraisal is complete.  Upon completion, the last Verifier in the
-   chain combines the incoming Partial Attestation Results, combines the
-   results from it own Evidence Appraisal and passes the Aggregated
+   chain combines the incoming Partial Attestation Results with the
+   results from its own Evidence Appraisal, and passes the Aggregated
    Attestation Results to the Verifier from which it receives Composite
    Evidence.
 
@@ -502,14 +502,14 @@ Legend:
    The Verifier is not part of the Attester’s Trusted Computing Base
    (TCB), but acts as a critical component in the Relying Party’s trust
    decision chain.  Therefore, its security directly affects the
-   reliability of the entire remote attestation process.  When multiple
-   Verifiers coordinate to conduct an appraisal, this may increase the
-   attack surface, depending on the system architecture and trust
-   assumptions.
+   trustworthiness of the entire remote attestation process.  When
+   multiple Verifiers coordinate to conduct an appraisal, this may
+   increase the attack surface, depending on the system architecture and
+   trust assumptions.
 
    Any mistake in the appraisal procedure conducted by one or more
    Verifiers could lead to severe security implications, such as
-   incorrect Attestation Result of a component or a composition to the
+   incorrect Attestation Results of a component or a composition to the
    Relying party.  This section details the security threats and
    mitigation strategies specific to the multi-verifier topologies
    described in this document.  In addition to the considerations
@@ -561,8 +561,8 @@ Legend:
 
    *Threat:* A compromised LV can orchestrate attacks, such as approving
    malicious attestations, wrongly aggregating attestation results or
-   leaking sensitive evidence.  This is a single point of failure from a
-   trust perspective.
+   leaking sensitive evidence.  This is a single point of failure from
+   the trust perspective.
 
    *Mitigation:* The LV MUST be hardened and operate and store its Keys
    in a secure environment.  Its operation SHOULD be auditable.
@@ -630,7 +630,7 @@ Legend:
 
    *Mitigation:* Relying Parties and Verifiers MUST be configured with
    strict trust policies defining the allowed paths and trusted
-   Verifiers.  Operations should be logged for auditability.
+   Verifiers.  Operations SHOULD be logged for auditability.
 
 7.3.2.1.2.  Communication Security
 
@@ -648,7 +648,7 @@ Legend:
    appraise.
 
    *Mitigation:* End-to-end integrity protection is RECOMMENDED.  The
-   Composite Evidence should be signed by the Attester.  Partial and
+   Composite Evidence SHOULD be signed by the Attester.  Partial and
    Aggregated Attestation Results SHOULD be signed by the Verifier that
    generated them.  This allows subsequent Verifiers and the Relying
    Party to verify that results have not been tampered with by
@@ -688,17 +688,17 @@ Legend:
 
    Nonetheless, such benefits depend on strong implementation practices.
 
-   *  Minimization: Attesters should only generate Evidence that is
-      strictly necessary for the appraisal policy.  Verifiers should
+   *  Minimization: Attesters SHOULD only generate Evidence that is
+      strictly necessary for the appraisal policy.  Verifiers SHOULD
       only request necessary claims.
 
-   *  Confidentiality: Evidence containing sensitive information should
+   *  Confidentiality: Evidence containing sensitive information SHOULD
       be encrypted so that it can only be accessed by the intended
       Verifier and not by any unauthorised parties (including other
       Verifiers in the hierarchy, cascade or hybrid pattern).  This is
       crucial in multi-tenant environments.
 
-   *  Policy Handling: Verifiers should be careful not to leak their
+   *  Policy Handling: Verifiers SHOULD be careful not to leak their
       internal appraisal policies (e.g., through error messages or
       timing side channels) when communicating with other Verifiers or
       Attesters, as this information could be exploited by an attacker

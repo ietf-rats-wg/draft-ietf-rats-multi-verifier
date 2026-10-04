@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-29T05:28:24.103168+00:00",
+  "timestamp": "2026-10-04T05:34:05.191089+00:00",
   "repo": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
   "labels": [
     {
@@ -967,6 +967,38 @@
           "updatedAt": "2026-09-07T09:55:02Z"
         }
       ]
+    },
+    {
+      "number": 64,
+      "id": "I_kwDON24c9s8AAAABUkVvzg",
+      "title": "Yaron- Comments",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/issues/64",
+      "state": "OPEN",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "\n---\n\n# Review of draft-ietf-rats-multi-verifier-latest\n\n## Comments\n\nIn [Section 7.3.1.1.5](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-7.3.1.1.5) [Paragraph 2](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-7.3.1.1.5-2):\n\n> propagated to CVs\n\nCorrect, and we should mention it in the Freshness section.\n\n### Edit\n\nIn [Section 7.3.1.1.2](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-7.3.1.1.2) [Paragraph 2](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-7.3.1.1.2-2):\n\n> confidential\n\nShould be: encrypted. And similarly in 7.3.2.1.2 (Communication Security).\n\n### LV threats\n\nIn [Section 7.3.1.1.1](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-7.3.1.1.1) [Paragraph 1](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-7.3.1.1.1-1):\n\n> A compromised LV\n\nOne more potential threat is generating bogus PEs and having the CVs approve them, assuming these attestation results can be reused somewhere.\n\nThis is the Evidence Integrity subsection below, but there we do not mention that the LV may be compromised.\n\n### Normative section?\n\nIn [Section 7.1](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-7.1) [Paragraph 1](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-7.1-1):\n\n> security analysis in this section\n\nThis section is very strange. Usually an I-D is mostly normative, and the security considerations are not. Here it's the other way around (and as a reminder, this document is Informative).\n\n### Single point of checking freshness\n\nIn [Section 6](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-6) [Paragraph 1](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-6-1):\n\n> the Verification of Freshness should be checked by the Lead Verifier\n\nIs this good enough? It means that component verifiers are unable to establish their own freshness policies.\n\nIn [Section 5.4](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-5.4) [Paragraph 1](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-5.4-1):\n\n> combined to produce a hybrid pattern\n\nThe patterns' definitions focus on the topology rather than the capabilities of each entity. IMO the main difference is that in the hierarchical pattern, the LV is able to detect each PE for *other* verifiers. Whereas in the cascaded pattern, each Verifiers must only be able to identify its own PE and delegate the rest forward.\n\n### Cascaded model trust\n\nIn [Section 5.3.1](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-5.3.1) [Paragraph 1](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-5.3.1-1):\n\n> the communicating Verifiers fully trust each other\n\nI don't think this ever makes sense in the real world. For example, why would verifiers from different vendors trust one another?\n\n### LV trust\n\nIn [Section 5.1.3](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-5.1.3) [Paragraph 1](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-5.1.3-1):\n\n> fully trusted by Component Verifiers\n\nIt doesn't have to be fully trusted, and arguably this is a weakness of this topology. For example, the full Evidence may contain PAR components that are each individually signed.\n\n### No specific protocol mandated\n\nIn [Section 5.1.1](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-5.1.1) [this text](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-5.1.1-3.2.1):\n\n> This document does not mandate any specific protocol for determining the Component Verifiers.\n\nThis sentence is confusing, because *nothing* in this document is normative.\n\n### One more challenge?\n\nIn [Section 2](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-2) [Paragraph 2](file://wsl.localhost/Ubuntu-26.04/home/yaronf/misc/rats/draft-ietf-rats-multi-verifier/draft-ietf-rats-multi-verifier.html#section-2-3):\n\n> challenges\n\nAnother challenge is the lack of a standard way to identify Verifiers and compose their policies into one single well-defined policy that can be used by the RP. Or is this what the document is working towards?\n\nMore generally, perhaps the document could identify gaps that RATS should work on to standardize these architectures.\n\n",
+      "createdAt": "2026-10-02T09:03:08Z",
+      "updatedAt": "2026-10-02T09:03:08Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 65,
+      "id": "I_kwDON24c9s8AAAABUkWkDg",
+      "title": "Mark Novak Comments",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/issues/65",
+      "state": "OPEN",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Hello all,\n\nI completed a proofreading pass and suggested a PR correcting just grammar/typo/minor issues. https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/63\n\nSeparately, here is what I noticed but it falls into neither of the categories above:\n\n\u2022\t\"Component Verifiers should be made available suitable trust anchors so that they can establish required trust in the authority of the LV.\"\nI would rephase as \"CVs SHOULD be provided with suitable trust anchors...\" \u2014 but I can't be certain that's your intent.\n\u2022\t\"It is recommended that any two verifiers establishing a communication channel perform mutual attestation before exchanging any attestation messages.\"\nI think here you mean mutual authentication, not mutual attestation\n\u2022\tI'd replace \"TLS with client authentication\" with \"TLS with mutual authentication\" throughout\n\nOther than these minor issues, I think the draft is in great shape.\n",
+      "createdAt": "2026-10-02T09:04:23Z",
+      "updatedAt": "2026-10-02T09:04:23Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -5302,26 +5334,141 @@
       "id": "PR_kwDON24c9s8AAAABFmF16w",
       "title": "Proofreading pass -- no substantive changes, grammar/nits only",
       "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/63",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "TheBankster",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Refine language and correct grammatical issues in the introduction and various sections to enhance clarity and consistency. Update terminology for better understanding of the multi-verifier system and its components.",
       "createdAt": "2026-09-28T23:20:56Z",
-      "updatedAt": "2026-09-28T23:20:57Z",
+      "updatedAt": "2026-10-02T09:33:30Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
       "baseRefOid": "9404280edcd6008357de17de7d2eff6bad96257f",
       "headRepository": "TheBankster/draft-ietf-rats-multi-verifier",
       "headRefName": "patch-1",
-      "headRefOid": "6e6b85f228f9573d847b2f3aeb861aecbd3a02b6",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "a295e80c0f78d946979b71eeab246f85b5fe3eb3",
+      "closedAt": "2026-10-02T09:33:30Z",
+      "mergedAt": "2026-10-02T09:33:30Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "41dc612f5ef6769902246d8cba870ca53bb1153e"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDON24c9s8AAAABQUbruQ",
+          "commit": {
+            "abbreviatedOid": "6e6b85f"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-02T09:17:15Z",
+          "updatedAt": "2026-10-02T09:17:16Z",
+          "comments": [
+            {
+              "originalPosition": 55,
+              "body": "```suggestion\n: Aggregated Attestation Results (AAR) refer to a collection of Attestation Results produced upon completion of appraisal of a Composite Attester.\n```",
+              "createdAt": "2026-10-02T09:17:15Z",
+              "updatedAt": "2026-10-02T09:17:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABQUeclw",
+          "commit": {
+            "abbreviatedOid": "6e6b85f"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-02T09:21:47Z",
+          "updatedAt": "2026-10-02T09:21:48Z",
+          "comments": [
+            {
+              "originalPosition": 111,
+              "body": "```suggestion\nAs shown in the picture, the Partial Attestation Results and Composite Evidence are transmitted to a chain of Verifiers, till the Appraisal is complete.\n```",
+              "createdAt": "2026-10-02T09:21:48Z",
+              "updatedAt": "2026-10-02T09:21:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABQUgr5Q",
+          "commit": {
+            "abbreviatedOid": "5527e75"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-02T09:25:26Z",
+          "updatedAt": "2026-10-02T09:25:27Z",
+          "comments": [
+            {
+              "originalPosition": 118,
+              "body": "```suggestion\n### Trust Relationships\n```",
+              "createdAt": "2026-10-02T09:25:27Z",
+              "updatedAt": "2026-10-02T09:25:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABQUg-sw",
+          "commit": {
+            "abbreviatedOid": "a295e80"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-02T09:25:55Z",
+          "updatedAt": "2026-10-02T09:28:00Z",
+          "comments": [
+            {
+              "originalPosition": 118,
+              "body": "The Trust Relationships here is a sub-section of Cascaded pattern hence this change is not applied",
+              "createdAt": "2026-10-02T09:25:55Z",
+              "updatedAt": "2026-10-02T09:28:00Z"
+            },
+            {
+              "originalPosition": 118,
+              "body": "For each pattern we have a separate Trust Relationship",
+              "createdAt": "2026-10-02T09:26:18Z",
+              "updatedAt": "2026-10-02T09:28:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABQUkRxw",
+          "commit": {
+            "abbreviatedOid": "a295e80"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2026-10-02T09:32:01Z",
+          "updatedAt": "2026-10-02T09:32:01Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABQUlEMw",
+          "commit": {
+            "abbreviatedOid": "a295e80"
+          },
+          "author": "GhadaArf",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM! ",
+          "createdAt": "2026-10-02T09:33:16Z",
+          "updatedAt": "2026-10-02T09:33:16Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }

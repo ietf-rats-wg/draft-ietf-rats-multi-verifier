@@ -74,23 +74,26 @@ It only covers the architectural aspects introduced by the Multi Verifier concep
 
 # Introduction
 
-A Verifier plays a central role in any Remote Attestation System.
-A Verifier appraises the Attester and produces Attestation Results, which are essentially a verdict of attestation.
-The results are consumed by the Relying Party to conclude the trustworthiness of the Attester, before making any critical decisions about the Attester, such as admitting it to the network or releasing confidential resources to it.
+In the RATS {{RFC9334}} Architecture, the Verifier plays a central role in any Remote Attestation System.
+A Verifier appraises the Attester and produces Attestation Results, which are essentially the verdict of attestation.
+These results are consumed by the Relying Party as a conclusion as to the trustworthiness of the Attester.
+This is done before making any critical decisions about the Attester, such as admitting it to the network or releasing confidential resources to it.
+
 Attesters can come in wide varieties of shapes and forms.
 For example, Attesters can be endpoints (edge or IoT devices) or complex machines in the cloud.
-Composite Attester {{sec-glossary}} generates Evidence that consists of multiple parts.
-For example, in data center servers, it is not uncommon for separate attesting environments (AE) to serve a subsection of the entire machine.
+A Composite Attester {{sec-glossary}} generates Evidence consisting of multiple parts.
+For example, in data center servers, it is common for separate attesting environments (AE) to serve a subsection of the entire machine.
 One AE might measure and attest to what was booted on the main CPU, while another AE might measure and attest to what was booted on the machine's GPU.
-Throughout this document we use the term Component Attester {{sec-glossary}} to address the sub-entity or an individual layer which produces its own Evidence in a Composite Attester system.
 
-In a Composite Attester system, it may not be possible for a single Verifier to possess all the capabilities or information required to conduct a complete appraisal of the Attester.
-Please refer to {{sec-need-multiverifier}} for motivation of this document.
-Multiple Verifiers need to collaborate to reach a conclusion on the appraisal and produce the Attestation Results.
+Throughout this document the term Component Attester {{sec-glossary}} is used to address the sub-entity or an individual layer which produces its own Evidence in a Composite Attester system.
+
+For such composite systems it may not be possible for a single Verifier to possess all the capabilities or information required to conduct a complete appraisal of the Attester.
+This is further explained in {{sec-need-multiverifier}}.
+Thus, multiple Verifiers need to collaborate to reach a conclusion on the appraisal and produce an Attestation Result.
 
 This document describes various topological patterns of multiple Verifiers that work in a coordinated manner to conduct appraisal of a Composite Attester to produce Attestation Results.
 
-# Need for Multiple Verifiers
+## Need for Multiple Verifiers
 {: #sec-need-multiverifier }
 To conduct the task of Evidence appraisal, a Verifier requires:
 
@@ -116,15 +119,17 @@ It may not be economically viable to build and maintain such a degree of complex
 Rarely is it just one of these.
 
 
-# Reference Use Cases
-This section covers generic use cases that demonstrate the applicability of Multi Verifier, regardless of specific solutions.
+## Reference Use Cases
+This section covers generic use cases that demonstrate the need for the Multi Verifier, regardless of specific solutions.
 Its purpose is to motivate various aspects of the architecture presented in this document.
+These use cases are examplar and not comprehensive.
 There are many other use cases; this document does not contain a complete list.
 
-## Verification of Devices containing heterogenous components
-A device may contain a central processing unit (CPU), as well as heterogeneous acceleration components (such as GPUs, NPUs and TPUs) from different suppliers.
+### Verification of Devices containing heterogenous components
+A device may contain a central processing unit (CPU), as well as discrete
+heterogeneous acceleration components (such as GPUs, NPUs and TPUs) from different suppliers.
 
-These components can be used to speed up processing or assist with AI inference.
+These components can be used to speed up processing or assist with LLM inference.
 Trustworthiness assessment of the device requires trust in all of these components.
 However, due to business concerns such as scalability, complexity and cost of infrastructure, the Verifier for each type of component may be deployed separately by each vendor.
 
@@ -135,16 +140,16 @@ Attester: A Device having multiple components
 
 Relying Party: An entity which is making trust decisions for such an Attester
 
-## Verification of Workloads operating in Confidential Computing environments
+### Verification of Workloads operating in Confidential Computing environments
 
-As organisations move more workloads into untrusted or shared environments, Confidential Computing is becoming increasingly important.
-In such a system, an application or workload (which could be an AI model, database process or financial service, for example) is executed inside a Trusted Execution Environment, such as a confidential virtual machine (CVM).
+In Confidential Computing environments [reference], an application (known as a workload) is executed inside a Trusted Execution Environment (TEE), such as a confidential virtual machine (CVM).
+This workload could be an LLM model, database process or financial service, for example.
 When the workload starts, the TEE can generate a cryptographic attestation report providing:
 
 1. The workload is running on a platform with a known state.
-2. The workload is running the correct application.
+2. The workload is running the correct (version of the) application.
 
-The platform is often built by an independent TEE vendor, while the workloads are deployed by workload owners from different parts of the supply chain.
+The platform is often built by an independent TEE vendor or Data Center operator, while the workloads are deployed by workload owners from different parts of the supply chain.
 
 Verification of Attestation for such a system requires independent, yet mutually coordinated, verification of: Platform claims appraised by a Platform Verifier and Workload claims appraised by a Workload Verifier.
 
@@ -244,13 +249,14 @@ The following sub-sections describe the various roles that exist in this pattern
 
 In this topological pattern, there is an Entity known as Lead Verifier.
 
-Lead Verifier is the central entity in communication with the Attester (directly in passport model or indirectly via the Relying Party in background-check model).
-It receives Attestation Evidence from a Composite Attester.
+The Lead Verifier is the central entity in communication with the Attester.
+The communication is direct in the passport model or indirectly via the Relying Party in background-check model.
+It receives Attestation Evidence from a Lead Attester.
 If the Composite Attestation Evidence is signed, then it validates the integrity of the Evidence by validating the signature.
 If signature verification fails, the Verification is terminated.
 Otherwise it performs the following steps.
 
-* Lead Verifier has the required knowledge to break down the Composite Evidence into Partial Evidence.
+* the Lead Verifier is provisioned with the knowledge to break down the Composite Evidence into Partial Evidence.
 It decodes the Composite Evidence to extract the Component Attesters Evidence.
 This may lead to "N" Partial Evidence, one for each Component Attester.
 
@@ -309,16 +315,16 @@ In this topological pattern, the Attestation Verification happens in sequence.
 Verifiers are cascaded to perform the Attestation Appraisal.
 Each Verifier in the chain has the knowledge to derive or extract the Partial Evidence, which it can appraise, from the Composite Evidence.
 
-Attester may send the Composite Evidence (CE) to any of the Verifiers (directly in the passport model, or indirectly via the Relying Party in the background-check model).
+An Attester may send the Composite Evidence (CE) to any of the Verifiers.
 The Verifier which processes the Composite Evidence, Verifies the signature on the Evidence, if present.
-It extracts the Partial Evidence from the Composite Evidence, performs Appraisal of the Component Attester whose Reference Values and Endorsements are in its database.
-Once the appraisal is complete, it forwards the Composite Evidence and Partial Attestation Results to the subsequent Verifier.
+This Verifier extracts the Partial Evidence from the Composite Evidence, performs Appraisal of the Component Attester whose Reference Values and Endorsements are in its database.
+Once the appraisal is complete, it forwards the entire Composite Evidence and any Partial Attestation Results (so far) to the subsequent Verifier.
 
 The process is repeated, until the entire appraisal is complete.
 The last Verifier, i.e. Verifier-N, completes its Appraisal of the Partial Evidence, that it can appraise.
 It has now all the Partial Attestation Results and creates the Aggregated Attestation Results (AAR).
-It returns the AAR to the N-1 Verifier (from where it received the Composite Evidence and Partial AR).
-The process is repeated, i.e. AAR is returned in the chain until the Verifier, which recieved the initial Composite Evidence is reached.
+
+The process then unwinds, sending the results back up to the chain.
 At this point in time the Aggregated Attestation Results are signed and the AAR is sent to the Attester (in Passport Model) or Relying Party (in background check model).
 
 As shown in the picture, the Partial Attestation Results and Composite Evidence are transmitted to a chain of Verifiers, till the Appraisal is complete.
@@ -332,7 +338,7 @@ This document does not mandate any specific protocol for determining the Verifie
 ### Verifiers
 In the cascaded pattern, the communicating Verifiers fully trust each other.
 Each Verifier has the trust anchor for the Verifier it is communicating to (i.e. either sending information or receiving information).
-This prevents man in the middle attack for the Partial Attestation Results received by a Verifier or a Aggregated Attestation Results (AAR) which it receives in the return path.
+This prevents an on-path active attack on the Partial Attestation Results received by a Verifier or a Aggregated Attestation Results (AAR) which it receives in the return path.
 
 ### Relying Party and Verifiers
 In the cascaded pattern, the RP may communicate with any Verifier and thus receive its Attestation Results.

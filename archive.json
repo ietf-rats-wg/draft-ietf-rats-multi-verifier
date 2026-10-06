@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-04T05:34:05.191089+00:00",
+  "timestamp": "2026-10-06T06:02:03.080093+00:00",
   "repo": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
   "labels": [
     {
@@ -997,6 +997,22 @@
       "body": "Hello all,\n\nI completed a proofreading pass and suggested a PR correcting just grammar/typo/minor issues. https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/63\n\nSeparately, here is what I noticed but it falls into neither of the categories above:\n\n\u2022\t\"Component Verifiers should be made available suitable trust anchors so that they can establish required trust in the authority of the LV.\"\nI would rephase as \"CVs SHOULD be provided with suitable trust anchors...\" \u2014 but I can't be certain that's your intent.\n\u2022\t\"It is recommended that any two verifiers establishing a communication channel perform mutual attestation before exchanging any attestation messages.\"\nI think here you mean mutual authentication, not mutual attestation\n\u2022\tI'd replace \"TLS with client authentication\" with \"TLS with mutual authentication\" throughout\n\nOther than these minor issues, I think the draft is in great shape.\n",
       "createdAt": "2026-10-02T09:04:23Z",
       "updatedAt": "2026-10-02T09:04:23Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 68,
+      "id": "I_kwDON24c9s8AAAABVGhHyw",
+      "title": "MCR Comments",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/issues/68",
+      "state": "OPEN",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Michael Richardson reviewed the document and has the following comments:\n\n--------------------------------------\n\n1. I found the first paragraph to meander a lot.\n   Could it be that s/Attester/Attesting Environments/ ?\n\n2. Is \"booted\" the canonical cross-culturally understood IETF term?\n   Not that I want to go all IBM bureaucratise with \"Initial Program Load\"\n   (shorted to the rather obscure IPL...)\n\n3. \"This document describes various topological patterns of multiple Verifiers\n   that work in a coordinated manner to conduct appraisal of a Composite\n   Attester to produce Attestation Results. \"\n\nI guess I'm a bit underwhelmed here.  I think that shouldn't be the entire output of this document.\n\nI think that \"# Need for Multiple Verifiers\" should be 1.1.\nDitto, ## Reference Use Cases -> 1.2.\n\nIn\n   } A device may contain a central processing unit (CPU), as well as\n   } heterogeneous acceleration components (such as GPUs, NPUs and TPUs) from\n   } different suppliers.\n\nI think that NPU => Network Processing Unit, and not a newfangled LLM thing.\nThat thing is TPU, right?   Just wanted to be clear, probably should spell it\nout once.\n\n4. In that section, why are the terms Attester and Relying Party repeated here?\n\n5. Does the Lead Verifier talk to a Composite Attester, or would you call it the Lead Attester, as per 9334 Figure 4?\n\n\"If the Composite Attestation Evidence is signed, then it validates the integrity of the Evidence by validating the signature.\"\n\nI think that there is an implication that the bundle might not come with a signature, if the evidence components are signed?  That contrast is said further down.\n\n   * Lead Verifier delegates each Partial Evidence to its own Component\n     Verifier (CV) and receives Component Attester Attestation Results also\n     known as Partial Attestation\n\nI think the Lead Verifier delegates the decision to each Component Verifier, but I don't think the word for passing the evidence on is _delegates_ One word might be \"balkanizes\", but that comes with poor connotations, I think.\n\"Splits up\" is the activity...\nDeaggregates is another term.\n\n    In certain topologies, it is possible that only the Composite Evidence is\n    signed to provide the overall integrity, while the Partial Evidence\n    (example PE\\_1) is not protected.\n\nI suggest that this be split into a new section, maybe called \"Structure of Integrity\"\n\nI continue to be visually confused by the Attester being on the left, and the\nverifier(s) on the right.  Compared to 9334 Figures 1-4, which has more of an up/down structure.\n\nWhen you write \"may send the Composite Evidence\", I think that the important part is that if evidence is encrypted, then it's encrypted to that entity.\n\n    This document does not mandate any specific protocol for determining the\n    Verifiers in cascade.\n\nWell, I wish this document DID mandate something, otherwise, we have no interoperability.\n\nTrust Relationships (section 5.1.3)\n    In the cascaded pattern, the communicating Verifiers fully trust each other.\n\nI think that the word \"fully\" will be confused by many.\nOmit it, as the next sentences explain what is going on.\nDo each Verifier sign it's partial (attestation) results?\n\nI think that many of the threats/mitigations are not changed by having\nmultiple verifiers.   I'm not convinced it's useful here.\n",
+      "createdAt": "2026-10-05T11:21:45Z",
+      "updatedAt": "2026-10-05T11:21:59Z",
       "closedAt": null,
       "comments": []
     }
@@ -5467,6 +5483,127 @@
           "createdAt": "2026-10-02T09:33:16Z",
           "updatedAt": "2026-10-02T09:33:16Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "id": "PR_kwDON24c9s8AAAABGrJflA",
+      "title": "chore: unwrapped markdown: new sentences starts on newline",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/66",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #61 ",
+      "createdAt": "2026-10-05T09:29:58Z",
+      "updatedAt": "2026-10-05T09:40:42Z",
+      "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "baseRefName": "main",
+      "baseRefOid": "41dc612f5ef6769902246d8cba870ca53bb1153e",
+      "headRepository": "mcr/draft-ietf-rats-multi-verifier",
+      "headRefName": "new-sentence-new-line",
+      "headRefOid": "96f8b2db7bcc0b8bbd9d2f340d321fe5ca7026a6",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@henkbirkholz Or @junzhanghw please review so that we can close this...",
+          "createdAt": "2026-10-05T09:37:49Z",
+          "updatedAt": "2026-10-05T09:37:49Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDON24c9s8AAAABQp1IeA",
+          "commit": {
+            "abbreviatedOid": "a68ae8c"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Looks Good to Me.\n\nI will await one more approval and then merge this!!!",
+          "createdAt": "2026-10-05T09:37:14Z",
+          "updatedAt": "2026-10-05T09:37:14Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "id": "PR_kwDON24c9s8AAAABGsImwQ",
+      "title": "Mcr editorial",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/67",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-05T11:01:52Z",
+      "updatedAt": "2026-10-05T11:01:53Z",
+      "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "baseRefName": "main",
+      "baseRefOid": "41dc612f5ef6769902246d8cba870ca53bb1153e",
+      "headRepository": "mcr/draft-ietf-rats-multi-verifier",
+      "headRefName": "mcr-editorial",
+      "headRefOid": "4bddf6a995bc05080cc4e3e652bf1afdb25db310",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 69,
+      "id": "PR_kwDON24c9s8AAAABGxC7LA",
+      "title": "Partial Comments for issue 63",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/69",
+      "state": "OPEN",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Section 1,2 & 3 Comments",
+      "createdAt": "2026-10-05T18:11:28Z",
+      "updatedAt": "2026-10-05T18:13:38Z",
+      "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "baseRefName": "main",
+      "baseRefOid": "41dc612f5ef6769902246d8cba870ca53bb1153e",
+      "headRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "headRefName": "partial-issue-60",
+      "headRefOid": "5533fa22f0ce376eb196628f9d9b792f5308fa53",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDON24c9s8AAAABQvvvSA",
+          "commit": {
+            "abbreviatedOid": "5533fa2"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-05T18:13:37Z",
+          "updatedAt": "2026-10-05T18:13:38Z",
+          "comments": [
+            {
+              "originalPosition": 27,
+              "body": "```suggestion\nTypically, Composite Attesters are complex systems comprising different types of components, potentially originating from multiple suppliers and integrated into a single system. Consequently, the Attestation Evidence produced by such a system may comprise a heterogeneous combination of component Evidence, reflecting the different types of Attesting Environments associated with each Component Attester, such as CPU, GPU, or FPGA variants. When conducting Evidence appraisal for a Composite Attester, the following challenges remain:\n```",
+              "createdAt": "2026-10-05T18:13:37Z",
+              "updatedAt": "2026-10-05T18:13:38Z"
+            }
+          ]
         }
       ]
     }

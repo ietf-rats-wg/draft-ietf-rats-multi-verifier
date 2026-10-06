@@ -311,6 +311,14 @@ In the cascaded pattern, the RP may communicate with any Verifier and thus recei
 
 In a particular deployment, there is a possibility that the two models presented above can be combined to produce a hybrid pattern. For example Verifier 2 in the Cascaded Pattern becomes the Lead Verifier for the remaining Verifers from 3, to N.
 
+## Local Verifier
+Local verification occurs when an attestation is verified in the same platform in which the attester is instantiated.  An example could be a host CPU system-on-chip that verifies 
+the attestation produced by a a physically-attached data processing unit (DPU).  Local verification may be necessary due to several reasons such as the need for timely verification (e.g. during
+cold boot of the platform), or lack of networked access to a remote verifier (e.g. air-gapped deployments).  
+
+Local verification may be complemented by remote verification.  In the example of local verification taking place during cold boot of the platform, the attestation may be verified by a remote verifier
+when networked access becomes available to the platform.  The local verification may take place with respect to a set of pre-provisioned reference values, while the remote verification could leverage more recent RIMs. 
+
 # Freshness
 The Verifier needs to ensure that the claims included in the Evidence reflect the latest state of the Attester. As per RATS Architecture, the recommended freshness is ascertained using either Synchronised Clocks, Epoch IDs, or nonce, embedded in the Evidence.
 In the case of Hierarchical Pattern, the Verification of Freshness should be checked by the Lead Verifier.
@@ -322,6 +330,9 @@ In the Cascaded Pattern, the freshness is always checked by the first Verifier i
 The Verifier is not part of the Attester’s Trusted Computing Base (TCB), but acts as a critical component in the Relying Party’s trust decision chain. Therefore, its security directly affects the trustworthiness of the entire remote attestation process.  When multiple Verifiers coordinate to conduct an appraisal, this may increase the attack surface, depending on the system architecture and trust assumptions.
 
 Any mistake in the appraisal procedure conducted by one or more Verifiers could lead to severe security implications, such as incorrect Attestation Results of a component or a composition to the Relying party. This section details the security threats and mitigation strategies specific to the multi-verifier topologies described in this document. In addition to the considerations herein, Verifiers MUST follow the guidance detailed in the Security and Privacy considerations of a RATS Verifier as detailed in {{Section 11 of -corim}} and the RATS Architecture {{Section 11 and Section 12 of -rats-arch}}.
+
+Local verification may not occur with up-to-date reference values, particularly if the local verifier relies on pre-provisioned RIMs.  If this is the case and remote verification is possible at some point during platform operation, then
+the authorization policy may change between local and remote verification.  An example is a host CPU SoC that may make part of its internal memory available to an attached DPU based on local verification of the DPU's attestation at boot time, but additional memory regions of the CPU SoC could be made accessible to the DPU based on successful remote verification.
 
 ## Adversarial Model
 The security analysis in this section assumes that attackers may:

@@ -5,11 +5,11 @@
 RATS                                                        Y. Deshpande
 Internet-Draft                                                   Arm Ltd
 Intended status: Informational                                  J. Zhang
-Expires: 5 April 2027                                          H. Labiod
+Expires: 9 April 2027                                          H. Labiod
                                      Huawei Technologies France S.A.S.U.
                                                             H. Birkholtz
                                                           Fraunhofer SIT
-                                                          2 October 2026
+                                                          6 October 2026
 
 
                Remote Attestation with Multiple Verifiers
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 April 2027.
+   This Internet-Draft will expire on 9 April 2027.
 
 Copyright Notice
 
@@ -117,13 +117,13 @@ Table of Contents
    forms.  For example, Attesters can be endpoints (edge or IoT devices)
    or complex machines in the cloud.  Composite Attester Section 4.1
    generates Evidence that consists of multiple parts.  For example, in
-   data center servers, it is not uncommon for separate attesting
-   environments (AE) to serve a subsection of the entire machine.  One
+   data center servers, it is not uncommon for separate Attesting
+   Environments (AE) to serve a subsection of the entire machine.  One
    AE might measure and attest to what was booted on the main CPU, while
    another AE might measure and attest to what was booted on the
    machine's GPU.  Throughout this document we use the term Component
-   Attester Section 4.1 to address the sub-entity or an individual layer
-   which produces its own Evidence in a Composite Attester system.
+   Attester Section 4.1 to address the single entity which produces its
+   own Evidence in a Composite Attester system.
 
    In a Composite Attester system, it may not be possible for a single
    Verifier to possess all the capabilities or information required to
@@ -150,11 +150,16 @@ Table of Contents
    3.  Appraisal Policy for Evidence, which is under the control of the
        Verifier Owner
 
-   The Verifier inputs listed above are linked to the shape of the
-   Attesters.  Typically, Composite Attesters come with a varying degree
-   of heterogeneity of Evidence formats, depending on the types of
-   Attesting Environments that come with each Component Attester, for
-   example, CPU variants or GPU/FPGA variants.  When conducting Evidence
+   The Verifier inputs listed above largely vary dependent on the make
+   and the model of the Attesters.
+
+   Typically, Composite Attesters are complex systems comprising
+   different types of components, potentially originating from multiple
+   suppliers and integrated into a single system.  Consequently, the
+   Attestation Evidence produced by such a system may comprise a
+   heterogeneous combination of Evidence, reflecting the different types
+   of Attesting Environments associated with each Component Attester,
+   such as CPU, GPU, or FPGA variants.  When conducting Evidence
    appraisal for a Composite Attester, the following challenges remain:
 
    1.  An Attester's composition can change over time based on market
@@ -172,15 +177,15 @@ Table of Contents
    3.  A Reference Values Provider may not wish to reveal its Reference
        Values or their lifecycle to a monolithic Verifier.
 
-   4.  There may not be a single actor in the ecosystem that can stand
-       up and take ownership of verifying every Component Attester due
-       to a lack of knowledge, complexity, regulations or associated
-       cost.
+   As a consequence, there may not be a single actor in the ecosystem
+   that can stand up and take ownership of verifying every Component
+   Attester due to a lack of knowledge, complexity, regulations or
+   associated cost.
 
-   5.  The mix today is a combination of Verifier services provided by
-       component manufacturers, Verifiers provided by integrators, and
-       Verifiers under local authority (i.e., close to the attester).
-       Rarely is it just one of these.
+   The mix today is a combination of Verifier services provided by
+   component manufacturers, Verifiers provided by integrators, and
+   Verifiers under local authority (i.e., close to the attester).
+   Rarely is it just one of these.
 
 3.  Reference Use Cases
 
@@ -254,9 +259,9 @@ Table of Contents
    This document uses terms and concepts defined by the RATS
    architecture.  For a complete glossary, see Section 4 of [RFC9334].
 
-   Specifically this document heavily uses the terms Layered Attester
-   Section 3.2 of [RFC9334] and Composite Device Section 3.3 of
-   [RFC9334]
+   Specifically this document heavily uses the terms Attesting
+   Environment Section 3.1 of [RFC9334], Layered Attester Section 3.2 of
+   [RFC9334] and Composite Device Section 3.3 of [RFC9334]
 
 4.1.  Glossary
 
@@ -267,9 +272,11 @@ Table of Contents
       combination of one or more Composite Devices or Layered Attesters.
 
    Component Attester:  A Component Attester is a single Attester of a
-      Composite Attester.  For this document, a Component Attester is an
-      entity which produces a single Evidence which can be appraised by
-      a Component Verifier.
+      Composite Attester.  For example, it can be a sub-entity
+      Section 3.3 of [RFC9334] or a layer Section 3.2 of [RFC9334]
+      within a composition.  For this document, a Component Attester is
+      an entity which produces a single Evidence which can be appraised
+      by a Component Verifier.
 
    Composite Evidence:  Evidence produced by a Composite Attester.  Also
       referred to as CE in the document.
@@ -708,8 +715,9 @@ Legend:
 
 Acknowledgments
 
-   The authors would like to thank Simon Frost and Usama Sardar for
-   their reviews and suggestions.
+   The authors would like to thank Simon Frost, Usama Sardar, Paul
+   Howard, Mark Novak, Michael Richardson, & Yaron Sheffer for their
+   reviews and suggestions.
 
 References
 

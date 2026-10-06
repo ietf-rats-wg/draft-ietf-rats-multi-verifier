@@ -10,24 +10,26 @@
 <meta content="Houda Labiod" name="author">
 <meta content="Henk Birkholtz" name="author">
 <meta content="
-       IETF RATS Architecture, defines the key role of a Verifier.  In a complex system, this role needs to be performed by multiple Verifiers coordinating together to assess the full trustworthiness of an Attester. This document focuses on various topological patterns for a multiple Verifier system. It only covers the architectural aspects introduced by the Multi Verifier concept, which is neutral with regard to specific wire formats, encoding, transport mechanisms, or processing details. 
+       IETF RATS Architecture, defines the key role of a Verifier.
+In a complex system, this role needs to be performed by multiple Verifiers coordinating together to assess the full trustworthiness of an Attester.
+This document focuses on various topological patterns for a multiple Verifier system. It only covers the architectural aspects introduced by the Multi Verifier concept, which is neutral with regard to specific wire formats, encoding, transport mechanisms, or processing details. 
     " name="description">
 <meta content="xml2rfc 3.34.1" name="generator">
 <meta content="draft-ietf-rats-multi-verifier-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.34.1
-    Python 3.14.7
-    ConfigArgParse 1.7.7
+    Python 3.14.8
+    ConfigArgParse 1.8.0
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.11.10
+    platformdirs 4.12.2
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
-    wcwidth 0.8.4
+    wcwidth 0.9.1
 -->
 <link href="draft-ietf-rats-multi-verifier.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1047,7 +1049,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Deshpande, et al.</td>
-<td class="center">Expires 5 April 2027</td>
+<td class="center">Expires 9 April 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1060,12 +1062,12 @@ svg {
 <dd class="internet-draft">draft-ietf-rats-multi-verifier-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-10-02" class="published">2 October 2026</time>
+<time datetime="2026-10-06" class="published">6 October 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-04-05">5 April 2027</time></dd>
+<dd class="expires"><time datetime="2027-04-09">9 April 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1090,7 +1092,9 @@ svg {
 <h1 id="title">Remote Attestation with Multiple Verifiers</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">IETF RATS Architecture, defines the key role of a Verifier.  In a complex system, this role needs to be performed by multiple Verifiers coordinating together to assess the full trustworthiness of an Attester. This document focuses on various topological patterns for a multiple Verifier system. It only covers the architectural aspects introduced by the Multi Verifier concept, which is neutral with regard to specific wire formats, encoding, transport mechanisms, or processing details.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">IETF RATS Architecture, defines the key role of a Verifier.
+In a complex system, this role needs to be performed by multiple Verifiers coordinating together to assess the full trustworthiness of an Attester.
+This document focuses on various topological patterns for a multiple Verifier system. It only covers the architectural aspects introduced by the Multi Verifier concept, which is neutral with regard to specific wire formats, encoding, transport mechanisms, or processing details.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-discussion-venues">
@@ -1122,7 +1126,7 @@ svg {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 5 April 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 9 April 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1276,7 +1280,7 @@ svg {
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1">A Verifier plays a central role in any Remote Attestation System. A Verifier appraises the Attester and produces Attestation Results, which are essentially a verdict of attestation. The results are consumed by the Relying Party to conclude the trustworthiness of the Attester, before making any critical decisions about the Attester, such as admitting it to the network or releasing confidential resources to it.
-Attesters can come in wide varieties of shapes and forms. For example, Attesters can be endpoints (edge or IoT devices) or complex machines in the cloud. Composite Attester <a href="#sec-glossary" class="auto internal xref">Section 4.1</a> generates Evidence that consists of multiple parts. For example, in data center servers, it is not uncommon for separate attesting environments (AE) to serve a subsection of the entire machine. One AE might measure and attest to what was booted on the main CPU, while another AE might measure and attest to what was booted on the machine's GPU. Throughout this document we use the term Component Attester <a href="#sec-glossary" class="auto internal xref">Section 4.1</a> to address the sub-entity or an individual layer which produces its own Evidence in a Composite Attester system.<a href="#section-1-1" class="pilcrow">¶</a></p>
+Attesters can come in wide varieties of shapes and forms. For example, Attesters can be endpoints (edge or IoT devices) or complex machines in the cloud. Composite Attester <a href="#sec-glossary" class="auto internal xref">Section 4.1</a> generates Evidence that consists of multiple parts. For example, in data center servers, it is not uncommon for separate Attesting Environments (AE) to serve a subsection of the entire machine. One AE might measure and attest to what was booted on the main CPU, while another AE might measure and attest to what was booted on the machine's GPU. Throughout this document we use the term Component Attester <a href="#sec-glossary" class="auto internal xref">Section 4.1</a> to address the single entity which produces its own Evidence in a Composite Attester system.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">In a Composite Attester system, it may not be possible for a single Verifier to possess all the capabilities or information required to conduct a complete appraisal of the Attester. Please refer to <a href="#sec-need-multiverifier" class="auto internal xref">Section 2</a> for motivation of this document. Multiple Verifiers need to collaborate to reach a conclusion on the appraisal and produce the Attestation Results.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">This document describes various topological patterns of multiple Verifiers that work in a coordinated manner to conduct appraisal of a Composite Attester to produce Attestation Results.<a href="#section-1-3" class="pilcrow">¶</a></p>
 </section>
@@ -1298,27 +1302,23 @@ Attesters can come in wide varieties of shapes and forms. For example, Attesters
           <p id="section-2-2.3.1">Appraisal Policy for Evidence, which is under the control of the Verifier Owner<a href="#section-2-2.3.1" class="pilcrow">¶</a></p>
 </li>
       </ol>
-<p id="section-2-3">The Verifier inputs listed above are linked to the shape of the Attesters.
-Typically, Composite Attesters come with a varying degree of heterogeneity of Evidence formats, depending on the types of Attesting Environments that come with each Component Attester, for example, CPU variants or GPU/FPGA variants. When conducting Evidence appraisal for a Composite Attester, the following challenges remain:<a href="#section-2-3" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-2-4">
-<li id="section-2-4.1">
-          <p id="section-2-4.1.1">An Attester's composition can change over time based on market requirements and availability (e.g., a set of racks in a data center gets thousands of new FPGAs).
+<p id="section-2-3">The Verifier inputs listed above largely vary dependent on the make and the model of the Attesters.<a href="#section-2-3" class="pilcrow">¶</a></p>
+<p id="section-2-4">Typically, Composite Attesters are complex systems comprising different types of components, potentially originating from multiple suppliers and integrated into a single system. Consequently, the Attestation Evidence produced by such a system may comprise a heterogeneous combination of Evidence, reflecting the different types of Attesting Environments associated with each Component Attester, such as CPU, GPU, or FPGA variants. When conducting Evidence appraisal for a Composite Attester, the following challenges remain:<a href="#section-2-4" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-2-5">
+<li id="section-2-5.1">
+          <p id="section-2-5.1.1">An Attester's composition can change over time based on market requirements and availability (e.g., a set of racks in a data center gets thousands of new FPGAs).
 It is highly unlikely that there is always one appropriate Verifier that satisfies all the requirements that a complex and changing Composite Attesters impose.
-It may not be economically viable to build and maintain such a degree of complexity in a single Verifier.<a href="#section-2-4.1.1" class="pilcrow">¶</a></p>
+It may not be economically viable to build and maintain such a degree of complexity in a single Verifier.<a href="#section-2-5.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li id="section-2-4.2">
-          <p id="section-2-4.2.1">A Verifier Owner may have an Appraisal Policy for Evidence of a Component Attester that is internal to them and which they may choose not to reveal to a “monolithic" Verifier.<a href="#section-2-4.2.1" class="pilcrow">¶</a></p>
+        <li id="section-2-5.2">
+          <p id="section-2-5.2.1">A Verifier Owner may have an Appraisal Policy for Evidence of a Component Attester that is internal to them and which they may choose not to reveal to a “monolithic" Verifier.<a href="#section-2-5.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li id="section-2-4.3">
-          <p id="section-2-4.3.1">A Reference Values Provider may not wish to reveal its Reference Values or their lifecycle to a monolithic Verifier.<a href="#section-2-4.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li id="section-2-4.4">
-          <p id="section-2-4.4.1">There may not be a single actor in the ecosystem that can stand up and take ownership of verifying every Component Attester due to a lack of knowledge, complexity, regulations or associated cost.<a href="#section-2-4.4.1" class="pilcrow">¶</a></p>
-</li>
-        <li id="section-2-4.5">
-          <p id="section-2-4.5.1">The mix today is a combination of Verifier services provided by component manufacturers, Verifiers provided by integrators, and Verifiers under local authority (i.e., close to the attester). Rarely is it just one of these.<a href="#section-2-4.5.1" class="pilcrow">¶</a></p>
+        <li id="section-2-5.3">
+          <p id="section-2-5.3.1">A Reference Values Provider may not wish to reveal its Reference Values or their lifecycle to a monolithic Verifier.<a href="#section-2-5.3.1" class="pilcrow">¶</a></p>
 </li>
       </ol>
+<p id="section-2-6">As a consequence, there may not be a single actor in the ecosystem that can stand up and take ownership of verifying every Component Attester due to a lack of knowledge, complexity, regulations or associated cost.<a href="#section-2-6" class="pilcrow">¶</a></p>
+<p id="section-2-7">The mix today is a combination of Verifier services provided by component manufacturers, Verifiers provided by integrators, and Verifiers under local authority (i.e., close to the attester). Rarely is it just one of these.<a href="#section-2-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="reference-use-cases">
@@ -1379,7 +1379,7 @@ NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
 appear in all capitals, as shown here.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">This document uses terms and concepts defined by the RATS architecture. For a complete glossary, see <span><a href="https://rfc-editor.org/rfc/rfc9334#section-4" class="relref">Section 4</a> of [<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>.<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3">Specifically this document heavily uses the terms Layered Attester <span><a href="https://rfc-editor.org/rfc/rfc9334#section-3.2" class="relref">Section 3.2</a> of [<a href="#RFC9334" class="cite xref">RFC9334</a>]</span> and Composite Device <span><a href="https://rfc-editor.org/rfc/rfc9334#section-3.3" class="relref">Section 3.3</a> of [<a href="#RFC9334" class="cite xref">RFC9334</a>]</span><a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-3">Specifically this document heavily uses the terms Attesting Environment <span><a href="https://rfc-editor.org/rfc/rfc9334#section-3.1" class="relref">Section 3.1</a> of [<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>,  Layered Attester <span><a href="https://rfc-editor.org/rfc/rfc9334#section-3.2" class="relref">Section 3.2</a> of [<a href="#RFC9334" class="cite xref">RFC9334</a>]</span> and Composite Device <span><a href="https://rfc-editor.org/rfc/rfc9334#section-3.3" class="relref">Section 3.3</a> of [<a href="#RFC9334" class="cite xref">RFC9334</a>]</span><a href="#section-4-3" class="pilcrow">¶</a></p>
 <div id="sec-glossary">
 <section id="section-4.1">
         <h3 id="name-glossary">
@@ -1394,7 +1394,7 @@ appear in all capitals, as shown here.<a href="#section-4-1" class="pilcrow">¶<
           <dd class="break"></dd>
 <dt id="section-4.1-2.3">Component Attester:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.4">
-            <p id="section-4.1-2.4.1">A Component Attester is a single Attester of a Composite Attester.
+            <p id="section-4.1-2.4.1">A Component Attester is a single Attester of a Composite Attester. For example, it can be a sub-entity <span><a href="https://rfc-editor.org/rfc/rfc9334#section-3.3" class="relref">Section 3.3</a> of [<a href="#RFC9334" class="cite xref">RFC9334</a>]</span> or a layer <span><a href="https://rfc-editor.org/rfc/rfc9334#section-3.2" class="relref">Section 3.2</a> of [<a href="#RFC9334" class="cite xref">RFC9334</a>]</span> within a composition.
 For this document, a Component Attester is an entity which produces a single Evidence which can be appraised by a Component Verifier.<a href="#section-4.1-2.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
@@ -1968,9 +1968,13 @@ The LV MUST validate the signature using the required trust anchor for the CV, b
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
 <p id="section-10-1">The authors would like to thank
-Simon Frost
-and
-Usama Sardar
+Simon Frost,
+Usama Sardar,
+Paul Howard,
+Mark Novak,
+Michael Richardson,
+&amp;
+Yaron Sheffer
 for their reviews and suggestions.<a href="#section-10-1" class="pilcrow">¶</a></p>
 </section>
 </div>

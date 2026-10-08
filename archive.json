@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-06T06:02:03.080093+00:00",
+  "timestamp": "2026-10-08T05:45:19.989383+00:00",
   "repo": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
   "labels": [
     {
@@ -5565,24 +5565,26 @@
       "id": "PR_kwDON24c9s8AAAABGxC7LA",
       "title": "Partial Comments for issue 63",
       "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/69",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Section 1,2 & 3 Comments",
       "createdAt": "2026-10-05T18:11:28Z",
-      "updatedAt": "2026-10-05T18:13:38Z",
+      "updatedAt": "2026-10-06T09:11:27Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
       "baseRefOid": "41dc612f5ef6769902246d8cba870ca53bb1153e",
       "headRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "headRefName": "partial-issue-60",
       "headRefOid": "5533fa22f0ce376eb196628f9d9b792f5308fa53",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-10-06T09:11:27Z",
+      "mergedAt": "2026-10-06T09:11:27Z",
+      "mergedBy": "junzhanghw",
+      "mergeCommit": {
+        "oid": "b2f91f9a6ee0c165a79c3a3a939312923712ba1e"
+      },
       "comments": [],
       "reviews": [
         {
@@ -5604,6 +5606,72 @@
               "updatedAt": "2026-10-05T18:13:38Z"
             }
           ]
+        }
+      ]
+    },
+    {
+      "number": 70,
+      "id": "PR_kwDON24c9s8AAAABG6XoZQ",
+      "title": "Update draft-ietf-rats-multi-verifier.md",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/70",
+      "state": "OPEN",
+      "author": "junzhanghw",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "1. add rfc9334 reference for composite device and layer model\r\n\r\n2. Remove redundant description for CE, CV, AAR, PAR, etc.",
+      "createdAt": "2026-10-06T12:39:22Z",
+      "updatedAt": "2026-10-06T12:39:23Z",
+      "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "baseRefName": "main",
+      "baseRefOid": "b2f91f9a6ee0c165a79c3a3a939312923712ba1e",
+      "headRepository": "junzhanghw/draft-deshpande-multi-verifier",
+      "headRefName": "section-4-update-according-to-(Paul-H)-#60-comments",
+      "headRefOid": "e6045c4ce255a001ce8d83084f9bb9eaa12d69cf",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 71,
+      "id": "PR_kwDON24c9s8AAAABHABk8w",
+      "title": "Local Verification",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/71",
+      "state": "OPEN",
+      "author": "gmandyam",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "First pass at local verifier text.",
+      "createdAt": "2026-10-06T21:17:50Z",
+      "updatedAt": "2026-10-07T08:31:50Z",
+      "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "baseRefName": "main",
+      "baseRefOid": "b2f91f9a6ee0c165a79c3a3a939312923712ba1e",
+      "headRepository": "gmandyam/draft-ietf-rats-multi-verifier",
+      "headRefName": "LocalVerifier",
+      "headRefOid": "86f4949fa5767050e3ee6a6a99bb1d4026bd8bec",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDON24c9s8AAAABRDrAOA",
+          "commit": {
+            "abbreviatedOid": "86f4949"
+          },
+          "author": "junzhanghw",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "looks fine from my side",
+          "createdAt": "2026-10-07T08:31:50Z",
+          "updatedAt": "2026-10-07T08:31:50Z",
+          "comments": []
         }
       ]
     }

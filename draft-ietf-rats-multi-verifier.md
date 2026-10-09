@@ -84,8 +84,8 @@ This document describes three topological patterns of multiple Verifiers that wo
 {: #sec-need-multiverifier }
 To conduct the task of Evidence appraisal, a Verifier requires:
 
-1. Reference Values from trusted supply chain actors, known as Reference Value Providers ({{rats-arch}}), producing, aggregating, or administering Attester
-2. Endorsements from trusted supply chain actors, known as Endorsers ({{rats-arch}}), producing, certifying, or compliance checking Attesters
+1. Reference Values from trusted supply chain actors, known as Reference Value Providers ({{-rats-arch}}), producing, aggregating, or administering Attester
+2. Endorsements from trusted supply chain actors, known as Endorsers ({{-rats-arch}}), producing, certifying, or compliance checking Attesters
 3. Appraisal Policy for Evidence, which is under the control of the Verifier Owner
 
 The Verifier inputs listed above largely vary dependent on the make and the model of the Attesters.
@@ -227,7 +227,7 @@ The following sub-sections describe the various roles that exist in this pattern
 
 In this topological pattern, there is an Entity known as Lead Verifier.
 
-Lead Verifier is the central entity in communication with the Attester (directly in passport model or indirectly via the Relying Party in background-check model, {{rats-arch}}).
+Lead Verifier is the central entity in communication with the Attester (directly in passport model or indirectly via the Relying Party in background-check model, ({{-rats-arch}}).
 It receives Attestation Evidence from a Composite Attester.
 If the Composite Attestation Evidence is signed, then it validates the integrity of the Evidence by validating the signature.
 If signature verification fails, the Verification is terminated.

@@ -497,7 +497,7 @@ Legend:
     '---------------'       '-----------------'     '-----------------'
                                                           ^    ^
                                                           |    |
-                                          +---------------+    |
+                                          .---------------'    |
                                           |                    |
                                           v                    v
                              .-----------------.     .-----------------.
@@ -505,7 +505,7 @@ Legend:
                              '-----------------'     '-----------------'
   Legend:
   - LV: Lead Verifier
-  - Verifier 3..N : Component Verifiers
+  - Verifier 1..N : Component Verifiers
 
                          Figure 3: Hybrid Pattern
 

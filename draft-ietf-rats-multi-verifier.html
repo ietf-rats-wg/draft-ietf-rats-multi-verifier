@@ -1049,7 +1049,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Deshpande, et al.</td>
-<td class="center">Expires 9 April 2027</td>
+<td class="center">Expires 19 April 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1062,12 +1062,12 @@ svg {
 <dd class="internet-draft">draft-ietf-rats-multi-verifier-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-10-06" class="published">6 October 2026</time>
+<time datetime="2026-10-16" class="published">16 October 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-04-09">9 April 2027</time></dd>
+<dd class="expires"><time datetime="2027-04-19">19 April 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1126,7 +1126,7 @@ This document focuses on various topological patterns for a multiple Verifier sy
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 9 April 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 19 April 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1749,7 +1749,78 @@ This document does not mandate any specific protocol for determining the Verifie
         <h3 id="name-hybrid-pattern">
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-hybrid-pattern" class="section-name selfRef">Hybrid Pattern</a>
         </h3>
-<p id="section-5.3-1">In a particular deployment, there is a possibility that the two models presented above can be combined to produce a hybrid pattern. For example Verifier 2 in the Cascaded Pattern becomes the Lead Verifier for the remaining Verifers from 3, to N.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.3-1">In a particular deployment, there is a possibility that the two models presented above can be combined to produce a hybrid pattern. Note that there are many ways to combine the two models. The figure below illustrates an example where Verifier 2 in the Cascaded Pattern becomes the Lead Verifier for the remaining Verifers from 3, to N.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<span id="name-hybrid-pattern-2"></span><div id="fig-hybrid-pattern">
+<figure id="figure-3">
+          <div id="section-5.3-2.1">
+            <div class="alignLeft art-svg artwork" id="section-5.3-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="272" width="568" viewBox="0 0 568 272" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+                <path d="M 24,32 L 24,64" fill="none" stroke="black"></path>
+                <path d="M 152,32 L 152,64" fill="none" stroke="black"></path>
+                <path d="M 216,32 L 216,64" fill="none" stroke="black"></path>
+                <path d="M 224,160 L 224,192" fill="none" stroke="black"></path>
+                <path d="M 328,112 L 328,152" fill="none" stroke="black"></path>
+                <path d="M 360,32 L 360,64" fill="none" stroke="black"></path>
+                <path d="M 368,160 L 368,192" fill="none" stroke="black"></path>
+                <path d="M 408,32 L 408,64" fill="none" stroke="black"></path>
+                <path d="M 416,160 L 416,192" fill="none" stroke="black"></path>
+                <path d="M 456,72 L 456,112" fill="none" stroke="black"></path>
+                <path d="M 496,72 L 496,152" fill="none" stroke="black"></path>
+                <path d="M 552,32 L 552,64" fill="none" stroke="black"></path>
+                <path d="M 560,160 L 560,192" fill="none" stroke="black"></path>
+                <path d="M 24,32 L 152,32" fill="none" stroke="black"></path>
+                <path d="M 216,32 L 360,32" fill="none" stroke="black"></path>
+                <path d="M 408,32 L 552,32" fill="none" stroke="black"></path>
+                <path d="M 168,48 L 200,48" fill="none" stroke="black"></path>
+                <path d="M 368,48 L 400,48" fill="none" stroke="black"></path>
+                <path d="M 24,64 L 152,64" fill="none" stroke="black"></path>
+                <path d="M 216,64 L 360,64" fill="none" stroke="black"></path>
+                <path d="M 408,64 L 552,64" fill="none" stroke="black"></path>
+                <path d="M 328,112 L 456,112" fill="none" stroke="black"></path>
+                <path d="M 224,160 L 368,160" fill="none" stroke="black"></path>
+                <path d="M 416,160 L 560,160" fill="none" stroke="black"></path>
+                <path d="M 224,192 L 368,192" fill="none" stroke="black"></path>
+                <path d="M 416,192 L 560,192" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="504,152 492,146.4 492,157.6" fill="black" transform="rotate(90,496,152)"></polygon>
+                <polygon class="arrowhead" points="504,72 492,66.4 492,77.6" fill="black" transform="rotate(270,496,72)"></polygon>
+                <polygon class="arrowhead" points="464,72 452,66.4 452,77.6" fill="black" transform="rotate(270,456,72)"></polygon>
+                <polygon class="arrowhead" points="408,48 396,42.4 396,53.6" fill="black" transform="rotate(0,400,48)"></polygon>
+                <polygon class="arrowhead" points="376,48 364,42.4 364,53.6" fill="black" transform="rotate(180,368,48)"></polygon>
+                <polygon class="arrowhead" points="336,152 324,146.4 324,157.6" fill="black" transform="rotate(90,328,152)"></polygon>
+                <polygon class="arrowhead" points="208,48 196,42.4 196,53.6" fill="black" transform="rotate(0,200,48)"></polygon>
+                <polygon class="arrowhead" points="176,48 164,42.4 164,53.6" fill="black" transform="rotate(180,168,48)"></polygon>
+                <g class="text">
+                  <text x="88" y="52">Attester/RP</text>
+                  <text x="276" y="52">Verifier</text>
+                  <text x="320" y="52">1</text>
+                  <text x="452" y="52">Verifier</text>
+                  <text x="496" y="52">2</text>
+                  <text x="512" y="52">/</text>
+                  <text x="532" y="52">LV</text>
+                  <text x="284" y="180">Verifier</text>
+                  <text x="328" y="180">3</text>
+                  <text x="392" y="180">...</text>
+                  <text x="484" y="180">Verifier</text>
+                  <text x="528" y="180">N</text>
+                  <text x="32" y="212">Legend:</text>
+                  <text x="8" y="228">-</text>
+                  <text x="32" y="228">LV:</text>
+                  <text x="68" y="228">Lead</text>
+                  <text x="124" y="228">Verifier</text>
+                  <text x="8" y="244">-</text>
+                  <text x="52" y="244">Verifier</text>
+                  <text x="108" y="244">1..N</text>
+                  <text x="136" y="244">:</text>
+                  <text x="184" y="244">Component</text>
+                  <text x="264" y="244">Verifiers</text>
+                </g>
+              </svg><a href="#section-5.3-2.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<a href="#name-hybrid-pattern-2" class="selfRef">Hybrid Pattern</a>
+          </figcaption></figure>
+</div>
 </section>
 </div>
 </section>

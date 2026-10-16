@@ -5,11 +5,11 @@
 RATS                                                        Y. Deshpande
 Internet-Draft                                                   Arm Ltd
 Intended status: Informational                                  J. Zhang
-Expires: 9 April 2027                                          H. Labiod
+Expires: 19 April 2027                                         H. Labiod
                                      Huawei Technologies France S.A.S.U.
                                                             H. Birkholtz
                                                           Fraunhofer SIT
-                                                          6 October 2026
+                                                         16 October 2026
 
 
                Remote Attestation with Multiple Verifiers
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 April 2027.
+   This Internet-Draft will expire on 19 April 2027.
 
 Copyright Notice
 
@@ -488,8 +488,26 @@ Legend:
 
    In a particular deployment, there is a possibility that the two
    models presented above can be combined to produce a hybrid pattern.
-   For example Verifier 2 in the Cascaded Pattern becomes the Lead
-   Verifier for the remaining Verifers from 3, to N.
+   Note that there are many ways to combine the two models.  The figure
+   below illustrates an example where Verifier 2 in the Cascaded Pattern
+   becomes the Lead Verifier for the remaining Verifers from 3, to N.
+
+    .---------------.       .-----------------.     .-----------------.
+    |  Attester/RP  | <---> |   Verifier 1    |<--->| Verifier 2 / LV |
+    '---------------'       '-----------------'     '-----------------'
+                                                          ^    ^
+                                                          |    |
+                                          .---------------'    |
+                                          |                    |
+                                          v                    v
+                             .-----------------.     .-----------------.
+                             |   Verifier 3    | ... |    Verifier N   |
+                             '-----------------'     '-----------------'
+  Legend:
+  - LV: Lead Verifier
+  - Verifier 1..N : Component Verifiers
+
+                         Figure 3: Hybrid Pattern
 
 6.  Freshness
 

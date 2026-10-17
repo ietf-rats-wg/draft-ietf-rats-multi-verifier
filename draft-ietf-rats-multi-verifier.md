@@ -155,37 +155,33 @@ This document uses the following terms:
 
 Composite Attester:
 
-: A Composite Attester is either a Composite Device or a Layered Attester or any composition involving a combination of one or more Composite Devices or Layered Attesters.
+: A Composite Attester is either a Composite Device {{Section 3.3 of -rats-arch}} or a Layered Attester {{Section 3.3 of -rats-arch}} or any composition involving a combination of one or more Composite Devices or Layered Attesters.
 
 Component Attester:
 
 : A Component Attester is a single Attester of a Composite Attester. For example, it can be a sub-entity {{Section 3.3 of -rats-arch}} or a layer {{Section 3.2 of -rats-arch}} within a composition.
 For this document, a Component Attester is an entity which produces a single Evidence which can be appraised by a Component Verifier.
 
-Composite Evidence:
+Composite Evidence (CE):
 
 : Evidence produced by a Composite Attester.
-Also referred to as CE in the document.
 
-Partial Evidence:
+Partial Evidence (PE):
 
 : It is an extract from a Composite Evidence. It consists of at least one or more Component Evidence.
-Also referred to as PE in the document.
 
-Lead Verifier:
+Lead Verifier (LV):
 
 : A Verifier which acts as a main Verifier to receive Composite Evidence from a Composite Attester in a Hierarchical pattern {{sec-lead-verifier}}.
-Also referred to as LV in the document.
 
-Component Verifier:
+Component Verifier (CV):
 : A Verifier which is responsible for the Verification of one single component or a layer.
-Also referred to as CV in the document.
 
-Partial Attestation Results:
-: Partial Attestation Results (PAR) are produced by a Component Verifier, and contain partial results from at least one or more Component Attesters.
+Partial Attestation Results (PAR):
+: Partial Attestation Results are produced by a Component Verifier, and contain partial results from at least one or more Component Attesters.
 
-Aggregated Attestation Results:
-: Aggregated Attestation Results (AAR) refer to a collection of Attestation Results produced upon completion of appraisal of a Composite Attester.
+Aggregated Attestation Results (AAR):
+: Aggregated Attestation Results refer to a collection of Attestation Results produced upon completion of appraisal of a Composite Attester.
 
 # Multi Verifier topological patterns
 {: #sec-multi-verifier }

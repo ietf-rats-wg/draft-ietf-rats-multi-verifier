@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-13T06:34:46.570623+00:00",
+  "timestamp": "2026-10-18T04:11:53.674939+00:00",
   "repo": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
   "labels": [
     {
@@ -1012,15 +1012,15 @@
       "labels": [],
       "body": "Michael Richardson reviewed the document and has the following comments:\n\n--------------------------------------\n\n1. I found the first paragraph to meander a lot.\n   Could it be that s/Attester/Attesting Environments/ ?\n\n2. Is \"booted\" the canonical cross-culturally understood IETF term?\n   Not that I want to go all IBM bureaucratise with \"Initial Program Load\"\n   (shorted to the rather obscure IPL...)\n\n3. \"This document describes various topological patterns of multiple Verifiers\n   that work in a coordinated manner to conduct appraisal of a Composite\n   Attester to produce Attestation Results. \"\n\nI guess I'm a bit underwhelmed here.  I think that shouldn't be the entire output of this document.\n\nI think that \"# Need for Multiple Verifiers\" should be 1.1.\nDitto, ## Reference Use Cases -> 1.2.\n\nIn\n   } A device may contain a central processing unit (CPU), as well as\n   } heterogeneous acceleration components (such as GPUs, NPUs and TPUs) from\n   } different suppliers.\n\nI think that NPU => Network Processing Unit, and not a newfangled LLM thing.\nThat thing is TPU, right?   Just wanted to be clear, probably should spell it\nout once.\n\n4. In that section, why are the terms Attester and Relying Party repeated here?\n\n5. Does the Lead Verifier talk to a Composite Attester, or would you call it the Lead Attester, as per 9334 Figure 4?\n\n\"If the Composite Attestation Evidence is signed, then it validates the integrity of the Evidence by validating the signature.\"\n\nI think that there is an implication that the bundle might not come with a signature, if the evidence components are signed?  That contrast is said further down.\n\n   * Lead Verifier delegates each Partial Evidence to its own Component\n     Verifier (CV) and receives Component Attester Attestation Results also\n     known as Partial Attestation\n\nI think the Lead Verifier delegates the decision to each Component Verifier, but I don't think the word for passing the evidence on is _delegates_ One word might be \"balkanizes\", but that comes with poor connotations, I think.\n\"Splits up\" is the activity...\nDeaggregates is another term.\n\n    In certain topologies, it is possible that only the Composite Evidence is\n    signed to provide the overall integrity, while the Partial Evidence\n    (example PE\\_1) is not protected.\n\nI suggest that this be split into a new section, maybe called \"Structure of Integrity\"\n\nI continue to be visually confused by the Attester being on the left, and the\nverifier(s) on the right.  Compared to 9334 Figures 1-4, which has more of an up/down structure.\n\nWhen you write \"may send the Composite Evidence\", I think that the important part is that if evidence is encrypted, then it's encrypted to that entity.\n\n    This document does not mandate any specific protocol for determining the\n    Verifiers in cascade.\n\nWell, I wish this document DID mandate something, otherwise, we have no interoperability.\n\nTrust Relationships (section 5.1.3)\n    In the cascaded pattern, the communicating Verifiers fully trust each other.\n\nI think that the word \"fully\" will be confused by many.\nOmit it, as the next sentences explain what is going on.\nDo each Verifier sign it's partial (attestation) results?\n\nI think that many of the threats/mitigations are not changed by having\nmultiple verifiers.   I'm not convinced it's useful here.\n",
       "createdAt": "2026-10-05T11:21:45Z",
-      "updatedAt": "2026-10-09T17:15:20Z",
+      "updatedAt": "2026-10-16T09:33:00Z",
       "closedAt": null,
       "comments": [
         {
           "author": "hlabiod",
           "authorAssociation": "COLLABORATOR",
-          "body": "1. I found the first paragraph to meander a lot. Could it be that s/Attester/Attesting Environments/ ?\nAnswer: we prefer keeping Attester in the first paragraph to meet our generalization objective.  \n\n2. Is \"booted\" the canonical cross-culturally understood IETF term? Not that I want to go all IBM bureaucratise with \"Initial Program Load\" (shorted to the rather obscure IPL...)\n\nAnswer: the sentence is \"    AE might measure and attest to what was booted on the main CPU, while\n   another AE might measure and attest to what was booted machine's GPU \". \nwe propose this new text:  An AE might measure and attest what was started on the main CPU, while another AE light measure and attest what was started on the machine's GPU.\nWe will create a PR to update the text.\n\n3. \n- \"This document describes various topological patterns of multiple Verifiers that work in a coordinated manner to conduct appraisal of a Composite Attester to produce Attestation Results. \"\nI guess I'm a bit underwhelmed here. I think that shouldn't be the entire output of this document.\nQuestion: please clarify the comment?\n\nI think that \"# Need for Multiple Verifiers\" should be 1.1.\nDitto, ## Reference Use Cases -> 1.2.\nAnswer: We think that in this order we make the explanation more clear for the reader. \n\n- In\n} A device may contain a central processing unit (CPU), as well as\n} heterogeneous acceleration components (such as GPUs, NPUs and TPUs) from\n} different suppliers.\nI think that NPU => Network Processing Unit, and not a newfangled LLM thing.\nThat thing is TPU, right? Just wanted to be clear, probably should spell it\nout once.\n\nAnswer: \nwe will spell what CPU, GPU, NPU and TPU.\nNPU definition from wikipedia: A neural processing unit (NPU), also known as an AI accelerator or deep learning processor, is a class of specialized hardware accelerator or computer system designed to accelerate artificial intelligence and machine learning  applications, including artificial neural networks and computer vision. NPU can be standalone, a part of a central processing unit (CPU) or a part of a graphics processing unit (GPU).\n\nTPU: The Tensor Processing Unit (TPU) is a neural processing unit (NPU) application-specific integrated circuit  (ASIC) developed by Google for neural network machine learning. TPUs are often used for inference and GPUs for training.\n \n4. In that section, why are the terms Attester and Relying Party repeated here?\nanswer: for each use case scenario, we explain what is the role of attester and the relying party following RFC 9394 model.\n\n5, \n- Does the Lead Verifier talk to a Composite Attester, or would you call it the Lead Attester, as per 9334 Figure 4?\nAnswer: We prefer keeping that the Lead Verifier talk to Composite Attester because currently the role of Lead Attester is not well defined in the Composite Attester wiki and draft.\n\n- \"If the Composite Attestation Evidence is signed, then it validates the integrity of the Evidence by validating the signature.\"\nI think that there is an implication that the bundle might not come with a signature, if the evidence components are signed? That contrast is said further down.\nAnswer: in such case the validation of the signature is considered as the validation of the signature of the bundle. \n\n- Lead Verifier delegates each Partial Evidence to its own Component Verifier (CV) and receives Component Attester Attestation Results also known as Partial Attestation\n I think the Lead Verifier delegates the decision to each Component Verifier, but I don't think the word for passing the evidence on is delegates One word might be \"balkanizes\", but that comes with poor connotations, I think.\n\"Splits up\" is the activity...\nDeaggregates is another term.\n\nAnswer: The Lead Verfier relays each Partial Evidence to its own Component Verifier (CV) and receives the Component Attestation Results, also called Partial Attestation.\nWe will create a PR to update the text.\n\n- In certain topologies, it is possible that only the Composite Evidence is signed to provide the overall integrity, while the Partial Evidence (example PE\\_1) is not protected.\n-In certain topologies, it is possible that only the Composite    Evidence is signed to provide the overall integrity, while the\n   Partial Evidence (example PE_1) is not protected.  In such cases, the Lead Verifer upon processing of Composite Evidence may wrap the    Partial Evidence (example PE_1) in a signed Conceptual Message    Wrapper (CMW), and send it to each Verifier (example Verifier 1).\n\nI suggest that this be split into a new section, maybe called \"Structure of Integrity\"\nAnswer: we have created a  PR : new update section 5 according to paul h's comments in comments in #60 covering many comments.\n\n- I continue to be visually confused by the Attester being on the left, and the verifier(s) on the right. Compared to 9334 Figures 1-4, which has more of an up/down structure.\nAnswer: we think that this representation in our case is more adapted to the objective of the draft.\n\n- When you write \"may send the Composite Evidence\", I think that the important part is that if evidence is encrypted, then it's encrypted to that entity.\n-Answer: please clarify \n\n- This document does not mandate any specific protocol for determining the Verifiers in cascade. Well, I wish this document DID mandate something, otherwise, we have no interoperability.\nAnswer: we have addressed that in PR : new update section 5 according to paul h's comments in comments in #60\n\n-Trust Relationships (section 5.1.3) : In the cascaded pattern, the communicating Verifiers fully trust each other.\nI think that the word \"fully\" will be confused by many.\nOmit it, as the next sentences explain what is going on.\nAnswer: yes corrected.\n\n- Do each Verifier sign it's partial (attestation) results?\nAnswer: this has been addressed in the PR: new update section 5 according to paul h's comments in comments in #60\n\n- I think that many of the threats/mitigations are not changed by having multiple verifiers. I'm not convinced it's useful here.\n- Answer:This section was added to explain in a pedagogical way that the threats and mitigation measures are well covered.",
+          "body": "1. I found the first paragraph to meander a lot. Could it be that s/Attester/Attesting Environments/ ?\nAnswer: we prefer keeping Attester in the first paragraph to meet our generalization objective.  \n\n2. Is \"booted\" the canonical cross-culturally understood IETF term? Not that I want to go all IBM bureaucratise with \"Initial Program Load\" (shorted to the rather obscure IPL...)\n\nAnswer: the sentence is \"    AE might measure and attest to what was booted on the main CPU, while\n   another AE might measure and attest to what was booted machine's GPU \". \nwe propose this new text:  An AE might measure and attest what was started on the main CPU, while another AE light measure and attest what was started on the machine's GPU.\nWe will create a PR to update the text.\n\n3. \n- \"This document describes various topological patterns of multiple Verifiers that work in a coordinated manner to conduct appraisal of a Composite Attester to produce Attestation Results. \"\nI guess I'm a bit underwhelmed here. I think that shouldn't be the entire output of this document.\nQuestion: please clarify the comment?\n\nI think that \"# Need for Multiple Verifiers\" should be 1.1.\nDitto, ## Reference Use Cases -> 1.2.\nAnswer: We think that in this order we make the explanation more clear for the reader. \n\n- In\n} A device may contain a central processing unit (CPU), as well as\n} heterogeneous acceleration components (such as GPUs, NPUs and TPUs) from\n} different suppliers.\nI think that NPU => Network Processing Unit, and not a newfangled LLM thing.\nThat thing is TPU, right? Just wanted to be clear, probably should spell it\nout once.\n\nAnswer: \nwe will spell what CPU, GPU, NPU and TPU.\nNPU definition from wikipedia: A neural processing unit (NPU), also known as an AI accelerator or deep learning processor, is a class of specialized hardware accelerator or computer system designed to accelerate artificial intelligence and machine learning  applications, including artificial neural networks and computer vision. NPU can be standalone, a part of a central processing unit (CPU) or a part of a graphics processing unit (GPU).\n\nTPU: The Tensor Processing Unit (TPU) is a neural processing unit (NPU) application-specific integrated circuit  (ASIC) developed by Google for neural network machine learning. TPUs are often used for inference and GPUs for training.\n \n4. In that section, why are the terms Attester and Relying Party repeated here?\nanswer: for each use case scenario, we explain what is the role of attester and the relying party following RFC 9394 model.\n\n5, \n- Does the Lead Verifier talk to a Composite Attester, or would you call it the Lead Attester, as per 9334 Figure 4?\nAnswer: We prefer keeping that the Lead Verifier talk to Composite Attester because the Verifier should NOT specifically mention about the details internal specific to an Attester.\n\n- \"If the Composite Attestation Evidence is signed, then it validates the integrity of the Evidence by validating the signature.\"\nI think that there is an implication that the bundle might not come with a signature, if the evidence components are signed? That contrast is said further down.\nAnswer: in such case the validation of the signature is considered as the validation of the signature of the bundle. \n\n- Lead Verifier delegates each Partial Evidence to its own Component Verifier (CV) and receives Component Attester Attestation Results also known as Partial Attestation\n I think the Lead Verifier delegates the decision to each Component Verifier, but I don't think the word for passing the evidence on is delegates One word might be \"balkanizes\", but that comes with poor connotations, I think.\n\"Splits up\" is the activity...\nDeaggregates is another term.\n- Yogesh: Lead Verifier delegates the _appraisal_ of each Partial Evidence to its own Component Verifier (CV).\n\nAnswer: The Lead Verfier relays each Partial Evidence to its own Component Verifier (CV) and receives the Component Attestation Results, also called Partial Attestation.\nWe will create a PR to update the text.\n\n- In certain topologies, it is possible that only the Composite Evidence is signed to provide the overall integrity, while the Partial Evidence (example PE\\_1) is not protected.\n-In certain topologies, it is possible that only the Composite    Evidence is signed to provide the overall integrity, while the\n   Partial Evidence (example PE_1) is not protected.  In such cases, the Lead Verifer upon processing of Composite Evidence may wrap the    Partial Evidence (example PE_1) in a signed Conceptual Message    Wrapper (CMW), and send it to each Verifier (example Verifier 1).\n\nI suggest that this be split into a new section, maybe called \"Structure of Integrity\"\n\nAnswer: we have created a  PR : new update section 5 according to paul h's comments in comments in #60 covering many comments.\n* Yogesh- to check with Jun's PR and clarify the Integrity:\n\nThree cases exists:\n1. Composite Evidence is Integrity Protected AND Individual Component Evidence is also Integrity protected\n2. Composite Evidence is Integrity Protected, but Individual Component Evidence is NOT Integrity protected\n3. Composite Evidence is NOT Integrity Protected but the individual Component Evidence is Integrity Protected and Crypto Linked with each other to provide overall Toekn Integrity.\n\n- I continue to be visually confused by the Attester being on the left, and the verifier(s) on the right. Compared to 9334 Figures 1-4, which has more of an up/down structure.\nAnswer: we think that this representation in our case is more adapted to the objective of the draft.\n\n- When you write \"may send the Composite Evidence\", I think that the important part is that if evidence is encrypted, then it's encrypted to that entity.\n-Answer: please clarify \n\n- This document does not mandate any specific protocol for determining the Verifiers in cascade. Well, I wish this document DID mandate something, otherwise, we have no interoperability.\nAnswer: we have addressed that in PR : new update section 5 according to paul h's comments in comments in #60\n\n-Trust Relationships (section 5.1.3) : In the cascaded pattern, the communicating Verifiers fully trust each other.\nI think that the word \"fully\" will be confused by many.\nOmit it, as the next sentences explain what is going on.\nAnswer: yes corrected.\n\n- Do each Verifier sign it's partial (attestation) results?\nAnswer: this has been addressed in the PR: new update section 5 according to paul h's comments in comments in #60\n\n- I think that many of the threats/mitigations are not changed by having multiple verifiers. I'm not convinced it's useful here.\n- Answer:This section was added to explain in a pedagogical way that the threats and mitigation measures are well covered.",
           "createdAt": "2026-10-09T17:15:20Z",
-          "updatedAt": "2026-10-09T17:15:20Z"
+          "updatedAt": "2026-10-16T09:33:00Z"
         }
       ]
     }
@@ -6116,24 +6116,26 @@
       "id": "PR_kwDON24c9s8AAAABHjJIUA",
       "title": "Hybrid pattern figure",
       "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/75",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "GhadaArf",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2026-10-09T14:10:13Z",
-      "updatedAt": "2026-10-12T08:11:35Z",
+      "updatedAt": "2026-10-16T15:14:19Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
       "baseRefOid": "b2f91f9a6ee0c165a79c3a3a939312923712ba1e",
       "headRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "headRefName": "hybrid-pattern-figure",
-      "headRefOid": "b7bb12a5c3a7fa9971aa17c7ed89b329d2553ed0",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "7854c6bc1438a24169f405194df200331322fe33",
+      "closedAt": "2026-10-16T15:14:16Z",
+      "mergedAt": "2026-10-16T15:14:15Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "5f7252419c305f6e48c6c651186bc1b64138f17c"
+      },
       "comments": [
         {
           "author": "junzhanghw",
@@ -6220,6 +6222,428 @@
           "createdAt": "2026-10-09T14:16:25Z",
           "updatedAt": "2026-10-09T14:16:25Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSoSO2w",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T08:41:41Z",
+          "updatedAt": "2026-10-16T08:41:41Z",
+          "comments": [
+            {
+              "originalPosition": 3,
+              "body": "Please mention that there are can be multiple Hybrid patterns possible, this is just one specific example of Hybrid.",
+              "createdAt": "2026-10-16T08:41:41Z",
+              "updatedAt": "2026-10-16T08:41:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSoSexA",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Please see below",
+          "createdAt": "2026-10-16T08:42:02Z",
+          "updatedAt": "2026-10-16T08:42:02Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSojsoA",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "please see all the comments",
+          "createdAt": "2026-10-16T09:05:41Z",
+          "updatedAt": "2026-10-16T09:06:01Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "Bi-Directional Arrows bewen compoenent Verifier and LV",
+              "createdAt": "2026-10-16T09:05:41Z",
+              "updatedAt": "2026-10-16T09:06:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSo_UyA",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T09:44:10Z",
+          "updatedAt": "2026-10-16T09:44:10Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "a picture should stay within 72 columns or the ASCII rendering blows up.",
+              "createdAt": "2026-10-16T09:44:10Z",
+              "updatedAt": "2026-10-16T09:44:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSpBJdA",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T09:46:36Z",
+          "updatedAt": "2026-10-16T09:46:37Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "May be we need ONLY Three Verifier Boxes in the Chain and make the middle one the Lead Verifier. That will simplify the diagram and meet the 72 column requirement as stated by Thomas!",
+              "createdAt": "2026-10-16T09:46:36Z",
+              "updatedAt": "2026-10-16T09:46:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSpCgFw",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "@GhadaArf , as agreed, please incorporate all the comments We can then Merge this...",
+          "createdAt": "2026-10-16T09:48:06Z",
+          "updatedAt": "2026-10-16T09:48:06Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSpGSVQ",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T09:52:27Z",
+          "updatedAt": "2026-10-16T09:52:27Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "we could also keep it as is but flip it vertically",
+              "createdAt": "2026-10-16T09:52:27Z",
+              "updatedAt": "2026-10-16T09:52:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSpG96g",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T09:53:17Z",
+          "updatedAt": "2026-10-16T09:53:17Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\n+~~~aasvg\n+\n+  .--------------.\n+  | Attester/RP  |\n+  '--------------'\n+         ^\n+         |\n+         v\n+  .--------------.\n+  |  Verifier 1  |\n+  '--------------'         .--------------.\n+         ^            .--->|  Verifier j  |\n+         |            |    '--------------'\n+         v            |\n+  .--------------.    |    .--------------.\n+  |  Verifier 2  |<---+--->| Verifier j+1 |\n+  '--------------'    |    '--------------'\n+         ^            |\n+         |            |    .--------------.\n+         v            '--->| Verifier j+m |\n+  .--------------.         '--------------'\n+  |  Verifier i  |\n+  '--------------'\n+         ^\n+         |\n+         v\n+  .--------------.\n+  |  Verifier n  |\n+  '--------------'\n+ {: #fig-hybrid-pattern title=\"An illustration of Hybrid Pattern\"}\n~~~\n```",
+              "createdAt": "2026-10-16T09:53:17Z",
+              "updatedAt": "2026-10-16T09:53:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSqRilA",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T11:38:31Z",
+          "updatedAt": "2026-10-16T11:38:31Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "No Thomas, This breaks the convention with other parts of the Document where figures are \r\n\r\nHorizontal --> With Attester on the Left.\r\nVerifier/Verifier(s) are on the Right side.",
+              "createdAt": "2026-10-16T11:38:31Z",
+              "updatedAt": "2026-10-16T11:38:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSqSJEQ",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "replying to thomas",
+          "createdAt": "2026-10-16T11:39:27Z",
+          "updatedAt": "2026-10-16T11:39:27Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSqcClQ",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T11:55:11Z",
+          "updatedAt": "2026-10-16T11:55:11Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "Else, I assign the task of changing all the figures to Top to Bottom - Mr MCR had that comment- Do you want to take this up, @thomas-fossati ..?",
+              "createdAt": "2026-10-16T11:55:11Z",
+              "updatedAt": "2026-10-16T11:55:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSsDYoA",
+          "commit": {
+            "abbreviatedOid": "fd7d45d"
+          },
+          "author": "github-actions",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T14:25:44Z",
+          "updatedAt": "2026-10-16T14:25:45Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "````suggestion\n- Verifier 3..n : Component Verifiers\n````",
+              "createdAt": "2026-10-16T14:25:44Z",
+              "updatedAt": "2026-10-16T14:25:45Z"
+            },
+            {
+              "originalPosition": 19,
+              "body": "````suggestion\n                           .-----------------.     .-----------------.     .-----------------.\n                           |   Verifier 3    |     |    Verifier i   |     |    Verifier N   |\n````",
+              "createdAt": "2026-10-16T14:25:44Z",
+              "updatedAt": "2026-10-16T14:25:45Z"
+            },
+            {
+              "originalPosition": 16,
+              "body": "````suggestion\n                                        |                  |                   |\n````",
+              "createdAt": "2026-10-16T14:25:44Z",
+              "updatedAt": "2026-10-16T14:25:45Z"
+            },
+            {
+              "originalPosition": 14,
+              "body": "````suggestion\n                                                        |  |  |\n````",
+              "createdAt": "2026-10-16T14:25:45Z",
+              "updatedAt": "2026-10-16T14:25:45Z"
+            },
+            {
+              "originalPosition": 12,
+              "body": "````suggestion\n  '---------------'       '-----------------'     '-----------------'\n````",
+              "createdAt": "2026-10-16T14:25:45Z",
+              "updatedAt": "2026-10-16T14:25:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSsNkgg",
+          "commit": {
+            "abbreviatedOid": "ddfab19"
+          },
+          "author": "github-actions",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T14:36:50Z",
+          "updatedAt": "2026-10-16T14:36:51Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "````suggestion\n- Verifier 3..N : Component Verifiers\n````",
+              "createdAt": "2026-10-16T14:36:50Z",
+              "updatedAt": "2026-10-16T14:36:51Z"
+            },
+            {
+              "originalPosition": 20,
+              "body": "````suggestion\n                                                        |    |\n                                        +---------------+    |\n                                        |                    |\n                                        v                    v\n                           .-----------------.     .-----------------.\n                           |   Verifier 3    |     |    Verifier N   |\n                           '-----------------'     '-----------------'\n````",
+              "createdAt": "2026-10-16T14:36:51Z",
+              "updatedAt": "2026-10-16T14:36:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSsPT4A",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "GhadaArf",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T14:38:51Z",
+          "updatedAt": "2026-10-16T14:38:51Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "Hi @thomas-fossati  and @yogeshbdeshpande, \r\nI updated the figure to comply with the 72 limit and to be consistent with the example given in the text.",
+              "createdAt": "2026-10-16T14:38:51Z",
+              "updatedAt": "2026-10-16T14:39:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSsZOcw",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T14:50:51Z",
+          "updatedAt": "2026-10-16T14:50:52Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "> Else, I assign the task of changing all the figures to Top to Bottom - Mr MCR had that comment- Do you want to take this up, @thomas-fossati ..?\r\n\r\nmaybe another time :-)",
+              "createdAt": "2026-10-16T14:50:51Z",
+              "updatedAt": "2026-10-16T14:50:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSsaMXA",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T14:52:12Z",
+          "updatedAt": "2026-10-16T14:52:12Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "> Hi @thomas-fossati and @yogeshbdeshpande, I updated the figure to comply with the 72 limit and to be consistent with the example given in the text.\r\n\r\nThere are still a few problems that prevent me to compile it successfully.  Let me fix those and push the updated branch.  (Give me 5 minutes, and please do not apply changes in the meantime \ud83d\ude05)",
+              "createdAt": "2026-10-16T14:52:12Z",
+              "updatedAt": "2026-10-16T14:52:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSsbgzA",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T14:54:00Z",
+          "updatedAt": "2026-10-16T14:54:00Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "OK, done in [cc42165](https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/75/commits/cc421657dd9a75bfb6e8bf568159b6c2e8489eaa)\r\n\r\nPlease pull.",
+              "createdAt": "2026-10-16T14:54:00Z",
+              "updatedAt": "2026-10-16T14:54:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSsczqw",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T14:55:37Z",
+          "updatedAt": "2026-10-16T14:55:37Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "> > Hi @thomas-fossati and @yogeshbdeshpande, I updated the figure to comply with the 72 limit and to be consistent with the example given in the text.\r\n> \r\n> There are still a few problems that prevent me to compile it successfully. Let me fix those and push the updated branch. (Give me 5 minutes, and please do not apply changes in the meantime \ud83d\ude05)\r\n\r\nYes I did make fix-lint and still it is failing\r\n\r\nOne problem Thomas is that in the Legend we should correct it slightly to state:\r\nVerifier 1..n : Component Verifiers\r\n\r\nCan you fix this also @thomas-fossati and we can merge this???",
+              "createdAt": "2026-10-16T14:55:37Z",
+              "updatedAt": "2026-10-16T14:55:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSsgLmQ",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T15:00:12Z",
+          "updatedAt": "2026-10-16T15:00:12Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "Done in [7854c6b](https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/75/commits/7854c6bc1438a24169f405194df200331322fe33)",
+              "createdAt": "2026-10-16T15:00:12Z",
+              "updatedAt": "2026-10-16T15:00:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSsgqeQ",
+          "commit": {
+            "abbreviatedOid": "7854c6b"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!\n\nThomas Please Merge!!!",
+          "createdAt": "2026-10-16T15:00:53Z",
+          "updatedAt": "2026-10-16T15:00:53Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABSsh_nw",
+          "commit": {
+            "abbreviatedOid": "b7bb12a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-16T15:02:51Z",
+          "updatedAt": "2026-10-16T15:02:52Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "> Done in [7854c6b](https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/75/commits/7854c6bc1438a24169f405194df200331322fe33)\r\n\r\nThank you Thomas for showing light on this PR, in your busy schedule",
+              "createdAt": "2026-10-16T15:02:51Z",
+              "updatedAt": "2026-10-16T15:02:52Z"
+            }
+          ]
         }
       ]
     }

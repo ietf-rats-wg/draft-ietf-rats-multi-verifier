@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-18T04:11:53.674939+00:00",
+  "timestamp": "2026-10-22T04:22:57.488372+00:00",
   "repo": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
   "labels": [
     {
@@ -5554,7 +5554,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2026-10-05T11:01:52Z",
-      "updatedAt": "2026-10-09T10:16:07Z",
+      "updatedAt": "2026-10-21T13:24:29Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
       "baseRefOid": "b2f91f9a6ee0c165a79c3a3a939312923712ba1e",
@@ -5566,7 +5566,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDON24c9s8AAAABTc9PiA",
+          "commit": {
+            "abbreviatedOid": "9ab0c7c"
+          },
+          "author": "junzhanghw",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "ok for me.",
+          "createdAt": "2026-10-21T13:24:29Z",
+          "updatedAt": "2026-10-21T13:24:29Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 69,
@@ -5655,7 +5669,7 @@
       "labels": [],
       "body": "First pass at local verifier text.",
       "createdAt": "2026-10-06T21:17:50Z",
-      "updatedAt": "2026-10-07T08:31:50Z",
+      "updatedAt": "2026-10-21T13:26:00Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
       "baseRefOid": "b2f91f9a6ee0c165a79c3a3a939312923712ba1e",
@@ -5679,6 +5693,19 @@
           "body": "looks fine from my side",
           "createdAt": "2026-10-07T08:31:50Z",
           "updatedAt": "2026-10-07T08:31:50Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABTc-1kA",
+          "commit": {
+            "abbreviatedOid": "86f4949"
+          },
+          "author": "junzhanghw",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "looks fine for me",
+          "createdAt": "2026-10-21T13:26:00Z",
+          "updatedAt": "2026-10-21T13:26:00Z",
           "comments": []
         }
       ]

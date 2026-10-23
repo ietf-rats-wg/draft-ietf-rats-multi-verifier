@@ -142,7 +142,7 @@ Table of Contents
 
    1.  Reference Values from trusted supply chain actors, known as
        Reference Value Providers ([RFC9334]), producing, aggregating, or
-       administering Attester
+       administering Attesters
 
    2.  Endorsements from trusted supply chain actors, known as Endorsers
        ([RFC9334]), producing, certifying, or compliance checking

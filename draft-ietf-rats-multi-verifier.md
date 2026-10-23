@@ -63,7 +63,7 @@ informative:
   I-D.draft-ietf-rats-corim: corim
   RFC6024: trust-anchors
   I-D.draft-ietf-rats-reference-interaction-models: refInteraction
-  I-D.draft-ietf-rats-pkix-key-attestation:keyAttestation 
+  I-D.draft-ietf-rats-pkix-key-attestation: keyAttestation 
 
 --- abstract
 

@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-22T04:22:57.488372+00:00",
+  "timestamp": "2026-10-25T04:21:37.239224+00:00",
   "repo": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
   "labels": [
     {
@@ -908,7 +908,7 @@
       "labels": [],
       "body": "This issue tracks all the comments received from Paul Howard.\n\nPasted here from his email, dated 27th August 2026\n\n------------------------\n### Overall\nI found the draft to be well-written and well-motivated. It provides good informational guidance on use cases and deployment patterns, while remaining agnostic on specific data formats and protocols. I think it\u2019s a useful informational draft, and a helpful addition to the RATS ecosystem.\n\nI\u2019ve grouped my observations by sections of the document (as per their numbering at version 00 of the draft).\n\n### Section 1\nI think this section would benefit from a simple diagram of a Composite Attester, just to help with orientation and mapping to the terminology (see below).\n\nTerminology could use some tightening up. The terms Composite Attester and Component Attester are clearly introduced (and in the glossary), but then we have terms like \u201csubsection\u201d, \u201csub-entity\u201d and \u201cindividual layer\u201d being sprinkled in. We also have \u201cattesting environment\u201d being casually introduced (uncapitalised) without a reference to RFC9334. I think this is all too bewildering for the intro section. For instance, is a CPU a section, an entity, a layer, an environment, a component, or what? Along with a diagram, more careful and intentional use of terms would benefit the intro a lot. The intro is critical for reader orientation.\n\n### Section 2\n\u201cThe verifier inputs listed above are linked to the shape of the Attesters\u201d - the phrase \u201clinked to the shape\u201d could use some spelling out. It isn\u2019t clear whether \u201cshape\u201d is intended to be a formal term in this document. And \u201clinked\u201d is slightly vague. I think what we want to convey here is that the number and diversity of supply chain sources (providing the Verifier inputs) will vary in parallel with the complexity of the Attester. Could use a few more words to make this clearer.\n\nWe use the term \u201cEvidence formats\u201d as the complexity multiplier, but I\u2019m not sure that \u201cformat\u201d is really the issue, is it? I mean, in a composite system, all the components might produce evidence in the same common format (such as EAT, for instance). But this would not make the problem go away. So I don\u2019t think it\u2019s so much the format as it is the content, and which parts of the supply chain would know how to appraise that content.\n\nIn the list of challenges at the end of this section, bullet 4 doesn\u2019t feel like a challenge in its own right, but rather a redundant re-statement of mixtures of the other challenges.\n\nSimilarly, bullet 5 feels out of place, because it\u2019s simply a statement of the status quo. I\u2019d consider detaching this from the numbered list and using it as a closing paragraph for Section 2 instead, perhaps motivated by something like \u201cthe significance of these challenges is evidenced by the situation that exists today\u201d.\n\n### Section 3\n\u201cThere are many other use cases\u201d feels like a bit of a cop-out. Maybe just say that the reference use cases are not intended to be exhaustive, only representative. Are there really \u201cmany\u201d others? The problem statement from Section 2 indicates that heterogeneity and layering are the key motivators for multi-verifier, so it feels like the reference use cases provide fairly complete coverage, actually.\n\nOn a related note, the two use cases given are not mutually exclusive. Quite the opposite, in fact. The one in 3.2 would very likely be combined with 3.1. Worth calling this out in the text, I think.\n\n\u201cConfidential Computing\u201d and \u201cTEE\u201d terms are introduced without much fanfare. A sentence or two extra to give some basic definitions would help here, especially since those definitions can highlight the existential importance of attestation for this use case.\n\nIMO, the context-specific definitions of \u201cAttester\u201d and \u201cRelying Party\u201d at the bottoms of these paragraphs aren\u2019t effective. These terms are defined by RFC9334. I get what we\u2019re trying to do, but it would be better to flesh it out into proper prose or just lose it altogether. As currently written, they read as dangling afterthoughts, or as new glossary entries.\n\n### Section 4\nThe definition of \u201cComposite Attester\u201d refers to both \u201cComposite Device\u201d and \u201cLayered Attester\u201d, but neither of those is in the glossary. They should either be defined, or there should be a reference elsewhere (e.g. RFC9334).\n\nA few of the glossary definitions have the phrase \u201cAlso referred to as (ABBREVIATION) in the document\u201d, which is a sentence fragment, and a bit cumbersome. Why not just add the abbreviations to the definitions themselves, e.g. \u201cComposite Evidence (CE): Evidence produced by a Composite Attester\u201d?\n\n### Section 5\nIn 5.1, the Component Verifiers in the figure as labelled as \u201cVerifier 1\u201d etc. But we\u2019ve carefully introduced and defined the term Component Verifier (CV), so why not label the boxes with the same term?\n\nIn 5.1.1, the last paragraph indicates that some PE\u2019s might not be individually signed, and says that the Lead Verifier \u201cmay\u201d (lower-case) wrap such evidence in a signed CMW. Is this guidance strong enough? Don\u2019t we want a MUST there? Given the trust relationships described, there doesn\u2019t seem to be any basis on which a CV could accept any PE that is not signed by the Lead Verifier. (Later I find this is indeed set as a MUST in the sec-cons, but it feels weird to not address it here).\n\nSection 5.1 has no mention of signing of PARs or AARs. Should the PARs be signed by CVs? Will the Lead Verifier check those signatures? Does the Lead Verifier sign the final AAR (seems to me that it must do).\n\nIn 5.1.3, should we have an opening sentence to say that all of the trust relationships of RFC9334 automatically apply, in addition to the specific ones described here?\n\nIn 5.1.3, does every CV always have to trust the Lead Verifier? In the hierarchical model, I\u2019d expect it to be very common for CVs to have no knowledge of the Lead Verifier, and might get used by all sorts of different Lead Verifiers. Take a GPU vendor for example. I would expect a GPU verifier to be able to appraise GPU evidence regardless of where it came from, without even knowing whether it is taking part in a hierarchical topology or not. I think that the CVs only need to trust the LV in cases where the PE is unsigned and the CMW wrapper is applied.\n\nIn 5.2, the diagram again uses the term \u201cVerifier\u201d and not \u201cComponent Verifier\u201d or \u201cCV\u201d.\n\nI found the figure in 5.2 to be harder to comprehend than the one in 5.1, but I got it after reading the text.\n\nIn the cascade pattern, it seems that verifiers must somehow \u201cknow\u201d their position in the cascade. I say this because Verifier N (end of chain) is tasked with forming the complete AAR, but Verifier 1 (start of chain) is tasked with signing it. How does Verifier 1 know that it is Verifier 1 and not Verifier 2, for instance?\n\nIn the cascade pattern, there\u2019s no mention of whether the intermediate PARs need to be signed and/or integrity checked as they propagate around. (Again, the sec-cons has stronger statements on this, but it\u2019s a jarring omission at the point of describing the topology).\n\nLast paragraph of 5.2 has \u201cThere are many protocols\u201d. Are there? Can we provide maybe a single example, while remaining agnostic? It would help the reader understand the landscape of possibilities.\n\nSection 5.2.1 has a nesting problem: 5.2.2 and 5.2.3 need to be subheadings, not siblings.\n\n### Section 7\nI probably should have read this section before section 5. \ud83d\ude0a \n\nThreats and mitigations all look reasonable/sensible to me. I\u2019ll leave this section to more expert reviewers.\n\n### Section 8\nI don\u2019t understand the \u201cMinimisation\u201d advice. It says that Attesters should limit the evidence they produce. But on what criteria can they do that? They don\u2019t typically know what the appraisal policies are, do they? And how does a verifier \u201conly request necessary claims\u201d? Most Attester interfaces that I\u2019ve seen only provide a challenge/nonce as the input. I\u2019ve not seen mechanisms for requesting subsets of evidence/claims.\n\nLikewise, on the \u201cConfidentiality\u201d advice - there\u2019s no advice on how to manage keys for encrypted evidence. This feels like it could be a challenge. I get that this draft probably doesn\u2019t want to prescribe every cryptographic detail, but it feels weird to describe the multi-verifier topologies but then be silent on how key management might work among those same topologies to preserve the privacy of one or more PE packets. If I had to implement all of this, I\u2019d appreciate some guidance for sure.\n\n### Nits\nProof-reading bits and pieces...\n\n1. \u2022\tSection 1: the references to Section 4.1 should be in parentheses so as not to interrupt the text flow.\n2. \u2022\tSection 1: \u201cThe results are consumed by the Relying Party to conclude the trustworthiness of the Attester\u201d - the verb \u201cconclude\u201d doesn\u2019t sit right here. Feels like it should be \u201creach a conclusion about\u201d or \u201cconclude on\u201d or \u201cevaluate\u201d. Current reading is slightly enigmatic, almost like we\u2019re ending the trustworthiness!\n3. \u2022\tSection 1: \u201cComposite Attester [..], generate evidence\u201d - noun/verb disagree in number, and the comma shouldn\u2019t be there.\n4. \u2022\tSection 1: \u201cFor example Attesters can be endpoints\u201d - needs a comma after \u201cFor example\"\n5. \u2022\tSection 1: \u201cattesting environments\u201d (AE) - should we be capitalising \u201cAttesting Environments\u201d here, to better justify the abbreviation? Also, is that a term from RFC9334 that we should be referencing? It feels like the term is introduced a little too casually, and it\u2019s not in the glossary.\n6. \u2022\tSection 1: \u201cwhat was booted machine\u2019s GPU\u201d -> \u201cwhat was booted ON THE machine\u2019s GPU\u201d.\n7. \u2022\tSection 1: \u201cwide varieties of shape and form\u201d -> \u201ca wide variety of shapes and forms\"\n8. \u2022\tSection 1: \u201cPlease refer to Section 2 for motivation of this document\u201d - feels redundant, especially since it\u2019s the very next section, and it\u2019s not grammatical as written.\n9. \u2022\tSection 1: \u201cvarious topological patterns\u201d - the document specifically describes TWO patterns. I get that this might change in the future, but I think it\u2019s better to anchor the reader\u2019s expectations\n10. \u2022\tSection 2: \u201cReference Values from trusted supply chain actors producing, aggregating, or administering Attesters (Reference Value Providers)\u201d - this needs reorganising, because this almost reads like \u201cReference Value Providers\u201d is a synonym for \u201cAttesters\u201d.  Suggest something like \u201cReference Values from trusted supply chain actors known as Reference Value Providers (RFC9334) \u2026\"\n11. \u2022\tSection 2: as above for bullet 2\n12. \u2022\tSection 2: \u201c\u2026that a complex and changing Composite Attesters imposes\u201d - disagreement in number, should be singular \u201cComposite Attester\"\n13. \u2022\tSection 2: \u201cReference Values Provider\u201d -> \u201cReference Value Provider\u201d (bullet 3 of the challenges list)\n14. \u2022\tSection 3: \u201ccentral processing unit (CPU)\u201d - should be capitalised, but why not just use CPU as well-known term for this readership, especially since the same sentence has GPU, NPU and TPU without their expansions.\n15. \u2022\tSection 3.1 para 3: \u201cpartial Evidence\u201d -> \u201cPartial Evidence\u201d.\n16. \u2022\tSection 3.2: \u201cvirtual machine (VM)\u201d - should be capitalised, but do we even need to expand it? After all, we also have TEE in this section without expanding or defining it.\n17. \u2022\tSection 4: \u201c...or any composition involving a combination of one or more Composite Devices or Layered Attesters\u201d - cumbersome wording, I think it would be okay to just say \u201cor any combination of these\u201d (in the glossary def for Composite Attester)\n18. \u2022\tSection 4 the reference to section 5.1 should be in parentheses so as not to interrupt the text flow\n19. \u2022\tSection 4: the definition for Partial Evidence has redundant words \u201cIt is an\u201d at the start\n20. \u2022\tSection 5.1: \u201cFigure below shows\u201d -> \u201cThe figure below shows\"\n21. \u2022\tSection 5.1.1 the mentions of passport and background check are probably worth a courtesy ref to RFC9334.\n22. \u2022\tSection 5.1.1: \u201c\u2026to extract the Component Attesters Evidence\u201d - missing apostrophe - \u201cAttester\u2019s\"\n23. \u2022\tSection 5.2 \u201c..a chain of Verifier\u201d -> \u201c..a chain of Verifiers\"\n24. \u2022\tSection 5.2 \u201cThe process is repeated, until the entire\u2026\u201d comma not needed here\n25. \u2022\tSection 5.2 \u201c\u2026combines the results from it own\u2026\u201d -> \u201ccombines the results from ITS own\"\n26. \u2022\tSection 7.3.1.1.1 \u201cComponent Verifiers should be made available suitable trust anchors\u2026\u201d - this doesn\u2019t read well - do we mean \u201cshould be provisioned with suitable trust anchors\u201d?\n27. \u2022\tSection 8: \u201cattestation related messages\u201d -> \u201cattestation-related messages\"\n\n---------------------------------------------------------------------------------------------------\n\n[0] - https://www.ietf.org/archive/id/draft-ietf-rats-multi-verifier-00.html \n",
       "createdAt": "2026-08-27T16:08:53Z",
-      "updatedAt": "2026-09-04T09:38:52Z",
+      "updatedAt": "2026-10-24T23:04:00Z",
       "closedAt": null,
       "comments": [
         {
@@ -917,6 +917,41 @@
           "body": "Apart from **Nits** , Today, partial Team Reviewed the Comments.\n\nMost of the Comments (Nearly 75%) are Accepted and the findings have been documented in the Wiki:\nhttps://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/wiki/Comments-on-Draft\n\nOver the course of one to two weeks, sub-issues will be created out of this issue and draft will be worked upon.\n",
           "createdAt": "2026-09-04T09:38:33Z",
           "updatedAt": "2026-09-04T09:38:52Z"
+        },
+        {
+          "author": "GhadaArf",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Nits -> Done",
+          "createdAt": "2026-10-23T13:36:21Z",
+          "updatedAt": "2026-10-23T13:36:21Z"
+        },
+        {
+          "author": "GhadaArf",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Section 8 Comments -> Done:\n1st comment: added some references to other drafts describing some implementation examples of data minimization.\nThere are several ways to manage the minimisation of information: how ? who? When? \u2014 some ideas are described in drafts (reference interaction and key attestation) or by involving a third party between the Attester and the verifier to handle the minimization process or some crypto solutions (e.g., vector commitments\u2026) and surely we can imagine many other ways. Whatever approach is chosen, we are convinced that it remains an implementation and protocol dependent and above all the responsibility of the attester and/or the attester and attesting environment owner. However, this document is solely dedicated to the multiple verifier patterns.\n\n2st comment: this is implementation dependent.   \nRegarding the key management, in 9334, there are some ideas about attestation key protection and provisioning\u2026 but no specific protocol solution is detailed.",
+          "createdAt": "2026-10-23T13:44:33Z",
+          "updatedAt": "2026-10-23T13:44:33Z"
+        },
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressing **Section 1** and **Section 2** comments, via https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/69\n\nTo address Paul's Specific Comment:\n`I think this section would benefit from a simple diagram of a Composite Attester, just to help with orientation and mapping to the terminology (see below).`\n\nAuthor Response: One thing to note in particular, is NOT to draw any specific Composite Attester, but we have specifically exemplified the Composite Attester at the start of the document, by referring few Composite Attesters from RFC 9334, as detailed in  **Conventions and Definition** section, specifically:\n",
+          "createdAt": "2026-10-24T22:57:10Z",
+          "updatedAt": "2026-10-24T22:57:10Z"
+        },
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "**Section 5** Comments from Paul- Addressed via PR #74 ",
+          "createdAt": "2026-10-24T22:59:08Z",
+          "updatedAt": "2026-10-24T22:59:08Z"
+        },
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Almost all the comments and Nits from Paul have now been addressed. Will request Paul H to review the document,  just to double check, if anything major is remaining...",
+          "createdAt": "2026-10-24T23:04:00Z",
+          "updatedAt": "2026-10-24T23:04:00Z"
         }
       ]
     },
@@ -5554,7 +5589,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2026-10-05T11:01:52Z",
-      "updatedAt": "2026-10-21T13:24:29Z",
+      "updatedAt": "2026-10-23T09:25:54Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
       "baseRefOid": "b2f91f9a6ee0c165a79c3a3a939312923712ba1e",
@@ -5565,7 +5600,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I suggest we address all other comments and then apply MCR New Sentence New Line Comment",
+          "createdAt": "2026-10-23T09:25:54Z",
+          "updatedAt": "2026-10-23T09:25:54Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDON24c9s8AAAABTc9PiA",
@@ -5715,25 +5758,33 @@
       "id": "PR_kwDON24c9s8AAAABHWPaKw",
       "title": "update section 5 according paul h's comments in #60",
       "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/72",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "junzhanghw",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "update section 5 according paul h's comments in #60",
       "createdAt": "2026-10-08T14:08:14Z",
-      "updatedAt": "2026-10-09T10:09:01Z",
+      "updatedAt": "2026-10-23T09:25:09Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
       "baseRefOid": "b2f91f9a6ee0c165a79c3a3a939312923712ba1e",
       "headRepository": "junzhanghw/draft-deshpande-multi-verifier",
       "headRefName": "section-5-update-according-to-(Paul-H)-#60-comments",
       "headRefOid": "8d0955223fe1c920b58f37f7c1d3b45be120502c",
-      "closedAt": null,
+      "closedAt": "2026-10-23T09:25:09Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "PR #74 Will Address Section 5 comments from Paul Howard. Hence closing this PR as the work to be followed is in PR #74",
+          "createdAt": "2026-10-23T09:25:07Z",
+          "updatedAt": "2026-10-23T09:25:07Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDON24c9s8AAAABRVOL4Q",
@@ -5908,24 +5959,26 @@
       "id": "PR_kwDON24c9s8AAAABHijvcg",
       "title": "Nits-PaulH",
       "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/73",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "GhadaArf",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2026-10-09T13:19:23Z",
-      "updatedAt": "2026-10-09T14:04:24Z",
+      "updatedAt": "2026-10-23T11:11:30Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
       "baseRefOid": "b2f91f9a6ee0c165a79c3a3a939312923712ba1e",
       "headRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "headRefName": "ghada-Nits-PaulH",
-      "headRefOid": "508bd5168a7d83a19a48c04c46c43ddcc42e5787",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "8c928f0a9039d8b1003dd723dd34613bfe134e5a",
+      "closedAt": "2026-10-23T11:11:26Z",
+      "mergedAt": "2026-10-23T11:11:26Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "fe1cb86b8ae1dadc616de180373bc76560a996f2"
+      },
       "comments": [
         {
           "author": "yogeshbdeshpande",
@@ -5940,6 +5993,13 @@
           "body": "Also, I will fix the build issue, as it seems this is happening due to `lint` errors which are easily fixable",
           "createdAt": "2026-10-09T13:44:28Z",
           "updatedAt": "2026-10-09T13:44:28Z"
+        },
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Let us give a final pass of this in todays (23rd Oct) meeting and upon consensus Merge this!! ",
+          "createdAt": "2026-10-23T09:20:06Z",
+          "updatedAt": "2026-10-23T09:20:06Z"
         }
       ],
       "reviews": [
@@ -6055,6 +6115,72 @@
           "createdAt": "2026-10-09T14:04:24Z",
           "updatedAt": "2026-10-09T14:04:24Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABT1OU3A",
+          "commit": {
+            "abbreviatedOid": "508bd51"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-23T08:35:42Z",
+          "updatedAt": "2026-10-23T08:35:42Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "No evaluate is not the correct term here. RP consumes Attestation Results to `establish` the trustworthiness of the Attester. The evaluation bit is done by the Verifier",
+              "createdAt": "2026-10-23T08:35:42Z",
+              "updatedAt": "2026-10-23T08:35:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABT1o67g",
+          "commit": {
+            "abbreviatedOid": "8c928f0"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Looks Good to Me.\n\nI have gone through all the Nits from PaulH and Ghadas commit and my subsequent commit addresses all the Nits from Paul Howard",
+          "createdAt": "2026-10-23T09:17:38Z",
+          "updatedAt": "2026-10-23T09:17:38Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABT1pZ8w",
+          "commit": {
+            "abbreviatedOid": "508bd51"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-23T09:18:24Z",
+          "updatedAt": "2026-10-23T09:18:25Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "I changed it to term `decide` which is specified in RFC 9334",
+              "createdAt": "2026-10-23T09:18:24Z",
+              "updatedAt": "2026-10-23T09:18:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABT2uo6A",
+          "commit": {
+            "abbreviatedOid": "8c928f0"
+          },
+          "author": "junzhanghw",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "ok for me.",
+          "createdAt": "2026-10-23T11:11:12Z",
+          "updatedAt": "2026-10-23T11:11:12Z",
+          "comments": []
         }
       ]
     },
@@ -6063,24 +6189,26 @@
       "id": "PR_kwDON24c9s8AAAABHjD8yg",
       "title": "new update section 5 according to paul h's comments in comments in #60",
       "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/74",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "junzhanghw",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "new update section 5 according to paul h's comments in comments in #60",
       "createdAt": "2026-10-09T14:02:42Z",
-      "updatedAt": "2026-10-09T14:09:41Z",
+      "updatedAt": "2026-10-23T11:33:31Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
-      "baseRefOid": "b2f91f9a6ee0c165a79c3a3a939312923712ba1e",
+      "baseRefOid": "fe1cb86b8ae1dadc616de180373bc76560a996f2",
       "headRepository": "junzhanghw/draft-deshpande-multi-verifier",
       "headRefName": "newly-update-section-5-according-paul-h's-comments-in-#60--#72",
-      "headRefOid": "018b12d7f5385e8dec31ad87a32077825676f237",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "bfd8723c8f19190e89b72f888de100bb31ec5ebf",
+      "closedAt": "2026-10-23T11:33:31Z",
+      "mergedAt": "2026-10-23T11:33:31Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "d7b41bd09b4ec3f8559acb8994ef9bfb15052648"
+      },
       "comments": [],
       "reviews": [
         {
@@ -6134,6 +6262,125 @@
           "body": "Looks good, except that we should never use the term `may`  for trust, as it is a must in this draft.\n\nCorrected it . In general Looks Good to Me!",
           "createdAt": "2026-10-09T14:09:41Z",
           "updatedAt": "2026-10-09T14:09:41Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABT1svbA",
+          "commit": {
+            "abbreviatedOid": "96bcfdb"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM\n\nJun: Thanks for the PR ",
+          "createdAt": "2026-10-23T09:23:40Z",
+          "updatedAt": "2026-10-23T09:23:40Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABT2w0CQ",
+          "commit": {
+            "abbreviatedOid": "96bcfdb"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-23T11:14:48Z",
+          "updatedAt": "2026-10-23T11:14:48Z",
+          "comments": [
+            {
+              "originalPosition": 128,
+              "body": "```suggestion\nAttester may send the Composite Evidence (CE) to any of the Verifiers (directly in the passport model, or indirectly via the Relying Party in the background-check model). The Verifier which processes the Composite Evidence, acts as the first Verifier CV1 and verifies the signature on the Evidence, if present. It extracts the\n```",
+              "createdAt": "2026-10-23T11:14:48Z",
+              "updatedAt": "2026-10-23T11:14:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABT2yQ-A",
+          "commit": {
+            "abbreviatedOid": "96bcfdb"
+          },
+          "author": "GhadaArf",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-10-23T11:17:06Z",
+          "updatedAt": "2026-10-23T11:17:06Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABT20r_Q",
+          "commit": {
+            "abbreviatedOid": "96bcfdb"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-23T11:21:19Z",
+          "updatedAt": "2026-10-23T11:21:19Z",
+          "comments": [
+            {
+              "originalPosition": 150,
+              "body": "```suggestion\nIn the cascaded pattern, the RP may communicate with any Verifier and thus receive its Attestation Results. Hence RP  must trust all the Verifiers (in a Distributed Trust Model) or only trust the  first Verifier (in a Delegated Trust Model).\n```",
+              "createdAt": "2026-10-23T11:21:19Z",
+              "updatedAt": "2026-10-23T11:21:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABT22AWA",
+          "commit": {
+            "abbreviatedOid": "96bcfdb"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-23T11:23:31Z",
+          "updatedAt": "2026-10-23T11:23:32Z",
+          "comments": [
+            {
+              "originalPosition": 83,
+              "body": "```suggestion\nThere are many protocols to determine how a Lead Verifier can select the Component Verifiers (e.g., static configuration or a discovery protocol).\n```",
+              "createdAt": "2026-10-23T11:23:32Z",
+              "updatedAt": "2026-10-23T11:24:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABT22-ag",
+          "commit": {
+            "abbreviatedOid": "96bcfdb"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-23T11:25:07Z",
+          "updatedAt": "2026-10-23T11:25:08Z",
+          "comments": [
+            {
+              "originalPosition": 139,
+              "body": "```suggestion\nThere are many protocols to determine how a Verifier can select the next Verifier to route the CE and PAR (e.g., (e.g., static configuration or a discovery protocol).\n```",
+              "createdAt": "2026-10-23T11:25:08Z",
+              "updatedAt": "2026-10-23T11:25:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABT27-RA",
+          "commit": {
+            "abbreviatedOid": "bfd8723"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2026-10-23T11:33:18Z",
+          "updatedAt": "2026-10-23T11:33:18Z",
           "comments": []
         }
       ]
@@ -6673,6 +6920,125 @@
           ]
         }
       ]
+    },
+    {
+      "number": 76,
+      "id": "PR_kwDON24c9s8AAAABKQlZhg",
+      "title": "PaulHComments-Section8",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/76",
+      "state": "OPEN",
+      "author": "GhadaArf",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Add refrences to: \n1- https://datatracker.ietf.org/doc/draft-ietf-rats-pkix-key-attestation/\n2- https://datatracker.ietf.org/doc/draft-ietf-rats-reference-interaction-models/\nin section 8. \n\n",
+      "createdAt": "2026-10-23T13:25:15Z",
+      "updatedAt": "2026-10-23T13:31:34Z",
+      "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "baseRefName": "main",
+      "baseRefOid": "d7b41bd09b4ec3f8559acb8994ef9bfb15052648",
+      "headRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "headRefName": "GhadaArf-PaulHComments-Section8",
+      "headRefOid": "cf7891c564b216ed5e534a39d9cb0a39344c739a",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDON24c9s8AAAABT4G52w",
+          "commit": {
+            "abbreviatedOid": "2eb6a20"
+          },
+          "author": "github-actions",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-23T13:25:46Z",
+          "updatedAt": "2026-10-23T13:25:46Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "````suggestion\n  I-D.draft-ietf-rats-pkix-key-attestation:keyAttestation\n````",
+              "createdAt": "2026-10-23T13:25:46Z",
+              "updatedAt": "2026-10-23T13:25:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABT4LPLg",
+          "commit": {
+            "abbreviatedOid": "cf7891c"
+          },
+          "author": "github-actions",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-23T13:31:34Z",
+          "updatedAt": "2026-10-23T13:31:34Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "````suggestion\n  I-D.draft-ietf-rats-pkix-key-attestation: keyAttestation\n````",
+              "createdAt": "2026-10-23T13:31:34Z",
+              "updatedAt": "2026-10-23T13:31:34Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 77,
+      "id": "PR_kwDON24c9s8AAAABKgZwnw",
+      "title": "Address Comments from Mark Novak",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/77",
+      "state": "OPEN",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #65",
+      "createdAt": "2026-10-24T23:15:22Z",
+      "updatedAt": "2026-10-25T00:06:52Z",
+      "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "baseRefName": "main",
+      "baseRefOid": "d7b41bd09b4ec3f8559acb8994ef9bfb15052648",
+      "headRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "headRefName": "mark-comments",
+      "headRefOid": "1900ea85c43ef469ec5998f87fb2381a67a4a662",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 78,
+      "id": "PR_kwDON24c9s8AAAABKgrGrg",
+      "title": "MCR remaining comment",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/78",
+      "state": "OPEN",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-25T00:04:50Z",
+      "updatedAt": "2026-10-25T00:06:22Z",
+      "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "baseRefName": "main",
+      "baseRefOid": "d7b41bd09b4ec3f8559acb8994ef9bfb15052648",
+      "headRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "headRefName": "mcr-comments",
+      "headRefOid": "5340f4760bd021d1a6fc678ef26750dd83d939df",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }

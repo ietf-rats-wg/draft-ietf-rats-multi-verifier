@@ -270,7 +270,8 @@ Table of Contents
    This document uses the following terms:
 
    Composite Attester:  A Composite Attester is either a Composite
-      Device or a Layered Attester or any combination of these.
+      Device (Section 3.3 of [RFC9334]) or a Layered Attester
+      (Section 3.2 of [RFC9334]) or any combination of these.
 
    Component Attester:  A Component Attester is a single Attester of a
       Composite Attester.  For example, it can be a sub-entity
@@ -279,26 +280,23 @@ Table of Contents
       an entity which produces a single Evidence which can be appraised
       by a Component Verifier.
 
-   Composite Evidence:  Evidence produced by a Composite Attester.  Also
-      referred to as CE in the document.
+   Composite Evidence (CE):  Evidence produced by a Composite Attester.
 
-   Partial Evidence:  Extract from a Composite Evidence.  It consists of
-      at least one or more Component Evidence.  Also referred to as PE
-      in the document.
+   Partial Evidence (PE):  Extract from a Composite Evidence.  It
+      consists of at least one or more Component Evidence.
 
-   Lead Verifier:  A Verifier which acts as a main Verifier to receive
-      Composite Evidence from a Composite Attester in a Hierarchical
-      pattern (Section 5.1).  Also referred to as LV in the document.
+   Lead Verifier (LV):  A Verifier which acts as a main Verifier to
+      receive Composite Evidence from a Composite Attester in a
+      Hierarchical pattern Section 5.1.
 
-   Component Verifier:  A Verifier which is responsible for the
-      Verification of one single component or a layer.  Also referred to
-      as CV in the document.
+   Component Verifier (CV):  A Verifier which is responsible for the
+      Verification of one single component or a layer.
 
-   Partial Attestation Results:  Partial Attestation Results (PAR) are
+   Partial Attestation Results (PAR):  Partial Attestation Results are
       produced by a Component Verifier, and contain partial results from
       at least one or more Component Attesters.
 
-   Aggregated Attestation Results:  Aggregated Attestation Results (AAR)
+   Aggregated Attestation Results (AAR):  Aggregated Attestation Results
       refer to a collection of Attestation Results produced upon
       completion of appraisal of a Composite Attester.
 
@@ -344,16 +342,30 @@ Table of Contents
 5.1.1.  Lead Verifier
 
    In this topological pattern, there is an Entity known as Lead
-   Verifier.
+   Verifier (LV).
 
    Lead Verifier is the central entity in communication with the
    Attester (directly in passport model or indirectly via the Relying
    Party in background-check model, ([RFC9334])).  It receives
-   Attestation Evidence from a Composite Attester.  If the Composite
-   Attestation Evidence is signed, then it must validate the integrity
-   of the Evidence by validating the signature.  If signature
-   verification fails, the Verification is terminated.  Otherwise it
-   performs the following steps.
+   Attestation Evidence from a Composite Attester.
+
+5.1.1.1.  Integrity Verification of Composite Evidence
+
+   The Lead Verifier must verify the integrity of the Composite
+   Evidence.  There are many ways to integrity protect the Composite
+   Evidence, as given below.
+
+   1.  If the Composite Attestation Evidence is signed, LV must verify
+       the integrity of the Evidence by validating the signature.  If
+       signature verification fails, the Verification is terminated.
+
+   2.  If the Composite Attestation Evidence is not signed but each
+       Component Evidence, is signed and there is a cryptographic
+       binding to link the individual components, then the LV must
+       verify the binding.  If the cryptographic binding fails, the
+       Verification is terminated.
+
+   Otherwise LV performs the following steps.
 
    *  Lead Verifier has the required knowledge to break down the
       Composite Evidence into Partial Evidence.  It decodes the
@@ -361,14 +373,18 @@ Table of Contents
       This may lead to "N" Partial Evidence, one for each Component
       Attester.
 
-   *  Lead Verifier delegates each Partial Evidence to its own Component
-      Verifier (CV) and receives signed Component Attester Attestation
-      Results also known as Partial Attestation Results after successful
-      Appraisal of Evidence.  There are many protocols to determine how
-      a Lead Verifier can select the Component Verifiers (e.g., static
-      configuration or a discovery protocol).  This document does not
-      mandate any specific protocol for determining the Component
-      Verifiers.
+   *  The Lead Verfier relays each Partial Evidence (PE) to its own
+      Component Verifier (CV).  In certain topologies, it is possible
+      that the PE is not protected.  In such cases, the Lead verifier
+      must wrap the Partial Evidence (example PE_1) in a signed
+      Conceptual Message Wrapper (CMW), and then send it to its
+      Component Verifier (example CV 1).  Upon successful appraisal of
+      Evidence by the CV, it receives signed Component Attester
+      Attestation Results also known as Partial Attestation Results.
+      There are many protocols to determine how a Lead Verifier can
+      select the Component Verifiers (e.g., static configuration or a
+      discovery protocol).  Verifier discovery is out of scope for this
+      specification.
 
    *  Once the Lead Verifier receives Partial Attestation Results from
       all the Verifiers, it combines the results from each Verifier to
@@ -382,13 +398,6 @@ Table of Contents
 
    The overall verdict may be dependent on the Appraisal Policy of the
    Lead Verifier.
-
-   In certain topologies, it is possible that only the Composite
-   Evidence is signed to provide the overall integrity, while the
-   Partial Evidence (example PE_1) is not protected.  In such cases, the
-   Lead Verifier upon processing of Composite Evidence must wrap the
-   Partial Evidence (example PE_1) in a signed Conceptual Message
-   Wrapper (CMW), and send it to each Component Verifier (example CV 1).
 
 5.1.2.  Component Verifier
 
@@ -467,13 +476,13 @@ Legend:
    chain combines the incoming Partial Attestation Results with the
    results from its own Evidence Appraisal, and passes the Aggregated
    Attestation Results to the Verifier from which it receives Composite
-   Evidence.
+   Evidence.  The visibility of evidence within this pattern is subject
+   to the privacy policies described in Section 8.
 
    There are many protocols to determine how a Verifier can select the
    next Verifier to route the CE and PAR (e.g., (e.g., static
-   configuration or a discovery protocol).  This document does not
-   mandate any specific protocol for determining the Verifiers in
-   cascade.
+   configuration or a discovery protocol).  Verifier discovery is out of
+   scope for this specification.
 
 5.2.1.  Trust Relationships
 
@@ -523,13 +532,23 @@ Legend:
    The Verifier needs to ensure that the claims included in the Evidence
    reflect the latest state of the Attester.  As per RATS Architecture,
    the recommended freshness is ascertained using either Synchronised
-   Clocks, Epoch IDs, or nonce, embedded in the Evidence.  In the case
-   of Hierarchical Pattern, the Verification of Freshness should be
-   checked by the Lead Verifier.
-
-   In the Cascaded Pattern, the freshness is always checked by the first
-   Verifier in communication with either the Attester (Passport Model)
-   or Relying Party (Background Check Model).
+   Clocks, Epoch IDs, or nonce, generated by the Verifier.  When
+   Verifiers generates freshness, in a Multi Verifier System, the
+   generation and subsequent verification of freshness during appraisal,
+   depends on the specific mechanism utilized.  For example, when nonce
+   is employed, in a Heirarchical pattern, one possible approach is for
+   the Lead Verifier to autonomously generate a unique nonce, or
+   autonomously by the first Verifier (in Cascaded pattern)
+   communicating with the Attester.  This approach simplifies the
+   freshness appraisal procedure by centralizing the processing of the
+   challenge.  The other alternative may be for a LV to generate a nonce
+   by aggregating the nonces generated by each participating Component
+   Verifier.  In this case, the freshness appraisal procedure requires
+   obtaining the individual component nonces received as a claim from
+   PAR and recomputing the aggregated nonce.  Conversely, when
+   Synchronized Clocks or Epoch IDs are employed, the verification of
+   freshness can be performed independently by each individual Component
+   Verifier.
 
 7.  Security Considerations
 
@@ -600,8 +619,9 @@ Legend:
 
    *Mitigation:* The LV MUST be hardened and operate and store its Keys
    in a secure environment.  Its operation SHOULD be auditable.
-   Component Verifiers should have suitable trust anchors so that they
-   can establish required trust in the authority of the LV.
+   Component Verifiers are provisioned with the Trust Anchors (see
+   [RFC6024]) for the Lead Verifier so that they can establish required
+   trust in the authority of the LV.
 
 7.3.1.1.2.  Communication Security (LV <-> CV)
 
@@ -609,7 +629,7 @@ Legend:
    transit.
 
    *Mitigation:* All communications between the LV and CVs MUST be
-   mutually authenticated and confidential (e.g., using TLS with client
+   mutually authenticated and confidential (e.g., using TLS with mutual
    authentication).  This ensures integrity, confidentiality, and
    authenticity of the messages exchanged between the Verifiers.
 
@@ -642,10 +662,8 @@ Legend:
    *Threat:* An adversary Component Verifier replays old Evidence or
    Attestation Results.
 
-   *Mitigation:* The LV is responsible for enforcing freshness (via
-   nonces, epochs, or timestamps).  This freshness value MUST be
-   propagated to CVs and back to the LV, to ensure final AR can be
-   validated against the original challenge.
+   *Mitigation:* Freshness is enforced based on the selected mechanism
+   described in Section 6.
 
 7.3.2.  Cascaded Pattern
 
@@ -673,7 +691,7 @@ Legend:
 
    *Mitigation:* Each hop between Verifiers MUST be secured with
    mutually authenticated and confidential channels (e.g., TLS with
-   client authentication).
+   mutual authentication).
 
 7.3.2.1.3.  Evidence and Results Protection
 
@@ -692,12 +710,8 @@ Legend:
 
    *Threat:* An adversary replays old Evidence or Attestation Results.
 
-   *Mitigation:* The first Verifier in the chain (the one receiving
-   evidence from the Attester/RP) is responsible for enforcing freshness
-   (via nonces, epochs, or timestamps) for the entire cascade.  This
-   freshness value MUST be propagated with the Evidence and Results
-   through the chain so the final AR can be validated against the
-   original challenge.
+   *Mitigation:* Freshness is enforced in accordance with the mechanisms
+   described in Section 6.
 
 7.3.3.  Security of the Hybrid Pattern
 

@@ -62,6 +62,8 @@ informative:
   RFC9334: rats-arch
   I-D.draft-ietf-rats-corim: corim
   RFC6024: trust-anchors
+  I-D.draft-ietf-rats-reference-interaction-models: refInteraction
+  I-D.draft-ietf-rats-pkix-key-attestation: keyAttestation
 
 --- abstract
 
@@ -519,6 +521,7 @@ Nonetheless, such benefits depend on strong implementation practices.
 
 - Minimization: Attesters SHOULD only generate Evidence that is strictly necessary for the appraisal policy.
 Verifiers SHOULD only request necessary claims.
+Refer to ({{-refInteraction}}) and ({{-keyAttestation}}) for further guidance on procedures for minimization of Evidence.
 - Confidentiality: Evidence containing sensitive information SHOULD be encrypted so that it can only be accessed by the intended Verifier and not by any unauthorised parties (including other Verifiers in the hierarchy, cascade or hybrid pattern).
 This is crucial in multi-tenant environments.
 - Policy Handling: Verifiers SHOULD be careful not to leak their internal appraisal policies (e.g., through error messages or timing side channels) when communicating with other Verifiers or Attesters, as this information could be exploited by an attacker to manipulate appraisal.

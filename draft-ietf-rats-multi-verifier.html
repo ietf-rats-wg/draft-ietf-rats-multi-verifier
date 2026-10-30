@@ -1566,30 +1566,46 @@ Also referred to as CV in the document.<a href="#section-4.1-2.12.1" class="pilc
           <h4 id="name-lead-verifier">
 <a href="#section-5.1.1" class="section-number selfRef">5.1.1. </a><a href="#name-lead-verifier" class="section-name selfRef">Lead Verifier</a>
           </h4>
-<p id="section-5.1.1-1">In this topological pattern, there is an Entity known as Lead Verifier.<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.1-1">In this topological pattern, there is an Entity known as Lead Verifier (LV).<a href="#section-5.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.1.1-2">Lead Verifier is the central entity in communication with the Attester (directly in passport model or indirectly via the Relying Party in background-check model, (<span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>)).
-It receives Attestation Evidence from a Composite Attester.
-If the Composite Attestation Evidence is signed, then it must validate the integrity of the Evidence by validating the signature.
-If signature verification fails, the Verification is terminated.
-Otherwise it performs the following steps.<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
+It receives Attestation Evidence from a Composite Attester.<a href="#section-5.1.1-2" class="pilcrow">¶</a></p>
+<div id="integrity-verification-of-composite-evidence">
+<section id="section-5.1.1.1">
+            <h5 id="name-integrity-verification-of-c">
+<a href="#section-5.1.1.1" class="section-number selfRef">5.1.1.1. </a><a href="#name-integrity-verification-of-c" class="section-name selfRef">Integrity Verification of Composite Evidence</a>
+            </h5>
+<p id="section-5.1.1.1-1">The Lead Verifier must verify the integrity of the Composite Evidence.
+There are many ways to integrity protect the Composite Evidence, as given below.<a href="#section-5.1.1.1-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-5.1.1.1-2">
+<li id="section-5.1.1.1-2.1">
+                <p id="section-5.1.1.1-2.1.1">If the Composite Attestation Evidence is signed, LV must verify the integrity of the Evidence by validating the signature.
+If signature verification fails, the Verification is terminated.<a href="#section-5.1.1.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li id="section-5.1.1.1-2.2">
+                <p id="section-5.1.1.1-2.2.1">If the Composite Attestation Evidence is not signed but each Component Evidence, is signed and there is a cryptographic binding to link the individual components, then the LV must verify the binding.
+If the cryptographic binding fails, the Verification is terminated.<a href="#section-5.1.1.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+            </ol>
+<p id="section-5.1.1.1-3">Otherwise LV performs the following steps.<a href="#section-5.1.1.1-3" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.1.1-3.1">
-              <p id="section-5.1.1-3.1.1">Lead Verifier has the required knowledge to break down the Composite Evidence into Partial Evidence. It decodes the Composite Evidence to extract the Component Attesters' Evidence. This may lead to "N" Partial Evidence, one for each Component Attester.<a href="#section-5.1.1-3.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5.1.1.1-4.1">
+                <p id="section-5.1.1.1-4.1.1">Lead Verifier has the required knowledge to break down the Composite Evidence into Partial Evidence. It decodes the Composite Evidence to extract the Component Attesters' Evidence. This may lead to "N" Partial Evidence, one for each Component Attester.<a href="#section-5.1.1.1-4.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-5.1.1-3.2">
-              <p id="section-5.1.1-3.2.1">Lead Verifier delegates each Partial Evidence to its own Component Verifier (CV) and receives signed Component Attester Attestation Results also known as Partial Attestation Results after successful Appraisal of Evidence.
+              <li class="normal" id="section-5.1.1.1-4.2">
+                <p id="section-5.1.1.1-4.2.1">The Lead Verfier relays each Partial Evidence (PE) to its own Component Verifier (CV). In certain topologies, it is possible that the PE is not protected. In such cases, the Lead verifier must wrap the Partial Evidence (example PE_1) in a signed Conceptual Message Wrapper (CMW), and then send it to its Component Verifier (example CV 1). Upon successful appraisal of Evidence by the CV, it receives signed Component Attester Attestation Results also known as Partial Attestation Results.
 There are many protocols to determine how a Lead Verifier can select the Component Verifiers (e.g., static configuration or a discovery protocol).
-This document does not mandate any specific protocol for determining the Component Verifiers.<a href="#section-5.1.1-3.2.1" class="pilcrow">¶</a></p>
+This document does not mandate any specific protocol for determining the Component Verifiers.<a href="#section-5.1.1.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-5.1.1-3.3">
-              <p id="section-5.1.1-3.3.1">Once the Lead Verifier receives Partial Attestation Results from all the Verifiers, it combines the results from each Verifier to construct Aggregated Attestation Results (AAR). The Lead verifier may apply its own policies and also add extra claims as part of its appraisal.<a href="#section-5.1.1-3.3.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-5.1.1.1-4.3">
+                <p id="section-5.1.1.1-4.3.1">Once the Lead Verifier receives Partial Attestation Results from all the Verifiers, it combines the results from each Verifier to construct Aggregated Attestation Results (AAR). The Lead verifier may apply its own policies and also add extra claims as part of its appraisal.<a href="#section-5.1.1.1-4.3.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-5.1.1-3.4">
-              <p id="section-5.1.1-3.4.1">Lead Verifier signs the final AAR and conveys it to the Attester (in Passport model) or to the Relying Party (in background check model).<a href="#section-5.1.1-3.4.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-5.1.1.1-4.4">
+                <p id="section-5.1.1.1-4.4.1">Lead Verifier signs the final AAR and conveys it to the Attester (in Passport model) or to the Relying Party (in background check model).<a href="#section-5.1.1.1-4.4.1" class="pilcrow">¶</a></p>
 </li>
-          </ul>
-<p id="section-5.1.1-4">The overall verdict may be dependent on the Appraisal Policy of the Lead Verifier.<a href="#section-5.1.1-4" class="pilcrow">¶</a></p>
-<p id="section-5.1.1-5">In certain topologies, it is possible that only the Composite Evidence is signed to provide the overall integrity, while the Partial Evidence (example PE_1) is not protected. In such cases, the Lead Verifier upon processing of Composite Evidence must wrap the Partial Evidence (example PE_1) in a signed Conceptual Message Wrapper (CMW), and send it to each Component Verifier (example CV 1).<a href="#section-5.1.1-5" class="pilcrow">¶</a></p>
+            </ul>
+<p id="section-5.1.1.1-5">The overall verdict may be dependent on the Appraisal Policy of the Lead Verifier.<a href="#section-5.1.1.1-5" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="component-verifier">

@@ -169,7 +169,7 @@ This document uses the following terms:
 
 Composite Attester:
 
-: A Composite Attester is either a Composite Device or a Layered Attester or any combination of these.
+: A Composite Attester is either a Composite Device ({{Section 3.3 of -rats-arch}}) or a Layered Attester ({{Section 3.2 of -rats-arch}}) or any combination of these.
 
 Component Attester:
 

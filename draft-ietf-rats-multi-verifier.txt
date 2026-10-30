@@ -5,11 +5,11 @@
 RATS                                                        Y. Deshpande
 Internet-Draft                                                   Arm Ltd
 Intended status: Informational                                  J. Zhang
-Expires: 26 April 2027                                         H. Labiod
+Expires: 3 May 2027                                            H. Labiod
                                      Huawei Technologies France S.A.S.U.
                                                             H. Birkholtz
                                                           Fraunhofer SIT
-                                                         23 October 2026
+                                                         30 October 2026
 
 
                Remote Attestation with Multiple Verifiers
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 April 2027.
+   This Internet-Draft will expire on 3 May 2027.
 
 Copyright Notice
 
@@ -600,8 +600,9 @@ Legend:
 
    *Mitigation:* The LV MUST be hardened and operate and store its Keys
    in a secure environment.  Its operation SHOULD be auditable.
-   Component Verifiers should have suitable trust anchors so that they
-   can establish required trust in the authority of the LV.
+   Component Verifiers are provisioned with the Trust Anchors (see
+   [RFC6024]) for the Lead Verifier so that they can establish required
+   trust in the authority of the LV.
 
 7.3.1.1.2.  Communication Security (LV <-> CV)
 
@@ -609,7 +610,7 @@ Legend:
    transit.
 
    *Mitigation:* All communications between the LV and CVs MUST be
-   mutually authenticated and confidential (e.g., using TLS with client
+   mutually authenticated and confidential (e.g., using TLS with mutual
    authentication).  This ensures integrity, confidentiality, and
    authenticity of the messages exchanged between the Verifiers.
 
@@ -673,7 +674,7 @@ Legend:
 
    *Mitigation:* Each hop between Verifiers MUST be secured with
    mutually authenticated and confidential channels (e.g., TLS with
-   client authentication).
+   mutual authentication).
 
 7.3.2.1.3.  Evidence and Results Protection
 

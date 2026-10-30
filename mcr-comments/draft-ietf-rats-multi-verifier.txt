@@ -5,11 +5,11 @@
 RATS                                                        Y. Deshpande
 Internet-Draft                                                   Arm Ltd
 Intended status: Informational                                  J. Zhang
-Expires: 28 April 2027                                         H. Labiod
+Expires: 3 May 2027                                            H. Labiod
                                      Huawei Technologies France S.A.S.U.
                                                             H. Birkholtz
                                                           Fraunhofer SIT
-                                                         25 October 2026
+                                                         30 October 2026
 
 
                Remote Attestation with Multiple Verifiers
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 April 2027.
+   This Internet-Draft will expire on 3 May 2027.
 
 Copyright Notice
 
@@ -351,7 +351,7 @@ Table of Contents
    Party in background-check model, ([RFC9334])).  It receives
    Attestation Evidence from a Composite Attester.
 
-5.1.1.1.  Integrity of Composite Evidence
+5.1.1.1.  Integrity Verification of Composite Evidence
 
    The Lead Verifier must verify the integrity of the Composite
    Evidence.  There are many ways to integrity protect the Composite

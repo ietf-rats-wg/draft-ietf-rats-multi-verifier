@@ -1594,7 +1594,7 @@ If the cryptographic binding fails, the Verification is terminated.<a href="#sec
               <li class="normal" id="section-5.1.1.1-4.2">
                 <p id="section-5.1.1.1-4.2.1">The Lead Verfier relays each Partial Evidence (PE) to its own Component Verifier (CV). In certain topologies, it is possible that the PE is not protected. In such cases, the Lead verifier must wrap the Partial Evidence (example PE_1) in a signed Conceptual Message Wrapper (CMW), and then send it to its Component Verifier (example CV 1). Upon successful appraisal of Evidence by the CV, it receives signed Component Attester Attestation Results also known as Partial Attestation Results.
 There are many protocols to determine how a Lead Verifier can select the Component Verifiers (e.g., static configuration or a discovery protocol).
-This document does not mandate any specific protocol for determining the Component Verifiers.<a href="#section-5.1.1.1-4.2.1" class="pilcrow">¶</a></p>
+Verifier discovery is out of scope for this specification.<a href="#section-5.1.1.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-5.1.1.1-4.3">
                 <p id="section-5.1.1.1-4.3.1">Once the Lead Verifier receives Partial Attestation Results from all the Verifiers, it combines the results from each Verifier to construct Aggregated Attestation Results (AAR). The Lead verifier may apply its own policies and also add extra claims as part of its appraisal.<a href="#section-5.1.1.1-4.3.1" class="pilcrow">¶</a></p>
@@ -1750,9 +1750,9 @@ Partial Evidence from the Composite Evidence, performs Appraisal of the Componen
 <p id="section-5.2-5">The process is repeated, until the entire appraisal is complete. The last Verifier, i.e. CV-N, completes its Appraisal of the Partial Evidence, that it can appraise. It has now all the signed Partial Attestation Results and creates the Aggregated Attestation Results (AAR),  which is a collection of all signed PARs. To ensure the integrity of the collection, CV-N signs the AAR. It returns
 the AAR to the N-1 Verifier (from where it received the Composite Evidence and Partial AR). The process is repeated, i.e. AAR is returned in the chain until the Verifier, which recieved the initial Composite Evidence is reached. At this point in time the Aggregated Attestation Results are signed and the AAR is sent to the Attester (in Passport Model) or Relying Party (in background check model).<a href="#section-5.2-5" class="pilcrow">¶</a></p>
 <p id="section-5.2-6">As shown in the picture, the Partial Attestation Results and Composite Evidence are transmitted to a chain of Verifiers, till the Appraisal is complete.
-Upon completion, the last Verifier in the chain combines the incoming Partial Attestation Results with the results from its own Evidence Appraisal, and passes the Aggregated Attestation Results to the Verifier from which it receives Composite Evidence.<a href="#section-5.2-6" class="pilcrow">¶</a></p>
+Upon completion, the last Verifier in the chain combines the incoming Partial Attestation Results with the results from its own Evidence Appraisal, and passes the Aggregated Attestation Results to the Verifier from which it receives Composite Evidence. The visibility of evidence within this pattern is subject to the privacy policies described in <a href="#sec-privacy" class="auto internal xref">Section 8</a>.<a href="#section-5.2-6" class="pilcrow">¶</a></p>
 <p id="section-5.2-7">There are many protocols to determine how a Verifier can select the next Verifier to route the CE and PAR (e.g., (e.g., static configuration or a discovery protocol).
-This document does not mandate any specific protocol for determining the Verifiers in cascade.<a href="#section-5.2-7" class="pilcrow">¶</a></p>
+Verifier discovery is out of scope for this specification.<a href="#section-5.2-7" class="pilcrow">¶</a></p>
 <div id="trust-relationships-1">
 <section id="section-5.2.1">
           <h4 id="name-trust-relationships-2">
@@ -1859,14 +1859,19 @@ This document does not mandate any specific protocol for determining the Verifie
 </div>
 </section>
 </div>
-<div id="freshness">
+<div id="sec-freshness">
 <section id="section-6">
       <h2 id="name-freshness">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-freshness" class="section-name selfRef">Freshness</a>
       </h2>
-<p id="section-6-1">The Verifier needs to ensure that the claims included in the Evidence reflect the latest state of the Attester. As per RATS Architecture, the recommended freshness is ascertained using either Synchronised Clocks, Epoch IDs, or nonce, embedded in the Evidence.
-In the case of Hierarchical Pattern, the Verification of Freshness should be checked by the Lead Verifier.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">In the Cascaded Pattern, the freshness is always checked by the first Verifier in communication with either the Attester (Passport Model) or Relying Party (Background Check Model).<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-1">The Verifier needs to ensure that the claims included in the Evidence reflect the latest state of the Attester.
+As per RATS Architecture, the recommended freshness is ascertained using either Synchronised Clocks, Epoch IDs, or nonce, generated by the Verifier.
+When Verifiers generates freshness, in a Multi Verifier System, the generation and subsequent verification of freshness during appraisal, depends on the specific mechanism utilized.
+For example, when nonce is employed, in a Heirarchical pattern, one possible approach is for the Lead Verifier to autonomously generate a unique nonce, or autonomously by the first Verifier (in Cascaded pattern) communicating with the Attester.
+This approach simplifies the freshness appraisal procedure by centralizing the processing of the challenge.
+The other alternative may be for a LV to generate a nonce by aggregating the nonces generated by each participating Component Verifier.
+In this case, the freshness appraisal procedure requires obtaining the individual component nonces received as a claim from PAR and recomputing the aggregated nonce.
+Conversely, when Synchronized Clocks or Epoch IDs are employed, the verification of freshness can be performed independently by each individual Component Verifier.<a href="#section-6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
@@ -1969,7 +1974,7 @@ The LV MUST validate the signature using the required trust anchor for the CV, b
 <a href="#section-7.3.1.1.5" class="section-number selfRef">7.3.1.1.5. </a><a href="#name-replay-attacks" class="section-name selfRef">Replay Attacks</a>
               </h6>
 <p id="section-7.3.1.1.5-1"><strong>Threat:</strong> An adversary Component Verifier replays old Evidence or Attestation Results.<a href="#section-7.3.1.1.5-1" class="pilcrow">¶</a></p>
-<p id="section-7.3.1.1.5-2"><strong>Mitigation:</strong> The LV is responsible for enforcing freshness (via nonces, epochs, or timestamps). This freshness value MUST be propagated to CVs and back to the LV, to ensure final AR can be validated against the original challenge.<a href="#section-7.3.1.1.5-2" class="pilcrow">¶</a></p>
+<p id="section-7.3.1.1.5-2"><strong>Mitigation:</strong>  Freshness is enforced based on the selected mechanism described in <a href="#sec-freshness" class="auto internal xref">Section 6</a>.<a href="#section-7.3.1.1.5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2020,7 +2025,7 @@ The LV MUST validate the signature using the required trust anchor for the CV, b
 <a href="#section-7.3.2.1.4" class="section-number selfRef">7.3.2.1.4. </a><a href="#name-replay-attacks-2" class="section-name selfRef">Replay Attacks</a>
               </h6>
 <p id="section-7.3.2.1.4-1"><strong>Threat:</strong> An adversary replays old Evidence or Attestation Results.<a href="#section-7.3.2.1.4-1" class="pilcrow">¶</a></p>
-<p id="section-7.3.2.1.4-2"><strong>Mitigation:</strong> The first Verifier in the chain (the one receiving evidence from the Attester/RP) is responsible for enforcing freshness (via nonces, epochs, or timestamps) for the entire cascade. This freshness value MUST be propagated with the Evidence and Results through the chain so the final AR can be validated against the original challenge.<a href="#section-7.3.2.1.4-2" class="pilcrow">¶</a></p>
+<p id="section-7.3.2.1.4-2"><strong>Mitigation:</strong> Freshness is enforced in accordance with the mechanisms described in <a href="#sec-freshness" class="auto internal xref">Section 6</a>.<a href="#section-7.3.2.1.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2039,7 +2044,7 @@ The LV MUST validate the signature using the required trust anchor for the CV, b
 </div>
 </section>
 </div>
-<div id="privacy-considerations">
+<div id="sec-privacy">
 <section id="section-8">
       <h2 id="name-privacy-considerations">
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy Considerations</a>

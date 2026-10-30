@@ -2033,7 +2033,8 @@ The LV MUST validate the signature using the required trust anchor for the CV, b
 <p id="section-8-3">Nonetheless, such benefits depend on strong implementation practices.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-8-4.1">
-          <p id="section-8-4.1.1">Minimization: Attesters SHOULD only generate Evidence that is strictly necessary for the appraisal policy. Verifiers SHOULD only request necessary claims. <span>[<a href="#I-D.draft-ietf-rats-reference-interaction-models" class="cite xref">I-D.draft-ietf-rats-reference-interaction-models</a>]</span> and <span>[<a href="#I-D.draft-ietf-rats-pkix-key-attestation" class="cite xref">I-D.draft-ietf-rats-pkix-key-attestation</a>]</span> describe some implementation examples.<a href="#section-8-4.1.1" class="pilcrow">¶</a></p>
+          <p id="section-8-4.1.1">Minimization: Attesters SHOULD only generate Evidence that is strictly necessary for the appraisal policy.
+Verifiers SHOULD only request necessary claims. Refer to (<span>[<a href="#I-D.draft-ietf-rats-reference-interaction-models" class="cite xref">I-D.draft-ietf-rats-reference-interaction-models</a>]</span>) and (<span>[<a href="#I-D.draft-ietf-rats-pkix-key-attestation" class="cite xref">I-D.draft-ietf-rats-pkix-key-attestation</a>]</span>) for further guidance on procedures for minimization of Evidence.<a href="#section-8-4.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-8-4.2">
           <p id="section-8-4.2.1">Confidentiality: Evidence containing sensitive information SHOULD be encrypted so that it can only be accessed by the intended Verifier and not by any unauthorised parties (including other Verifiers in the hierarchy, cascade or hybrid pattern). This is crucial in multi-tenant environments.<a href="#section-8-4.2.1" class="pilcrow">¶</a></p>

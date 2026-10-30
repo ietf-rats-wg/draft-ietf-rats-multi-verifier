@@ -724,10 +724,10 @@ Legend:
 
    *  Minimization: Attesters SHOULD only generate Evidence that is
       strictly necessary for the appraisal policy.  Verifiers SHOULD
-      only request necessary claims.
-      [I-D.draft-ietf-rats-reference-interaction-models] and
-      [I-D.draft-ietf-rats-pkix-key-attestation] describe some
-      implementation examples.
+      only request necessary claims.  Refer to
+      ([I-D.draft-ietf-rats-reference-interaction-models]) and
+      ([I-D.draft-ietf-rats-pkix-key-attestation]) for further guidance
+      on procedures for minimization of Evidence.
 
    *  Confidentiality: Evidence containing sensitive information SHOULD
       be encrypted so that it can only be accessed by the intended

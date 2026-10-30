@@ -270,7 +270,8 @@ Table of Contents
    This document uses the following terms:
 
    Composite Attester:  A Composite Attester is either a Composite
-      Device or a Layered Attester or any combination of these.
+      Device (Section 3.3 of [RFC9334]) or a Layered Attester
+      (Section 3.2 of [RFC9334]) or any combination of these.
 
    Component Attester:  A Component Attester is a single Attester of a
       Composite Attester.  For example, it can be a sub-entity

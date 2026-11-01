@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-25T04:21:37.239224+00:00",
+  "timestamp": "2026-11-01T05:43:02.740088+00:00",
   "repo": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
   "labels": [
     {
@@ -1024,15 +1024,15 @@
       "id": "I_kwDON24c9s8AAAABUkWkDg",
       "title": "Mark Novak Comments",
       "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/issues/65",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Hello all,\n\nI completed a proofreading pass and suggested a PR correcting just grammar/typo/minor issues. https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/63\n\nSeparately, here is what I noticed but it falls into neither of the categories above:\n\n\u2022\t\"Component Verifiers should be made available suitable trust anchors so that they can establish required trust in the authority of the LV.\"\nI would rephase as \"CVs SHOULD be provided with suitable trust anchors...\" \u2014 but I can't be certain that's your intent.\n\u2022\t\"It is recommended that any two verifiers establishing a communication channel perform mutual attestation before exchanging any attestation messages.\"\nI think here you mean mutual authentication, not mutual attestation\n\u2022\tI'd replace \"TLS with client authentication\" with \"TLS with mutual authentication\" throughout\n\nOther than these minor issues, I think the draft is in great shape.\n",
       "createdAt": "2026-10-02T09:04:23Z",
-      "updatedAt": "2026-10-02T09:04:23Z",
-      "closedAt": null,
+      "updatedAt": "2026-10-30T12:08:40Z",
+      "closedAt": "2026-10-30T12:08:40Z",
       "comments": []
     },
     {
@@ -5582,21 +5582,21 @@
       "id": "PR_kwDON24c9s8AAAABGsImwQ",
       "title": "Mcr editorial",
       "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/67",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mcr",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2026-10-05T11:01:52Z",
-      "updatedAt": "2026-10-23T09:25:54Z",
+      "updatedAt": "2026-10-30T18:13:51Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
       "baseRefOid": "b2f91f9a6ee0c165a79c3a3a939312923712ba1e",
       "headRepository": "mcr/draft-ietf-rats-multi-verifier",
       "headRefName": "mcr-editorial",
       "headRefOid": "9ab0c7c5d583e0d9196174fd1bddc8482faeda12",
-      "closedAt": null,
+      "closedAt": "2026-10-30T18:13:51Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -5607,6 +5607,13 @@
           "body": "I suggest we address all other comments and then apply MCR New Sentence New Line Comment",
           "createdAt": "2026-10-23T09:25:54Z",
           "updatedAt": "2026-10-23T09:25:54Z"
+        },
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "MCR's changes now applied via - https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/81\r\n\r\n",
+          "createdAt": "2026-10-30T18:13:51Z",
+          "updatedAt": "2026-10-30T18:13:51Z"
         }
       ],
       "reviews": [
@@ -5679,26 +5686,49 @@
       "id": "PR_kwDON24c9s8AAAABG6XoZQ",
       "title": "Update draft-ietf-rats-multi-verifier.md",
       "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/70",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "junzhanghw",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "1. add rfc9334 reference for composite device and layer model\r\n\r\n2. Remove redundant description for CE, CV, AAR, PAR, etc.",
       "createdAt": "2026-10-06T12:39:22Z",
-      "updatedAt": "2026-10-06T12:39:23Z",
+      "updatedAt": "2026-10-30T17:20:31Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
-      "baseRefOid": "b2f91f9a6ee0c165a79c3a3a939312923712ba1e",
+      "baseRefOid": "68c4ca8ca962ee057d85abbd0a91aa48ed3f229e",
       "headRepository": "junzhanghw/draft-deshpande-multi-verifier",
       "headRefName": "section-4-update-according-to-(Paul-H)-#60-comments",
-      "headRefOid": "e6045c4ce255a001ce8d83084f9bb9eaa12d69cf",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "fb652a2eae5e190e195326037139ae2e0ac9056e",
+      "closedAt": "2026-10-30T17:20:30Z",
+      "mergedAt": "2026-10-30T17:20:30Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "8e198914a90815b7d833e98576449fd11594ab99"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDON24c9s8AAAABVLNl2w",
+          "commit": {
+            "abbreviatedOid": "4544bba"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T17:18:58Z",
+          "updatedAt": "2026-10-30T17:18:58Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\n: A Composite Attester is either a Composite Device ({{Section 3.3 of -rats-arch}}) or a Layered Attester ({{Section 3.2 of -rats-arch}}) or any combination of these.\n```",
+              "createdAt": "2026-10-30T17:18:58Z",
+              "updatedAt": "2026-10-30T17:18:58Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 71,
@@ -6926,24 +6956,26 @@
       "id": "PR_kwDON24c9s8AAAABKQlZhg",
       "title": "PaulHComments-Section8",
       "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/76",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "GhadaArf",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Add refrences to: \n1- https://datatracker.ietf.org/doc/draft-ietf-rats-pkix-key-attestation/\n2- https://datatracker.ietf.org/doc/draft-ietf-rats-reference-interaction-models/\nin section 8. \n\n",
       "createdAt": "2026-10-23T13:25:15Z",
-      "updatedAt": "2026-10-23T13:31:34Z",
+      "updatedAt": "2026-10-30T18:42:18Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
-      "baseRefOid": "d7b41bd09b4ec3f8559acb8994ef9bfb15052648",
+      "baseRefOid": "99994dfa4857892a9730806825c2f18f9afce72c",
       "headRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "headRefName": "GhadaArf-PaulHComments-Section8",
-      "headRefOid": "cf7891c564b216ed5e534a39d9cb0a39344c739a",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "8b19efc3c7eb12d3e0ab3a5fdcb835b4ede11770",
+      "closedAt": "2026-10-30T18:42:14Z",
+      "mergedAt": "2026-10-30T18:42:14Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "750f0ab9d57282de54cc357e07b15a6deb3aa44a"
+      },
       "comments": [],
       "reviews": [
         {
@@ -6985,6 +7017,19 @@
               "updatedAt": "2026-10-23T13:31:34Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVMNy1g",
+          "commit": {
+            "abbreviatedOid": "3adfad6"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2026-10-30T18:38:53Z",
+          "updatedAt": "2026-10-30T18:38:53Z",
+          "comments": []
         }
       ]
     },
@@ -6993,50 +7038,692 @@
       "id": "PR_kwDON24c9s8AAAABKgZwnw",
       "title": "Address Comments from Mark Novak",
       "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/77",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #65",
       "createdAt": "2026-10-24T23:15:22Z",
-      "updatedAt": "2026-10-25T00:06:52Z",
+      "updatedAt": "2026-10-30T12:08:39Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
       "baseRefOid": "d7b41bd09b4ec3f8559acb8994ef9bfb15052648",
       "headRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "headRefName": "mark-comments",
       "headRefOid": "1900ea85c43ef469ec5998f87fb2381a67a4a662",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-10-30T12:08:39Z",
+      "mergedAt": "2026-10-30T12:08:39Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "679bfb2ea1a883b33f8be7f62af91f4834690dcc"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDON24c9s8AAAABVHZM8w",
+          "commit": {
+            "abbreviatedOid": "1900ea8"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "let's got with mutual for now",
+          "createdAt": "2026-10-30T12:08:10Z",
+          "updatedAt": "2026-10-30T12:08:10Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 78,
       "id": "PR_kwDON24c9s8AAAABKgrGrg",
       "title": "MCR remaining comment",
       "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/78",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "yogeshbdeshpande",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2026-10-25T00:04:50Z",
-      "updatedAt": "2026-10-25T00:06:22Z",
+      "updatedAt": "2026-10-30T12:27:01Z",
       "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "baseRefName": "main",
       "baseRefOid": "d7b41bd09b4ec3f8559acb8994ef9bfb15052648",
       "headRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
       "headRefName": "mcr-comments",
-      "headRefOid": "5340f4760bd021d1a6fc678ef26750dd83d939df",
-      "closedAt": null,
+      "headRefOid": "9a1133a4bab7ec52eaabd81cbb224192d39ba21f",
+      "closedAt": "2026-10-30T12:27:01Z",
+      "mergedAt": "2026-10-30T12:27:01Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "1fed748386d9622c8431bbad562b45d233cce082"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDON24c9s8AAAABVHgDQA",
+          "commit": {
+            "abbreviatedOid": "5340f47"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T12:18:11Z",
+          "updatedAt": "2026-10-30T12:18:11Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\n#### Integrity Verification of Composite Evidence\n```",
+              "createdAt": "2026-10-30T12:18:11Z",
+              "updatedAt": "2026-10-30T12:18:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVHk9Kw",
+          "commit": {
+            "abbreviatedOid": "9a1133a"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "lgtm",
+          "createdAt": "2026-10-30T12:26:01Z",
+          "updatedAt": "2026-10-30T12:26:01Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVHlozg",
+          "commit": {
+            "abbreviatedOid": "9a1133a"
+          },
+          "author": "junzhanghw",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-10-30T12:26:54Z",
+          "updatedAt": "2026-10-30T12:26:54Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 79,
+      "id": "PR_kwDON24c9s8AAAABLwl8og",
+      "title": "Address comments from yaron",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/79",
+      "state": "MERGED",
+      "author": "junzhanghw",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-30T12:11:16Z",
+      "updatedAt": "2026-10-30T17:10:11Z",
+      "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "baseRefName": "main",
+      "baseRefOid": "1fed748386d9622c8431bbad562b45d233cce082",
+      "headRepository": "junzhanghw/draft-deshpande-multi-verifier",
+      "headRefName": "update-to-address-yaron-comments",
+      "headRefOid": "335b2446f86e785f69c4636f107b992c5acdc2b0",
+      "closedAt": "2026-10-30T17:10:11Z",
+      "mergedAt": "2026-10-30T17:10:11Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "68c4ca8ca962ee057d85abbd0a91aa48ed3f229e"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDON24c9s8AAAABVHuqPA",
+          "commit": {
+            "abbreviatedOid": "fafb54d"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T12:39:39Z",
+          "updatedAt": "2026-10-30T12:39:40Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\nVerifier discovery is out of scope for this specification.\n```",
+              "createdAt": "2026-10-30T12:39:39Z",
+              "updatedAt": "2026-10-30T12:39:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVHvjiw",
+          "commit": {
+            "abbreviatedOid": "fafb54d"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T12:40:59Z",
+          "updatedAt": "2026-10-30T12:40:59Z",
+          "comments": [
+            {
+              "originalPosition": 27,
+              "body": "```suggestion\nVerifier discovery is out of scope for this specification.\n```",
+              "createdAt": "2026-10-30T12:40:59Z",
+              "updatedAt": "2026-10-30T12:40:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVIBxXw",
+          "commit": {
+            "abbreviatedOid": "fafb54d"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T13:06:43Z",
+          "updatedAt": "2026-10-30T13:06:43Z",
+          "comments": [
+            {
+              "originalPosition": 52,
+              "body": "```suggestion\nThe AAR may contain the signed PARs from each Component Verifier, allowing the Relying Party to verify that the aggregated result is consistent with the individual component appraisals.\n```",
+              "createdAt": "2026-10-30T13:06:43Z",
+              "updatedAt": "2026-10-30T13:06:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVIDYkw",
+          "commit": {
+            "abbreviatedOid": "fafb54d"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T13:08:56Z",
+          "updatedAt": "2026-10-30T13:08:56Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "```suggestion\n\n```",
+              "createdAt": "2026-10-30T13:08:56Z",
+              "updatedAt": "2026-10-30T13:08:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVID57A",
+          "commit": {
+            "abbreviatedOid": "fafb54d"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T13:09:42Z",
+          "updatedAt": "2026-10-30T13:09:42Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "```suggestion\nComponent Verifiers should have suitable trust anchors so that they can establish required trust in the authority of the LV.\nCVs should verify the signature of the PE to prevent LV manipulated evidence from being appraised.\n```",
+              "createdAt": "2026-10-30T13:09:42Z",
+              "updatedAt": "2026-10-30T13:09:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVIG6Jw",
+          "commit": {
+            "abbreviatedOid": "64bf927"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T13:14:07Z",
+          "updatedAt": "2026-10-30T13:14:08Z",
+          "comments": [
+            {
+              "originalPosition": 52,
+              "body": "```suggestion\nThe AAR may contain the signed PARs from each Component Verifier, allowing the Relying Party to verify that the aggregated result is consistent with the individual component appraisals.\n```",
+              "createdAt": "2026-10-30T13:14:07Z",
+              "updatedAt": "2026-10-30T13:14:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVIHG6A",
+          "commit": {
+            "abbreviatedOid": "64bf927"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T13:14:23Z",
+          "updatedAt": "2026-10-30T13:14:23Z",
+          "comments": [
+            {
+              "originalPosition": 53,
+              "body": "```suggestion\n```",
+              "createdAt": "2026-10-30T13:14:23Z",
+              "updatedAt": "2026-10-30T13:14:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVIHlZw",
+          "commit": {
+            "abbreviatedOid": "64bf927"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T13:14:59Z",
+          "updatedAt": "2026-10-30T13:15:00Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "```suggestion\nComponent Verifiers (CVs) should have suitable trust anchors so that they can establish required trust in the authority of the LV.\nCVs should verify the signature of the PE to prevent LV manipulated evidence from being appraised.\n```",
+              "createdAt": "2026-10-30T13:15:00Z",
+              "updatedAt": "2026-10-30T13:15:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVII2gA",
+          "commit": {
+            "abbreviatedOid": "3db88a4"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "some more comments",
+          "createdAt": "2026-10-30T13:16:48Z",
+          "updatedAt": "2026-10-30T13:16:58Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVKhdNw",
+          "commit": {
+            "abbreviatedOid": "9b0f50a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T16:21:51Z",
+          "updatedAt": "2026-10-30T16:21:52Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "```suggestion\n**Mitigation:**  Freshness is enforced based on the selected mechanism described in {{sec-freshness}}.\n```",
+              "createdAt": "2026-10-30T16:21:51Z",
+              "updatedAt": "2026-10-30T16:21:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVKho2Q",
+          "commit": {
+            "abbreviatedOid": "9b0f50a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T16:22:06Z",
+          "updatedAt": "2026-10-30T16:22:07Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "```suggestion\n**Mitigation:** Freshness is enforced in accordance with the mechanisms described in {{sec-freshness}}.\n```",
+              "createdAt": "2026-10-30T16:22:07Z",
+              "updatedAt": "2026-10-30T16:22:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVKpkGA",
+          "commit": {
+            "abbreviatedOid": "ce30045"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T16:32:14Z",
+          "updatedAt": "2026-10-30T16:32:15Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "```suggestion\n# Freshness {#sec-freshness}\n```",
+              "createdAt": "2026-10-30T16:32:15Z",
+              "updatedAt": "2026-10-30T16:32:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVLEz1g",
+          "commit": {
+            "abbreviatedOid": "bbe69cc"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T17:06:55Z",
+          "updatedAt": "2026-10-30T17:06:55Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "```suggestion\nThe Verifier needs to ensure that the claims included in the Evidence reflect the latest state of the Attester.\nAs per RATS Architecture, the recommended freshness is ascertained using either Synchronised Clocks, Epoch IDs, or nonce, generated by the Verifier.\nWhen Verifiers generates freshness, in a Multi Verifier System, the generation and subsequent verification of freshness during appraisal, depends on the specific mechanism utilized.\nFor example, when nonce is employed, in a Heirarchical pattern, one possible approach is for the Lead Verifier to autonomously generate a unique nonce, or autonomously by the first Verifier (in Cascaded pattern) communicating with the Attester.\nThis approach simplifies the freshness appraisal procedure by centralizing the processing of the challenge.\nThe other alternative may be for a LV to generate a nonce by aggregating the nonces generated by each participating Component Verifier.\nIn this case, the freshness appraisal procedure requires obtaining the individual component nonces received as a claim from PAR and recomputing the aggregated nonce.\nConversely, when Synchronized Clocks or Epoch IDs are employed, the verification of freshness can be performed independently by each individual Component Verifier.\n```",
+              "createdAt": "2026-10-30T17:06:55Z",
+              "updatedAt": "2026-10-30T17:06:55Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 80,
+      "id": "PR_kwDON24c9s8AAAABL08Imw",
+      "title": "Review comments of new sentence new line, no changes as such",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/80",
+      "state": "CLOSED",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-30T17:48:03Z",
+      "updatedAt": "2026-10-30T17:55:01Z",
+      "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "baseRefName": "main",
+      "baseRefOid": "8e198914a90815b7d833e98576449fd11594ab99",
+      "headRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "headRefName": "mcr-comments-ns-nl",
+      "headRefOid": "9c77fa6d07aaa329a85d5a373c43fd757922a636",
+      "closedAt": "2026-10-30T17:55:01Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDON24c9s8AAAABVLjzCg",
+          "commit": {
+            "abbreviatedOid": "40c923a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T17:49:28Z",
+          "updatedAt": "2026-10-30T17:49:29Z",
+          "comments": [
+            {
+              "originalPosition": 67,
+              "body": "```suggestion\n: A Composite Attester is either a Composite Device ({{Section 3.3 of -rats-arch}}) or a Layered Attester ({{Section 3.2 of -rats-arch}}) or any combination of these.\n```",
+              "createdAt": "2026-10-30T17:49:28Z",
+              "updatedAt": "2026-10-30T17:49:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVLlPVA",
+          "commit": {
+            "abbreviatedOid": "9c77fa6"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T17:51:49Z",
+          "updatedAt": "2026-10-30T17:51:49Z",
+          "comments": [
+            {
+              "originalPosition": 72,
+              "body": "```suggestion\nComposite Evidence  (CE):\n```",
+              "createdAt": "2026-10-30T17:51:49Z",
+              "updatedAt": "2026-10-30T17:51:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVLlbrQ",
+          "commit": {
+            "abbreviatedOid": "9c77fa6"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T17:52:06Z",
+          "updatedAt": "2026-10-30T17:52:07Z",
+          "comments": [
+            {
+              "originalPosition": 78,
+              "body": "```suggestion\nPartial Evidence (PE):\n```",
+              "createdAt": "2026-10-30T17:52:07Z",
+              "updatedAt": "2026-10-30T17:52:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVLlj4A",
+          "commit": {
+            "abbreviatedOid": "9c77fa6"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T17:52:19Z",
+          "updatedAt": "2026-10-30T17:52:19Z",
+          "comments": [
+            {
+              "originalPosition": 83,
+              "body": "```suggestion\n```",
+              "createdAt": "2026-10-30T17:52:19Z",
+              "updatedAt": "2026-10-30T17:52:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVLltxQ",
+          "commit": {
+            "abbreviatedOid": "9c77fa6"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T17:52:33Z",
+          "updatedAt": "2026-10-30T17:52:33Z",
+          "comments": [
+            {
+              "originalPosition": 75,
+              "body": "```suggestion\n```",
+              "createdAt": "2026-10-30T17:52:33Z",
+              "updatedAt": "2026-10-30T17:52:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVLmBsQ",
+          "commit": {
+            "abbreviatedOid": "9c77fa6"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T17:53:00Z",
+          "updatedAt": "2026-10-30T17:53:00Z",
+          "comments": [
+            {
+              "originalPosition": 86,
+              "body": "```suggestion\nLead Verifier (LV):\n```",
+              "createdAt": "2026-10-30T17:53:00Z",
+              "updatedAt": "2026-10-30T17:53:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVLmKBQ",
+          "commit": {
+            "abbreviatedOid": "9c77fa6"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T17:53:11Z",
+          "updatedAt": "2026-10-30T17:53:12Z",
+          "comments": [
+            {
+              "originalPosition": 90,
+              "body": "```suggestion\n```",
+              "createdAt": "2026-10-30T17:53:11Z",
+              "updatedAt": "2026-10-30T17:53:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVLmUSg",
+          "commit": {
+            "abbreviatedOid": "9c77fa6"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T17:53:25Z",
+          "updatedAt": "2026-10-30T17:53:26Z",
+          "comments": [
+            {
+              "originalPosition": 93,
+              "body": "```suggestion\nComponent Verifier (CV):\n```",
+              "createdAt": "2026-10-30T17:53:25Z",
+              "updatedAt": "2026-10-30T17:53:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVLmavw",
+          "commit": {
+            "abbreviatedOid": "9c77fa6"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T17:53:34Z",
+          "updatedAt": "2026-10-30T17:53:34Z",
+          "comments": [
+            {
+              "originalPosition": 95,
+              "body": "```suggestion\n```",
+              "createdAt": "2026-10-30T17:53:34Z",
+              "updatedAt": "2026-10-30T17:53:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVLmnzg",
+          "commit": {
+            "abbreviatedOid": "9c77fa6"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T17:53:51Z",
+          "updatedAt": "2026-10-30T17:53:51Z",
+          "comments": [
+            {
+              "originalPosition": 99,
+              "body": "```suggestion\nPartial Attestation Results (PAR):\n```",
+              "createdAt": "2026-10-30T17:53:51Z",
+              "updatedAt": "2026-10-30T17:53:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVLmz3A",
+          "commit": {
+            "abbreviatedOid": "9c77fa6"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T17:54:05Z",
+          "updatedAt": "2026-10-30T17:54:06Z",
+          "comments": [
+            {
+              "originalPosition": 104,
+              "body": "```suggestion\nAggregated Attestation Results (AAR):\n```",
+              "createdAt": "2026-10-30T17:54:06Z",
+              "updatedAt": "2026-10-30T17:54:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDON24c9s8AAAABVLnEIA",
+          "commit": {
+            "abbreviatedOid": "9c77fa6"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-10-30T17:54:26Z",
+          "updatedAt": "2026-10-30T17:54:26Z",
+          "comments": [
+            {
+              "originalPosition": 122,
+              "body": "```suggestion\nIn this topological pattern, there is an Entity known as Lead Verifier (LV).\n```",
+              "createdAt": "2026-10-30T17:54:26Z",
+              "updatedAt": "2026-10-30T17:54:26Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 81,
+      "id": "PR_kwDON24c9s8AAAABL1LEMg",
+      "title": "Introduce New Sentence New Line, no changes in the document",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/81",
+      "state": "MERGED",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-30T18:06:59Z",
+      "updatedAt": "2026-10-30T18:13:18Z",
+      "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "baseRefName": "main",
+      "baseRefOid": "8e198914a90815b7d833e98576449fd11594ab99",
+      "headRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "headRefName": "mcr-new-sent-new-line-comment",
+      "headRefOid": "984cc74a852bc4980712e99986089f2384d1f5a5",
+      "closedAt": "2026-10-30T18:13:18Z",
+      "mergedAt": "2026-10-30T18:13:18Z",
+      "mergedBy": "yogeshbdeshpande",
+      "mergeCommit": {
+        "oid": "99994dfa4857892a9730806825c2f18f9afce72c"
+      },
       "comments": [],
       "reviews": []
     }

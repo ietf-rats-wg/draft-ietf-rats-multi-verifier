@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-11-01T05:43:02.740088+00:00",
+  "timestamp": "2026-11-05T06:19:18.324344+00:00",
   "repo": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
   "labels": [
     {
@@ -7726,6 +7726,54 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 82,
+      "id": "PR_kwDON24c9s8AAAABMgfRLg",
+      "title": "Fix five spelling errors",
+      "url": "https://github.com/ietf-rats-wg/draft-ietf-rats-multi-verifier/pull/82",
+      "state": "OPEN",
+      "author": "shlee1223",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Hi, and thank you for your work on this draft.\n\nWhile reading it I noticed a few spelling errors and took the liberty of fixing them:\n\n- \"heterogenous\" \u2192 \"heterogeneous\" (section heading)\n- \"Verfier\" \u2192 \"Verifier\"\n- \"recieved\" \u2192 \"received\"\n- \"Verifers\" \u2192 \"Verifiers\"\n- \"Heirarchical\" \u2192 \"Hierarchical\"\n\nNo other changes. Please feel free to adjust or close if you'd rather handle this differently.",
+      "createdAt": "2026-11-03T08:45:24Z",
+      "updatedAt": "2026-11-03T08:54:08Z",
+      "baseRepository": "ietf-rats-wg/draft-ietf-rats-multi-verifier",
+      "baseRefName": "main",
+      "baseRefOid": "750f0ab9d57282de54cc357e07b15a6deb3aa44a",
+      "headRepository": "shlee1223/draft-ietf-rats-multi-verifier",
+      "headRefName": "fix/spelling",
+      "headRefOid": "500a02686289a7e3c6fb3593eedbc0c89db78e22",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thank you @shlee1223 for the contribution. We have just made the next release of Multi Verifier, we will add your suggested changes, upon other reviewers approval and merge it!",
+          "createdAt": "2026-11-03T08:54:08Z",
+          "updatedAt": "2026-11-03T08:54:08Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDON24c9s8AAAABVq_8dQ",
+          "commit": {
+            "abbreviatedOid": "500a026"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2026-11-03T08:53:07Z",
+          "updatedAt": "2026-11-03T08:53:07Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
